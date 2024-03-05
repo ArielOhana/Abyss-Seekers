@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets
 {
-    public class Role
+    public class Enemy
     {
         public string Name { get; set; }
         public float MaxHealth { get; set; }
@@ -19,7 +19,7 @@ namespace Assets
         public float CriticalChance { get; set; }
         public float ArmorPenetration { get; set; }
         public string[] SpecialAbility { get; set; }
-        public Role(string[] specialAbility,string name, float maxHealth, float damage, float healthRegeneration, float hitRate, float evadeRate, float movementSpeed, float armor, float criticalChance, float armorPenetration)
+        public Enemy(string[] specialAbility, string name, float maxHealth, float damage, float healthRegeneration, float hitRate, float evadeRate, float movementSpeed, float armor, float criticalChance, float armorPenetration)
         {
             ArmorPenetration = armorPenetration;
             Name = name;

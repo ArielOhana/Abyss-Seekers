@@ -30,6 +30,11 @@ namespace Assets
             EvadeRate = Role.EvadeRate;
             MovementSpeed = Role.MovementSpeed;
         }
+        public void Heal()
+        {
+            if (Health + HealthRegeneration <= MaxHealth)
+                Health += HealthRegeneration;
+        }
         public override string ToString()
         {
             return $"Stats:\n" +
