@@ -1,149 +1,183 @@
-﻿using System.Data.SQLite;
-using Newtonsoft.Json;
-using System.IO;
+﻿using UnityEngine;
+using Mono.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Collections;
+using System.IO;
 
- public class SQLdb
+namespace DBContext
 {
-    private static readonly string DBFile = "./SQLdb.db";
-    private static readonly string JSONfile = "./Default_JSON.json";
-    private static SQLiteConnection? connection;
-
-    private static void OpenConnection()
+    public class SQLdb : MonoBehaviour
     {
-        try
-        {
-            string connectionString = $"Data Source={DBFile};";
-            connection = new SQLiteConnection(connectionString);
-            connection.Open();
-            Console.WriteLine("Connection opened");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Error: " + e.Message);
-        }
-    }
+        private string connectionString = "URI=file:" + Application.dataPath + "/emptyTables.db";
+        private SqliteConnection DBConnection;
+        string filePath = "Assets/Default_JSON.json";
+        List<Dictionary<string, object>> jsonData;
 
-    private static void FillTable(SQLiteCommand SQLCommends, string tableName, List<Dictionary<string, object>> data)
-    {
-        foreach (var item in data)
+
+        /*private void OpenConnection()
         {
-            using (SQLiteCommand insertCommand = new SQLiteCommand(connection))
+            try
             {
-                insertCommand.CommandText = $@"INSERT INTO {tableName} (";
-
-                foreach (var key in item.Keys)
-                {
-                    insertCommand.CommandText += $"{key}, ";
-                }
-                insertCommand.CommandText = insertCommand.CommandText.TrimEnd(',', ' ') + ") VALUES (";
-                foreach (var key in item.Keys)
-                {
-                    insertCommand.CommandText += $"@{key}, ";
-                    insertCommand.Parameters.AddWithValue($"@{key}", item[key]);
-                }
-                insertCommand.CommandText = insertCommand.CommandText.TrimEnd(',', ' ') + ")";
-                insertCommand.ExecuteNonQuery();
-
+                DBConnection = new SqliteConnection(dbFile);
+                DBConnection.Open();
+                Debug.Log("Connection opened");
             }
-            Console.WriteLine($"Finished adding data to {tableName}");
+            catch (Exception e)
+            {
+                Debug.Log("Error: " + e.Message);
+            }
+            finally
+            {
+                DBConnection.Close();
+            }
+        }*/
+
+        private void FillTable(SqliteCommand insertCommand, string tableName, Dictionary<string, object> data)
+        {
+            insertCommand.CommandText = $@"INSERT INTO {tableName} (";
+
+            foreach (var key in data.Keys)
+            {
+                insertCommand.CommandText += $"{key}, ";
+            }
+            insertCommand.CommandText = insertCommand.CommandText.TrimEnd(',', ' ') + ") VALUES (";
+            foreach (var key in data.Keys)
+            {
+                insertCommand.CommandText += $"@{key}, ";
+                insertCommand.Parameters.AddWithValue($"@{key}", data[key]);
+            }
+            insertCommand.CommandText = insertCommand.CommandText.TrimEnd(',', ' ') + ")";
+            insertCommand.ExecuteNonQuery();
+
+            Debug.Log($"Finished adding data to {tableName}");
         }
 
-    }
-    private static void UpdateHeroRow(SQLiteCommand command, Hero hero)
-    {
-
-        command.Parameters.Clear();
-    Example: command.CommandText = "UPDATE hero SET XP = @XP, Level = @Level  WHERE Id = @Id";
-        command.Parameters.AddWithValue("@XP", hero.XP);
-        command.Parameters.AddWithValue("@Level", hero.Level);
-        command.Parameters.AddWithValue("@Id", hero.ID);
-        command.ExecuteNonQuery();
-
-    }
-
-    private static void UpdateInventoryRow(SQLiteCommand command, Inventory inventory)
-    {
-        command.Parameters.Clear();
-    Example: command.CommandText = "UPDATE inventory SET WeponIDs = @WeponIDs, CurrentWeapon = @CurrentWeapon,  HelmetIDs = @HelmetIDs, " +
-        "                           CurrentHelmet = @CurrentHelmet, ArmourIDs = @ArmourIDs, CurrentArmour = @CurrentArmour, " +
-        "                           BootIDs = @BootIDs, CurrentBoot = @CurrentBoot,WHERE Id = @Id";
-
-        command.Parameters.AddWithValue("@WeaponIDs", inventory.WeaponIDs);
-        command.Parameters.AddWithValue("@CurrentWeapon", inventory.CurrentWeapon);
-        command.Parameters.AddWithValue("@HelmetIDs", inventory.HelmetIDs);
-        command.Parameters.AddWithValue("@CurrentHelmet", inventory.CurrentHelmet);
-        command.Parameters.AddWithValue("@ArmourIDs", inventory.ArmourIDs);
-        command.Parameters.AddWithValue("@CurrentArmour", inventory.CurrentArmour);
-        command.Parameters.AddWithValue("@BootIDs", inventory.BootIDs);
-        command.Parameters.AddWithValue("@CurrentBoot", inventory.CurrentBoot);
-        command.Parameters.AddWithValue("@Id", inventory.ID);
-        command.ExecuteNonQuery();
-    }
-
-    private static void UpdateStatsRow(SQLiteCommand command, Stats stats)
-    {
-        command.CommandText = @"UPDATE stats SET Damage = @Damage, Armour = @Armour, MaxHealth = @MaxHealth,HealthRegeneration = @HealthRegeneration, 
-                                            MovementSpeed = @MovementSpeed, EvadeRate = @EvadeRate, HitRate = @HitRate, CriticalChance = @CriticalChance, 
-                                            ArmorPenetration = @ArmorPenetration WHERE StatsID = @StatsID";
-
-        command.Parameters.AddWithValue("@Damage", stats.Damage);
-        command.Parameters.AddWithValue("@Armour", stats.Armour);
-        command.Parameters.AddWithValue("@MaxHealth", stats.MaxHealth);
-        command.Parameters.AddWithValue("@HealthRegeneration", stats.HealthRegeneration);
-        command.Parameters.AddWithValue("@MovementSpeed", stats.MovementSpeed);
-        command.Parameters.AddWithValue("@EvadeRate", stats.EvadeRate);
-        command.Parameters.AddWithValue("@HitRate", stats.HitRate);
-        command.Parameters.AddWithValue("@CriticalChance", stats.CriticalChance);
-        command.Parameters.AddWithValue("@ArmorPenetration", stats.ArmorPenetration);
-        command.Parameters.AddWithValue("@StatsID", stats.StatsID);
-
-        command.ExecuteNonQuery();
-    }
-
-    public static void FillDB()
-    {
-        try
+        private void readJson()
         {
-            using (connection)
+            string jsonContent;
+            if (File.Exists(filePath))
             {
-                OpenConnection();
-                SQLiteCommand command = new SQLiteCommand(connection);
-                string jsonContent = DBFile.ReadAllText(JSONfile);
-                var jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string, object>>>>(jsonContent);
-                foreach (var table in jsonData)
+                jsonContent = File.ReadAllText(filePath);
+                JsonDataWrapper wrapper = JsonUtility.FromJson<JsonDataWrapper>(jsonContent);
+                if (wrapper != null && wrapper.Data != null)
                 {
-                    command.CommandText = $"SELECT COUNT(*) FROM {table.Key}";
-                    int rowCount = Convert.ToInt32(command.ExecuteScalar());
-                    if (rowCount < table.Value.Count)
+                    jsonData = wrapper.Data;
+
+                    foreach (var item in jsonData)
                     {
-                        FillTable(command, table.Key, table.Value);
+                        foreach (var entry in item)
+                        {
+                            // Accessing Key and Value properties correctly
+                            Debug.Log("working json");
+                        }
                     }
                 }
-                Console.WriteLine($"finished updating data");
+                else
+                {
+                    Debug.LogError("Failed to deserialize JSON data or the data structure is incorrect.");
+                }
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-        finally
-        {
-            if (connection.State == ConnectionState.Open)
+            else
             {
-                connection.Close();
+                Debug.LogError($"File not found: {filePath}");
             }
-            Console.WriteLine("Connection closed");
+        }
+        private class JsonDataWrapper
+        {
+            public List<Dictionary<string, object>> Data;
+        }
+
+        public void FillDB()
+        {
+            try
+            {
+                readJson();
+                using (var connection = new SqliteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = connectionString;
+                        foreach (var table in jsonData)
+                        {
+                            command.CommandText = $"SELECT COUNT(*) FROM {table}";
+                            int rowCount = Convert.ToInt32(command.ExecuteScalar());
+                            if (rowCount < 1) // Check if the table has any rows
+                            {
+                                FillTable(command, "your_table_name_here", table);
+                            }
+                            Debug.Log("Finished updating data");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Error: " + ex.Message);
+            }
         }
     }
+}
 
-    public static void entityToUpdate(object entity)
-    {
-        try
+        /*
+        private static void UpdateHeroRow(SQLiteCommand command, Hero hero)
         {
-            using (connection)
+
+            command.Parameters.Clear();
+            command.CommandText = "UPDATE hero SET XP = @XP, Level = @Level  WHERE Id = @Id";
+            command.Parameters.AddWithValue("@XP", hero.XP);
+            command.Parameters.AddWithValue("@Level", hero.Level);
+            command.Parameters.AddWithValue("@Id", hero.ID);
+            command.ExecuteNonQuery();
+
+        }
+
+        private static void UpdateInventoryRow(SQLiteCommand command, Inventory inventory)
+        {
+            command.Parameters.Clear();
+            command.CommandText = "UPDATE inventory SET WeponIDs = @WeponIDs, CurrentWeapon = @CurrentWeapon,  HelmetIDs = @HelmetIDs, " +
+                    "CurrentHelmet = @CurrentHelmet, ArmourIDs = @ArmourIDs, CurrentArmour = @CurrentArmour, " +
+                    "BootIDs = @BootIDs, CurrentBoot = @CurrentBoot WHERE Id = @Id";
+
+            command.Parameters.AddWithValue("@WeaponIDs", inventory.WeaponIDs);
+            command.Parameters.AddWithValue("@CurrentWeapon", inventory.CurrentWeapon);
+            command.Parameters.AddWithValue("@HelmetIDs", inventory.HelmetIDs);
+            command.Parameters.AddWithValue("@CurrentHelmet", inventory.CurrentHelmet);
+            command.Parameters.AddWithValue("@ArmourIDs", inventory.ArmourIDs);
+            command.Parameters.AddWithValue("@CurrentArmour", inventory.CurrentArmour);
+            command.Parameters.AddWithValue("@BootIDs", inventory.BootIDs);
+            command.Parameters.AddWithValue("@CurrentBoot", inventory.CurrentBoot);
+            command.Parameters.AddWithValue("@Id", inventory.ID);
+            command.ExecuteNonQuery();
+        }
+
+        private static void UpdateStatsRow(SQLiteCommand command, Stats stats)
+        {
+            command.CommandText = @"UPDATE stats SET Damage = @Damage, Armour = @Armour, MaxHealth = @MaxHealth,HealthRegeneration = @HealthRegeneration, 
+                                                MovementSpeed = @MovementSpeed, EvadeRate = @EvadeRate, HitRate = @HitRate, CriticalChance = @CriticalChance, 
+                                                ArmorPenetration = @ArmorPenetration WHERE StatsID = @StatsID";
+
+            command.Parameters.AddWithValue("@Damage", stats.Damage);
+            command.Parameters.AddWithValue("@Armour", stats.Armour);
+            command.Parameters.AddWithValue("@MaxHealth", stats.MaxHealth);
+            command.Parameters.AddWithValue("@HealthRegeneration", stats.HealthRegeneration);
+            command.Parameters.AddWithValue("@MovementSpeed", stats.MovementSpeed);
+            command.Parameters.AddWithValue("@EvadeRate", stats.EvadeRate);
+            command.Parameters.AddWithValue("@HitRate", stats.HitRate);
+            command.Parameters.AddWithValue("@CriticalChance", stats.CriticalChance);
+            command.Parameters.AddWithValue("@ArmorPenetration", stats.ArmorPenetration);
+            command.Parameters.AddWithValue("@StatsID", stats.StatsID);
+            command.ExecuteNonQuery();
+        }
+
+        
+
+        public static void entityToUpdate(object entity)
+        {
+            try
             {
                 OpenConnection();
                 SQLiteCommand command = new SQLiteCommand(connection);
@@ -159,30 +193,27 @@ using System.Collections;
                         UpdateStatsRow(command, stats);
                         break;
                     default:
-                        Console.WriteLine("Unsupported entity type.");
+                        Debug.Log("Unsupported entity type.");
                         break;
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-        finally
-        {
-            if (connection.State == ConnectionState.Open)
+            catch (Exception ex)
             {
-                connection.Close();
+                Console.WriteLine("Error: " + ex.Message);
             }
-            Console.WriteLine("Connection closed");
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+                Console.WriteLine("Connection closed");
+            }
         }
-    }
 
-    public static void NewHero(String name, String role)
-    {
-        try
+        public static void NewHero(String name, String role)
         {
-            using (connection)
+            try
             {
                 OpenConnection();
                 using (SQLiteCommand command = new SQLiteCommand(connection))
@@ -197,7 +228,7 @@ using System.Collections;
                     {
                         if (reader.Read())
                         {
-                            Console.WriteLine($"Role information for '{role}':");
+                            Debug.Log($"Role information for '{role}':");
                             for (int i = 2; i < 11; i++)
                             {
                                 roleKeys.Add(reader.GetName(i));
@@ -208,21 +239,21 @@ using System.Collections;
                         }
                         else
                         {
-                            Console.WriteLine($"No role found with name '{role}'.");
+                            Debug.Log($"No role found with name '{role}'.");
                         }
                     }
                     command.CommandText = $"INSERT INTO stats ({string.Join(", ", roleKeys)}) VALUES ({string.Join(", ", roleValues)})";
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT last_insert_rowid();";
                     int statsId = Convert.ToInt32(command.ExecuteScalar());
-                    Console.WriteLine("entered stats");
+                    Debug.Log("Entered stats");
 
                     command.CommandText = "INSERT INTO inventory (WeaponIDs, CurrentWeapon, HelmetIDs, CurrentHelmet, ArmourIDs, CurrentArmour, BootIDs, CurrentBoot, Coins) " +
                                           "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 100)";
                     command.Parameters.AddWithValue("@WeaponId", weaponId);
                     command.Parameters.AddWithValue("@CurrentWeapon", weaponId);
                     command.ExecuteNonQuery();
-                    Console.WriteLine("entered inventory");
+                    Debug.Log("Entered inventory");
 
                     command.CommandText = "SELECT last_insert_rowid();";
                     int inventoryId = Convert.ToInt32(command.ExecuteScalar());
@@ -235,30 +266,26 @@ using System.Collections;
                     command.Parameters.AddWithValue("@InventoryId", inventoryId);
                     command.Parameters.AddWithValue("@RoleID", roleID);
                     command.ExecuteNonQuery();
-
                 }
-                connection.Close();
+                Debug.Log("Hero created");
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-        finally
-        {
-            if (connection.State == ConnectionState.Open)
+            catch (Exception ex)
             {
-                connection.Close();
+                Console.WriteLine("Error: " + ex.Message);
             }
-            Console.WriteLine("Connection closed");
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+                Console.WriteLine("Connection closed");
+            }
         }
-    }
 
-    public static void GetUser(string name)
-    {
-        try
+        public static void GetUser(string name)
         {
-            using (connection)
+            try
             {
                 OpenConnection();
                 using (SQLiteCommand command = new SQLiteCommand(connection))
@@ -270,34 +297,35 @@ using System.Collections;
                     {
                         Hero hero = new Hero
                         {
-                            Id = data["HeroID"],
-                            Name = data["Name"],
-                            Level = data["Level"],
-                            xp = data["XP"],
-                            InventoryId = data["InventoryID"].
-                            RoleID = data["RoleID"]
+                            Id = (int)(long)data["HeroID"],
+                            Name = (string)data["Name"],
+                            Level = (int)(long)data["Level"],
+                            xp = (int)(long)data["XP"],
+                            InventoryId = (int)(long)data["InventoryID"],
+                            RoleID = (int)(long)data["RoleID"]
                         };
-                        Console.WriteLine(hero)
+                        Debug.Log(hero);
                     }
                     else
                     {
-                        Console.WriteLine($"Hero with name '{nameToSearch}' not found.");
+                        Debug.Log($"Hero with name '{name}' not found.");
                     }
                 }
             }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Error at GetUser: " + e.Message);
-        }
-        finally
-        {
-            if (connection.State == ConnectionState.Open)
+            catch (Exception e)
             {
-                connection.Close();
+                Console.WriteLine("Error at GetUser: " + e.Message);
             }
-            Console.WriteLine("Connection closed");
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+                Console.WriteLine("Connection closed");
+            }
         }
-    }
 
+    }
 }
+*/
