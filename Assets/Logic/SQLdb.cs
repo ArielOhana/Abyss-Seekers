@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Collections;
 
-public class SQLdb
+ public class SQLdb
 {
     private static readonly string DBFile = "./SQLdb.db";
     private static readonly string JSONfile = "./Default_JSON.json";
