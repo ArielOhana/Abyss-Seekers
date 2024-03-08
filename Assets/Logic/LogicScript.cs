@@ -20,7 +20,7 @@ public class LogicScript : MonoBehaviour
     {
         myHero = new Hero();
         myHero.InitializeStats(); // Initialize Stats separately
-        this.ButtonsArray = getAllButtons.ButtonsArray;
+        this.ButtonsArray = getAllButtons.GetButtonsArray();
 
     }
     

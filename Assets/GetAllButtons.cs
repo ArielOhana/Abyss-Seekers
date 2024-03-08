@@ -8,17 +8,17 @@ using static UnityEditor.Progress;
 
 public class GetAllButtons : MonoBehaviour
 {
-    [SerializeField] Button ButtonOne;
-    [SerializeField] Button ButtonTwo;
-    [SerializeField] Button ButtonThree;
-    [SerializeField] Button ButtonFour;
-    [SerializeField] Button ButtonFive;
-    [SerializeField] Button ButtonSix;
-    [SerializeField] Button ButtonSeven;
-    [SerializeField] Button ButtonEight;
-    [SerializeField] Button ButtonNine;
+    [SerializeField] static Button ButtonOne;
+    [SerializeField] static Button ButtonTwo;
+    [SerializeField] static Button ButtonThree;
+    [SerializeField] static Button ButtonFour;
+    [SerializeField] static Button ButtonFive;
+    [SerializeField] static Button ButtonSix;
+    [SerializeField] static Button ButtonSeven;
+    [SerializeField] static Button ButtonEight;
+    [SerializeField] static Button ButtonNine;
 
-    public Button[] ButtonsArray { get; set; }
+    public Button[] ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
     void Start()
     {
         ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
@@ -27,7 +27,10 @@ public class GetAllButtons : MonoBehaviour
             SetImageInButton(ButtonsArray[i], $"Assets/Items/Icons/Armor/BodyArmor{i}.png");
         }
     }
-
+    public Button[] GetButtonsArray()
+    {
+        return ButtonsArray;
+    }
     // Update is called once per frame
     void Update()
     {
