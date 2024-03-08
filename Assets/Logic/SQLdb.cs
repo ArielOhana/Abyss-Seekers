@@ -255,8 +255,8 @@ namespace DBContext
                     command.ExecuteNonQuery();
                     Debug.Log("Entered inventory");
 
-                    command.CommandText = "SELECT last_insert_rowid();";
-                    int inventoryId = Convert.ToInt32(command.ExecuteScalar());
+//                    command.CommandText = "SELECT last_insert_rowid();";
+//                    int inventoryId = Convert.ToInt32(command.ExecuteScalar());
 
                     command.Parameters.Clear();
                     command.CommandText = @"INSERT INTO hero (Name, Level, XP, StatsID, InventoryID, RoleID)" +

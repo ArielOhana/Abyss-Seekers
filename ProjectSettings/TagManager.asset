@@ -44,3 +44,9 @@ TagManager:
   - name: BackgroundLayer
     uniqueID: 3631375207
     locked: 0
+  - name: LayerOne
+    uniqueID: 2946470467
+    locked: 0
+  - name: LayerTwo
+    uniqueID: 3640652063
+    locked: 0
