@@ -14,13 +14,13 @@ public class LogicScript : MonoBehaviour
 
     public Hero myHero;
     public GameObject? Circle;
-    private GetAllButtons getAllButtons;
-    private Button[] ButtonsArray;
+    //private GetAllButtons getAllButtons;
+    //private Button[] ButtonsArray;
     void Start()// Get all the data from database and import it to Classes
     {
         myHero = new Hero();
         myHero.InitializeStats(); // Initialize Stats separately
-        this.ButtonsArray = getAllButtons.GetButtonsArray();
+        //this.ButtonsArray = getAllButtons.GetButtonsArray();
 
     }
     

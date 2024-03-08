@@ -8,17 +8,17 @@ using static UnityEditor.Progress;
 
 public class GetAllButtons : MonoBehaviour
 {
-    [SerializeField] static Button ButtonOne;
-    [SerializeField] static Button ButtonTwo;
-    [SerializeField] static Button ButtonThree;
-    [SerializeField] static Button ButtonFour;
-    [SerializeField] static Button ButtonFive;
-    [SerializeField] static Button ButtonSix;
-    [SerializeField] static Button ButtonSeven;
-    [SerializeField] static Button ButtonEight;
-    [SerializeField] static Button ButtonNine;
+    [SerializeField] Button ButtonOne;
+    [SerializeField] Button ButtonTwo;
+    [SerializeField] Button ButtonThree;
+    [SerializeField] Button ButtonFour;
+    [SerializeField] Button ButtonFive;
+    [SerializeField] Button ButtonSix;
+    [SerializeField] Button ButtonSeven;
+    [SerializeField] Button ButtonEight;
+    [SerializeField] Button ButtonNine;
 
-    public Button[] ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
+    Button[] ButtonsArray;
     void Start()
     {
         ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
