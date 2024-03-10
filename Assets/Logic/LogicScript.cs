@@ -7,10 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-<<<<<<< HEAD
-=======
-using DBContext;
->>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
 
 public class LogicScript : MonoBehaviour
 {
@@ -22,13 +18,8 @@ public class LogicScript : MonoBehaviour
     void Start()// Get all the data from database and import it to Classes
     {
        
-<<<<<<< HEAD
         //SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
         //DBManager.NewHero("dor", "mage");
-=======
-        SQLdb sqlDbInstance = new SQLdb();  // Create an instance of the SQLdb class
-        sqlDbInstance.FillDB();
->>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
     }
     
     // Update is called once per frame

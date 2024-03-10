@@ -11,10 +11,7 @@ public class TryingDB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         Debug.Log("Broker");
-=======
->>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
         CreateDB();
     }
 
@@ -23,10 +20,6 @@ public class TryingDB : MonoBehaviour
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
-<<<<<<< HEAD
-=======
-
->>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "CREATE TABLE IF NOT EXISTS weapons (name VARCHAR(20), damage INT);";
@@ -40,9 +33,5 @@ public class TryingDB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-=======
-        Debug.Log("hello");
->>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
     }
 }
