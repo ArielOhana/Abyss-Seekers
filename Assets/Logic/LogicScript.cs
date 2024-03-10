@@ -20,6 +20,7 @@ public class LogicScript : MonoBehaviour
        
         //SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
         //DBManager.NewHero("dor", "mage");
+
     }
     
     // Update is called once per frame

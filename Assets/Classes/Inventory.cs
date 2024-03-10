@@ -17,12 +17,14 @@ namespace Assets
         public Bodyarmour currentBodyarmour { get; set; }
         public List<Helmet> Helmets { get; set; }
         public Helmet currentHelmet { get; set; }
-        public List<Boots> Boots { get; set; }
+        public string Boots { get; set; }
         public Boots currentBoot { get; set; }
         public int Coins { get; set; }
 
         public Inventory(List<Weapon> weapons, List<Bodyarmour> bodyarmours, List<Helmet> helmets, List<Boots> boots, Weapon selectedWeapon, Bodyarmour selectedBodyarmour, Helmet selectedHelmet, Boots selectedBoots, int coins)
         {
+            totalIds++;
+            Id = totalIds;
             Weapons = weapons;
             Bodyarmours = bodyarmours;
             Helmets = helmets;
@@ -33,7 +35,6 @@ namespace Assets
             currentBoot = selectedBoots;
             Coins = coins;
         }
-
         public override string ToString()
         {
             return $"Inventory:\n" +
@@ -73,6 +74,5 @@ namespace Assets
         //            break;
         //    }
         //}
-       
     }
 }

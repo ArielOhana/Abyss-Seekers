@@ -910,6 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030301843}
   - component: {fileID: 2030301844}
+
   m_Layer: 0
   m_Name: LogicHandler
   m_TagString: Untagged
@@ -944,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ec87e41db9e6d40b96fd00be0ae406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

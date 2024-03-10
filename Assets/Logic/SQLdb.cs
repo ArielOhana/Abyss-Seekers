@@ -8,6 +8,7 @@ using System.Linq;
 using Newtonsoft.Json;
 
 
+
 namespace Assets
 {
     public class SQLdb : MonoBehaviour
@@ -176,13 +177,12 @@ namespace Assets
                     int statsId = Convert.ToInt32(command.ExecuteScalar());
                     Debug.Log("Entered stats");
 
+
                     command.CommandText = "INSERT INTO inventory (WeaponIDs, CurrentWeapon, HelmetIDs, CurrentHelmet, ArmourIDs, CurrentArmour, BootIDs, CurrentBoot, Coins) " +
                                           "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 100)";
                     command.Parameters.AddWithValue("@WeaponId", weaponId);
                     command.Parameters.AddWithValue("@CurrentWeapon", weaponId);
                     command.ExecuteNonQuery();
-                    Debug.Log("Entered inventory");
-
                     command.CommandText = "SELECT last_insert_rowid();";
                     int inventoryId = Convert.ToInt32(command.ExecuteScalar());
 

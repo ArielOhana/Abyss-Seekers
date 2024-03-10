@@ -136,3 +136,17 @@ namespace Assets
 //Rarity INTEGER,
 //Url STRING
 // );
+        public void Print()
+        {
+            Debug.Log($"Hero Details:\n" +
+                       $"ID: {Id}\n" +
+                       $"Name: {Name}\n" +
+                       $"Level: {Level}\n" +
+                       $"XP: {Xp}\n" +
+                       $"Weapon: {Weapon?.Name}\n" +
+                       $"Inventory: {Inventory?.ToString()}\n" +
+                       $"Role: {Role?.Name}\n" +
+                       $"Stats: {Stats?.ToString()}\n");
+        }
+    }
+}
