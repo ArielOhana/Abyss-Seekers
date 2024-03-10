@@ -37,12 +37,6 @@ public class WonStats : MonoBehaviour
     {
         UpdateUI();
 
-        Button xpButton = GameObject.Find("XPButton").GetComponent<Button>();
-        xpButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementXP); });
-
-        Button coinsButton = GameObject.Find("CoinsButton").GetComponent<Button>();
-        coinsButton.onClick.AddListener( () => { IncrementAndDecrement(IncrementXP); });
-
         Button damageButton = GameObject.Find("DamageButton").GetComponent<Button>();
         damageButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementDamage); });
 
@@ -79,7 +73,6 @@ public class WonStats : MonoBehaviour
         if (clickCount < 3)
         {
             XP++;
-            clickCount++;
             UpdateUI();
         }
     }
@@ -89,7 +82,6 @@ public class WonStats : MonoBehaviour
         if (clickCount < 3)
         {
             Coins++;
-            clickCount++;
             UpdateUI();
         }
     }
