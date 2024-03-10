@@ -1,34 +1,38 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets
 {
-    public class Stats : Hero
+    public class Stats
     {
         // Properties of the Stats class
-        public float Dmg { get; set; }
-        public float ArmorPenetration { get; set; }
-        public float CriticalChance { get; set; }
-        public float HitRate { get; set; }
-        public float Health { get; set; }
-        public float MaxHealth { get; set; }
-        public float HealthRegeneration { get; set; }
-        public float Armor { get; set; }
-        public float EvadeRate { get; set; }
-        public float MovementSpeed { get; set; }
+        private int totalIds = 0;
+        public int Id { get; set; }
+        public float Dmg { get; private set; }
+        public float ArmourPenetration { get; private set; }
+        public float CriticalChance { get; private set; }
+        public float HitRate { get; private set; }
+        public float Health { get; private set; }
+        public float MaxHealth { get; private set; }
+        public float HealthRegeneration { get; private set; }
+        public float Armour { get; private set; }
+        public float EvadeRate { get; private set; }
+        public float MovementSpeed { get; private set; }
 
-        // Constructor with parameters
-        public Stats()
+        public Stats(Hero hero, Role role, Weapon weapon, Inventory inventory)
         {
-            Dmg = Role.Damage+Weapon.Damage;
-            ArmorPenetration = Role.ArmorPenetration;
-            CriticalChance = Role.CriticalChance;
-            HitRate = Role.HitRate;
-             MaxHealth = Role.MaxHealth;
-            Health = Role.MaxHealth;
-            HealthRegeneration = Role.HealthRegeneration;
-            Armor = Role.Armor + Clothes.SumAdditionalArmor();
-            EvadeRate = Role.EvadeRate;
-            MovementSpeed = Role.MovementSpeed;
+            totalIds++;
+            Id = totalIds;
+            Dmg = role.Damage + weapon.Damage;
+            ArmourPenetration = role.ArmourPenetration;
+            CriticalChance = role.CriticalChance;
+            HitRate = role.HitRate;
+            MaxHealth = role.MaxHealth;
+            Health = role.MaxHealth;
+            HealthRegeneration = role.HealthRegeneration;
+            Armour = role.Armour + inventory.SumAdditionalArmour(hero);
+            EvadeRate = role.EvadeRate;
+            MovementSpeed = role.MovementSpeed;
         }
         public void Heal()
         {
@@ -39,15 +43,17 @@ namespace Assets
         {
             return $"Stats:\n" +
                    $"Damage (Dmg): {Dmg}\n" +
-                   $"Armor Penetration: {ArmorPenetration}\n" +
+                   $"Armour Penetration: {ArmourPenetration}\n" +
                    $"Critical Chance: {CriticalChance}\n" +
                    $"Hit Rate: {HitRate}\n" +
                    $"Health: {Health}\n" +
                    $"Max Health: {MaxHealth}\n" +
                    $"Health Regeneration: {HealthRegeneration}\n" +
-                   $"Armor: {Armor}\n" +
+                   $"Armour: {Armour}\n" +
                    $"Evade Rate: {EvadeRate}\n" +
                    $"Movement Speed: {MovementSpeed}";
         }
     }
 }
+
+

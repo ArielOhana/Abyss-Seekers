@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets
 {
-    public class Boots
+    public class Bodyarmour
     {
         private int totalIds = 0;
         public int Id { get; set; }
@@ -15,7 +15,8 @@ namespace Assets
         public int Value;
         public float AdditionalArmour;
         public float Penetration;
-        public Boots(float additionalArmour, string name, int value)
+
+        public Bodyarmour(float additionalArmour, string name, int value)
         {
             totalIds++;
             Id = totalIds;
@@ -23,10 +24,9 @@ namespace Assets
             Name = name;
             Value = value;
         }
-
         public override string ToString()
         {
-            return $"Boots Details:\n" +
+            return $"Bodyarmour Details:\n" +
                    $"Name: {Name}\n" +
                    $"Additional Armour: {AdditionalArmour}\n" +
                    $"Value: {Value}\n" +
