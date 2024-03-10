@@ -9,4 +9,12 @@ public class GoToScene : MonoBehaviour
     {
         SceneManager.LoadScene("TownHall");
     }
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void CreatePlayer()
+    {
+        SceneManager.LoadScene("TownHall");
+    }
 }

@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x,jumpingPower);
+            animator.SetTrigger("PlayerJump");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 24f)
