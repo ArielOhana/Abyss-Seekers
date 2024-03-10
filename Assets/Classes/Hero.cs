@@ -14,22 +14,37 @@ namespace Assets
         public string Name { get; set; }
         public int Level { get; set; }
         public int Xp { get; set; }
+<<<<<<< HEAD
+=======
+        public Weapon Weapon { get; set; }  
+        public Inventory Inventory { get; set; }
+        public Role Role { get; set; } 
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
         public Stats Stats { get; set; }
         public Inventory Inventory { get; set; }
         public string Role { get; set; }
 
+<<<<<<< HEAD
 
         public Hero(string name, int level, int xp, Stats stats, Inventory inventory, string role)
+=======
+        public Hero(string name, int level, int xp, Weapon weapon, Inventory inventory, Role role, Stats stats)
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
         {
             totalIds++;
             Id = totalIds;
             Name = name;
             Level = level;
             Xp = xp;
+<<<<<<< HEAD
+=======
+            Weapon = weapon;
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
             Inventory = inventory;
             Role = role;
             Stats = stats;
         }
+<<<<<<< HEAD
         public int getId(Hero hero)
         {
             return this.Id;
@@ -136,3 +151,19 @@ namespace Assets
 //Rarity INTEGER,
 //Url STRING
 // );
+=======
+        public void Print()
+        {
+            Debug.Log($"Hero Details:\n" +
+                       $"ID: {Id}\n" +
+                       $"Name: {Name}\n" +
+                       $"Level: {Level}\n" +
+                       $"XP: {Xp}\n" +
+                       $"Weapon: {Weapon?.Name}\n" +
+                       $"Inventory: {Inventory?.ToString()}\n" +
+                       $"Role: {Role?.Name}\n" +
+                       $"Stats: {Stats?.ToString()}\n");
+        }
+    }
+}
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e

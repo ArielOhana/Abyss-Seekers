@@ -6,6 +6,10 @@ namespace Assets
 {using UnityEngine;
     public class Weapon
     {
+<<<<<<< HEAD
+=======
+        private int totalIds = 0;
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
         public int Id { get; set; }
         public int Damage { get; set; }
         public int Range { get; set; }
@@ -17,6 +21,7 @@ namespace Assets
 
 
         // Constructor with parameters
+<<<<<<< HEAD
         public Weapon(int id, string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
         {
             Id = id;
@@ -28,6 +33,18 @@ namespace Assets
             Rarity = rarity;
             Range = range;
             Url = url;
+=======
+        public Weapon(int damage, float range, int criticalDamage, int hands, int value, string name)
+        {
+            totalIds++;
+            Id = totalIds;
+            this.Damage = damage;
+            this.Range = range;
+            this.CriticalDamage = criticalDamage;
+            this.Hands = hands;
+            this.Name = name;
+            this.Value = value;
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
         }
         public override string ToString()
         {
@@ -36,6 +53,10 @@ namespace Assets
                    $"Damage: {this.Damage}\n" +
                    $"Range: {this.Range}\n" +
                    $"Critical Damage: {this.CriticalDamage}\n" +
+<<<<<<< HEAD
+=======
+                   $"Hands Required: {this.Hands}\n" +
+>>>>>>> 50cda48adafea976dd87f7ecdb35b4f881aba08e
                    $"Value: {this.Value}";
         }
     }
