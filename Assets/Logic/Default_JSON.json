@@ -1,0 +1,617 @@
+{
+  "weapons": [
+    {
+      "name": "Common Sword",
+      "damage": 20,
+      "hands": 1,
+      "criticalDamage": 30,
+      "range": 1,
+      "value": 50,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Common Bow",
+      "damage": 15,
+      "hands": 3,
+      "criticalDamage": 25,
+      "range": 2,
+      "value": 40,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Common Axe",
+      "damage": 25,
+      "hands": 0,
+      "criticalDamage": 35,
+      "range": 1,
+      "value": 60,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Common Dagger",
+      "damage": 12,
+      "hands": 1,
+      "criticalDamage": 18,
+      "range": 1,
+      "value": 30,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Common Staff",
+      "damage": 18,
+      "hands": 2,
+      "criticalDamage": 25,
+      "range": 2,
+      "value": 45,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Common Mace",
+      "damage": 40,
+      "hands": 1,
+      "criticalDamage": 60,
+      "range": 2,
+      "value": 55,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Rare Sword",
+      "damage": 30,
+      "hands": 1,
+      "criticalDamage": 60,
+      "range": 1,
+      "value": 100,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Rare Bow",
+      "damage": 18,
+      "hands": 4,
+      "criticalDamage": 30,
+      "range": 2,
+      "value": 50,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Rare Axe",
+      "damage": 30,
+      "hands": 0,
+      "criticalDamage": 40,
+      "range": 1,
+      "value": 70,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Rare Dagger",
+      "damage": 15,
+      "hands": 1,
+      "criticalDamage": 25,
+      "range": 1,
+      "value": 40,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Rare Staff",
+      "damage": 22,
+      "hands": 2,
+      "criticalDamage": 30,
+      "range": 2,
+      "value": 55,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Rare Mace",
+      "damage": 60,
+      "hands": 1,
+      "criticalDamage": 100,
+      "range": 2,
+      "value": 100,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Legendary Sword",
+      "damage": 50,
+      "hands": 2,
+      "criticalDamage": 120,
+      "range": 1,
+      "value": 200,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Legendary Bow",
+      "damage": 32,
+      "hands": 6,
+      "criticalDamage": 80,
+      "range": 2,
+      "value": 130,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Legendary Axe",
+      "damage": 60,
+      "hands": 0,
+      "criticalDamage": 100,
+      "range": 1,
+      "value": 160,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Legendary Dagger",
+      "damage": 40,
+      "hands": 1,
+      "criticalDamage": 60,
+      "range": 1,
+      "value": 100,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Legendary Staff",
+      "damage": 50,
+      "hands": 3,
+      "criticalDamage": 70,
+      "range": 2,
+      "value": 150,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Legendary Mace",
+      "damage": 90,
+      "hands": 1,
+      "criticalDamage": 160,
+      "range": 2,
+      "value": 200,
+      "rarity": 3,
+      "url": ""
+    }
+  ],
+  "helmets": [
+    {
+      "name": "Helmet Sentry Common",
+      "damage": 15,
+      "additionalArmor": 5.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Helmet Guardian Common",
+      "damage": 12,
+      "additionalArmor": 4.5,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Helmet Warden Common",
+      "damage": 18,
+      "additionalArmor": 6.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Helmet Defender Common",
+      "damage": 14,
+      "additionalArmor": 5.5,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Helmet Protector Common",
+      "damage": 16,
+      "additionalArmor": 5.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Helmet Paladin Rare",
+      "damage": 25,
+      "additionalArmor": 8.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Helmet Crusader Rare",
+      "damage": 22,
+      "additionalArmor": 7.5,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Helmet Champion Rare",
+      "damage": 28,
+      "additionalArmor": 9.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Helmet Guardian Rare",
+      "damage": 24,
+      "additionalArmor": 8.5,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Helmet Sentinel Rare",
+      "damage": 26,
+      "additionalArmor": 8.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Helmet Excalibur Legendary",
+      "damage": 40,
+      "additionalArmor": 12.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Helmet Aegis Legendary",
+      "damage": 35,
+      "additionalArmor": 11.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Helmet Valiant Legendary",
+      "damage": 45,
+      "additionalArmor": 13.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Helmet Eclipse Legendary",
+      "damage": 38,
+      "additionalArmor": 12.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Helmet Pinnacle Legendary",
+      "damage": 42,
+      "additionalArmor": 12.0,
+      "rarity": 3,
+      "url": ""
+    }
+  ],
+  "boots": [
+    {
+      "name": "Boots Swift Common",
+      "value": 10,
+      "additionalArmor": 3.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Boots Agile Common",
+      "value": 8,
+      "additionalArmor": 2.5,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Boots Sturdy Common",
+      "value": 12,
+      "additionalArmor": 4.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Boots Guardian Common",
+      "value": 15,
+      "additionalArmor": 5.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Boots Sprint Rare",
+      "value": 20,
+      "additionalArmor": 7.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Boots Stride Rare",
+      "value": 18,
+      "additionalArmor": 6.5,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Boots Swift Rare",
+      "value": 25,
+      "additionalArmor": 8.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Boots Guardian Rare",
+      "value": 30,
+      "additionalArmor": 10.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Boots Flash Legendary",
+      "value": 40,
+      "additionalArmor": 12.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Boots Shadow Legendary",
+      "value": 35,
+      "additionalArmor": 11.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Boots Swiftwind Legendary",
+      "value": 45,
+      "additionalArmor": 13.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Boots Celestial Legendary",
+      "value": 38,
+      "additionalArmor": 12.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Boots Ethereal Legendary",
+      "value": 42,
+      "additionalArmor": 12.0,
+      "rarity": 3,
+      "url": ""
+    }
+  ],
+  "bodyarmour": [
+    {
+      "name": "Body Armour Defender Common",
+      "value": 20,
+      "additionalArmor": 8.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Guardian Common",
+      "value": 18,
+      "additionalArmor": 7.5,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Sentinel Common",
+      "value": 22,
+      "additionalArmor": 9.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Warden Common",
+      "value": 25,
+      "additionalArmor": 10.0,
+      "rarity": 1,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Swift Rare",
+      "value": 30,
+      "additionalArmor": 12.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Agile Rare",
+      "value": 28,
+      "additionalArmor": 11.5,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Sturdy Rare",
+      "value": 35,
+      "additionalArmor": 13.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Guardian Rare",
+      "value": 40,
+      "additionalArmor": 15.0,
+      "rarity": 2,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Thunder Legendary",
+      "value": 50,
+      "additionalArmor": 18.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Storm Legendary",
+      "value": 45,
+      "additionalArmor": 17.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Cyclone Legendary",
+      "value": 55,
+      "additionalArmor": 20.0,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Celestial Legendary",
+      "value": 48,
+      "additionalArmor": 19.5,
+      "rarity": 3,
+      "url": ""
+    },
+    {
+      "name": "Body Armour Nebula Legendary",
+      "value": 52,
+      "additionalArmor": 19.0,
+      "rarity": 3,
+      "url": ""
+    }
+  ],
+  "roles": [
+    {
+      "name": "elf",
+      "maxHealth": 100,
+      "damage": 20,
+      "healthRegeneration": 5,
+      "hitRate": 80,
+      "evadeRate": 20,
+      "armour": 30,
+      "movementSpeed": 10,
+      "criticalChance": 10,
+      "armorPenetration": 5,
+      "WeaponID": 2,
+      "specialAbility": [ "elf Ability 1", "elf Ability 2" ]
+
+    },
+    {
+      "name": "mage",
+      "maxHealth": 90,
+      "damage": 25,
+      "healthRegeneration": 4,
+      "hitRate": 85,
+      "evadeRate": 15,
+      "armour": 20,
+      "movementSpeed": 12,
+      "criticalChance": 15,
+      "armorPenetration": 8,
+      "WeaponID": 5,
+      "specialAbility": [ "mage Ability 1", "mage Ability 2" ]
+    },
+    {
+      "name": "warrior",
+      "maxHealth": 120,
+      "damage": 30,
+      "healthRegeneration": 7,
+      "hitRate": 75,
+      "evadeRate": 25,
+      "armour": 40,
+      "movementSpeed": 8,
+      "criticalChance": 5,
+      "armorPenetration": 3,
+      "WeaponID": 1,
+      "specialAbility": [ "warrior Ability 1", "warrior Ability 2" ]
+    },
+    {
+      "name": "orc",
+      "maxHealth": 110,
+      "damage": 28,
+      "healthRegeneration": 6,
+      "hitRate": 70,
+      "evadeRate": 22,
+      "armour": 35,
+      "movementSpeed": 9,
+      "criticalChance": 8,
+      "armorPenetration": 6,
+      "WeaponID": 6,
+      "specialAbility": [ "orc Ability 1", "orc Ability 2" ]
+    },
+    {
+      "name": "rogue",
+      "maxHealth": 95,
+      "damage": 22,
+      "healthRegeneration": 3,
+      "hitRate": 88,
+      "evadeRate": 18,
+      "armour": 25,
+      "movementSpeed": 14,
+      "criticalChance": 20,
+      "armorPenetration": 10,
+      "WeaponID": 4,
+      "specialAbility": [ "rogue Ability 1", "rogue Ability 2" ]
+    }
+  ],
+  "enemies": [
+    {
+      "name": "evil rat",
+      "maxHealth": 1,
+      "damage": 1,
+      "healthRegeneration": 0,
+      "hitRate": 20,
+      "armor": 1,
+      "evadeRate": 10,
+      "movementSpeed": 5,
+      "criticalChance": 1,
+      "armorPenetration": 0,
+      "specialAbility": [ "evil rat Ability 1", "evil rat Ability 2" ]
+    },
+    {
+      "name": "evil worm",
+      "maxHealth": 2,
+      "damage": 1,
+      "healthRegeneration": 0,
+      "hitRate": 10,
+      "armor": 1,
+      "evadeRate": 5,
+      "movementSpeed": 3,
+      "criticalChance": 1,
+      "armorPenetration": 0,
+      "specialAbility": [ "evil worm Ability 1", "evil worm Ability 2" ]
+    },
+    {
+      "name": "ghost",
+      "maxHealth": 3,
+      "damage": 2,
+      "healthRegeneration": 1,
+      "hitRate": 30,
+      "armor": 2,
+      "evadeRate": 15,
+      "movementSpeed": 8,
+      "criticalChance": 2,
+      "armorPenetration": 1,
+      "specialAbility": [ "ghost Ability 1", "ghost Ability 2" ]
+    },
+    {
+      "name": "slim monster",
+      "maxHealth": 4,
+      "damage": 3,
+      "healthRegeneration": 2,
+      "hitRate": 40,
+      "armor": 3,
+      "evadeRate": 20,
+      "movementSpeed": 10,
+      "criticalChance": 3,
+      "armorPenetration": 2,
+      "specialAbility": [ "slim monster Ability 1", "slim monster Ability 2" ]
+    },
+    {
+      "name": "zombie",
+      "maxHealth": 5,
+      "damage": 4,
+      "healthRegeneration": 3,
+      "hitRate": 50,
+      "armor": 4,
+      "evadeRate": 25,
+      "movementSpeed": 12,
+      "criticalChance": 4,
+      "armorPenetration": 3,
+      "specialAbility": [ "zombie Ability 1", "zombie Ability 2" ]
+    }
+  ]
+}
