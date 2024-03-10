@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets
 {
-    public class Helmet
+    public class Bodyarmour
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,12 +16,12 @@ namespace Assets
         public int Rarity { get; set; }
         public string Url { get; set; }
 
-        public Helmet(int id, string name, int additionalArmour, int value, int rarity, string url)
+        public Bodyarmour(int id, string name, int value, int additionalArmour, int rarity, string url)
         {
             Id = id;
-            AdditionalArmour = additionalArmour;
             Name = name;
             Value = value;
+            AdditionalArmour = additionalArmour;
             Rarity = rarity;
             Url = url;
         }

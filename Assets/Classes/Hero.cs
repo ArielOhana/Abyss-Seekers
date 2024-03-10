@@ -1,48 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets
 {
     public class Hero
     {
-        // Level property
-        protected int Level { get; set; }
+        private static int totalIds = 0;
 
-        // XP property
-        protected int Xp { get; set; }
-
-        // Weapons property
-        protected Weapon Weapon { get; set; }
-
-        // Inventory property
-        protected Inventory Inventory { get; set; }
-
-        // Clothes property
-        protected Cloth Clothes { get; set; }
-
-        // Role property
-        protected Role Role { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int Xp { get; set; }
         public Stats Stats { get; set; }
+        public Inventory Inventory { get; set; }
+        public string Role { get; set; }
 
-        // Constructor
-        public Hero()
+
+        public Hero(string name, int level, int xp, Stats stats, Inventory inventory, string role)
         {
-            Weapon = new Weapon(15,1,  30,  1, 100,"Katana");
-            Inventory = new Inventory(new List<Weapon>{Weapon,Weapon},new List<Bodyarmor> {new Bodyarmor(15.2f,"Ariel's Body Armor", 100), new Bodyarmor(12.2f, "Ohana's Body Armor", 120),new Bodyarmor(22.2f, "Best Body Armor", 220) },new List<Helmet> { new Helmet(13f,"Ariel's Helmet", 80), new Helmet(16.3f,"Ohana's Helmet",110), new Helmet(18.3f, "Max Helmet", 140) }, new List<Boots> { new Boots(2f, "Ariel's Boots", 20), new Boots(4.3f, "Ohana's Boots",40), new Boots(6.3f, "Max Boots", 80) }, 0,0,0,0,100);
-            Clothes = new Cloth(Inventory.currentBoot,Inventory.currentHelmet,Inventory.currentBodyarmor);
-            Xp = 0;
-            Level = 0;
-            Role = new Role(new string[] { "Bomb", "Fly" }, "Witch", 100f, 1, 2, 3, 4, 5, 6, 7, 8);
-
-
+            totalIds++;
+            Id = totalIds;
+            Name = name;
+            Level = level;
+            Xp = xp;
+            Inventory = inventory;
+            Role = role;
+            Stats = stats;
         }
-        public void InitializeStats()
+        public int getId(Hero hero)
         {
-            Stats = new Stats();
-            Debug.Log(Stats.ToString());
-            Debug.Log(Inventory.ToString());
+            return this.Id;
         }
     }
 }
+
+//CREATE TABLE IF NOT EXISTS helmets(
+//    ID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    Damage INTEGER,
+//    AdditionalArmour INTEGER,
+//    Rarity INTEGER,
+//Url STRING
+//);
+
+//CREATE TABLE IF NOT EXISTS boots(
+//    ID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    Value INTEGER,
+//    AdditionalArmour INTEGER,
+//    Rarity INTEGER,
+//Url STRING
+//);
+
+//CREATE TABLE IF NOT EXISTS bodyarmour(
+//    ID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    Value INTEGER,
+//    AdditionalArmour INTEGER,
+//    Rarity INTEGER,
+//    Url STRING
+//);
+//CREATE TABLE IF NOT EXISTS roles(
+//    ID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    Damage INTEGER,
+//    Armour INTEGER,
+//    MaxHealth INTEGER,
+//    HealthRegeneration INTEGER,
+//    MovementSpeed INTEGER,
+//    EvadeRate INTEGER,
+//    HitRate INTEGER,
+//    CriticalChance INTEGER,
+//    ArmourPenetration INTEGER,
+//    SpecialAbility TEXT, WeaponID INTEGER
+//);
+//CREATE TABLE IF NOT EXISTS stats(
+//    StatsID INTEGER PRIMARY KEY,
+//    Damage INTEGER,
+//    Armour INTEGER,
+//    MaxHealth INTEGER,
+//    HealthRegeneration INTEGER,
+//    MovementSpeed INTEGER,
+//    EvadeRate INTEGER,
+//    HitRate INTEGER,
+//    CriticalChance INTEGER,
+//    ArmourPenetration INTEGER
+//);
+//CREATE TABLE IF NOT EXISTS hero(
+//    HeroID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    Level INTEGER,
+//    XP INTEGER,
+//    StatsID INTEGER,
+//    InventoryID INTEGER,
+//    Role TEXT
+//);
+
+//CREATE TABLE IF NOT EXISTS inventory(
+//    InventoryID INTEGER PRIMARY KEY,
+//    WeaponIDs TEXT,
+//    CurrentWeapon INTEGER,
+//    HelmetIDs TEXT,
+//    CurrentHelmet INTEGER,
+//    ArmourIDs TEXT,
+//    CurrentArmour INTEGER,
+//    BootIDs TEXT,
+//    CurrentBoot INTEGER,
+//    Coins INTEGER
+//);
+//CREATE TABLE IF NOT EXISTS enemies(
+//    ID INTEGER PRIMARY KEY,
+//    Name TEXT,
+//    MaxHealth INTEGER,
+//    Damage INTEGER,
+//    HealthRegeneration INTEGER,
+//    HitRate INTEGER,
+//    Armour INTEGER,
+//    EvadeRate INTEGER,
+//    MovementSpeed INTEGER,
+//    CriticalChance INTEGER,
+//    ArmourPenetration INTEGER,
+//    SpecialAbility TEXT
+//);
+//CREATE TABLE IF NOT EXISTS weapons(
+// ID INTEGER PRIMARY KEY,
+//Name TEXT,
+//Damage INTEGER,
+//Hands INTEGER,
+//CriticalDamage INTEGER,
+//Range INTEGER,
+//Value INTEGER,
+//Rarity INTEGER,
+//Url STRING
+// );

@@ -10,41 +10,69 @@ namespace Assets
 {
     public class Inventory
     {
+        public int Id { get; set; }
         public List<Weapon> Weapons { get; set; }
         public Weapon currentWeapon { get; set; }
-        public List<Bodyarmor> Bodyarmors { get; set; }
-        public Bodyarmor currentBodyarmor { get; set; }
+        public List<Bodyarmour> Bodyarmours { get; set; }
+        public Bodyarmour currentBodyarmour { get; set; }
         public List<Helmet> Helmets { get; set; }
         public Helmet currentHelmet { get; set; }
         public List<Boots> Boots { get; set; }
         public Boots currentBoot { get; set; }
-
         public int Coins { get; set; }
-        public Inventory(List<Weapon> weapons, List<Bodyarmor> bodyarmors, List<Helmet> helmets, List<Boots> boots, int selectedWeapon,int selectedBodyarmor,int selectedHelmet,int selectedBoots,int coins)
+
+        public Inventory(List<Weapon> weapons, List<Bodyarmour> bodyarmours, List<Helmet> helmets, List<Boots> boots, Weapon selectedWeapon, Bodyarmour selectedBodyarmour, Helmet selectedHelmet, Boots selectedBoots, int coins)
         {
             Weapons = weapons;
-            Bodyarmors = bodyarmors;
+            Bodyarmours = bodyarmours;
             Helmets = helmets;
             Boots = boots;
-            currentWeapon = Weapons[selectedWeapon];
-            currentBodyarmor = Bodyarmors[selectedBodyarmor];
-            currentHelmet = Helmets[selectedHelmet];
-            currentBoot = Boots[selectedBoots];
+            currentWeapon = selectedWeapon;
+            currentBodyarmour = selectedBodyarmour;
+            currentHelmet = selectedHelmet;
+            currentBoot = selectedBoots;
             Coins = coins;
         }
+
         public override string ToString()
         {
             return $"Inventory:\n" +
-                   $"Weapons: {string.Join(", ", Weapons)}\n" +
+                   $"Weapons: {Weapons}\n" +
                    $"Current Weapon: {currentWeapon}\n" +
-                   $"Bodyarmors: {string.Join(", ", Bodyarmors)}\n" +
-                   $"Current Bodyarmor: {currentBodyarmor}\n" +
-                   $"Helmets: {string.Join(", ", Helmets)}\n" +
+                   $"Bodyarmours: {Bodyarmours}\n" +
+                   $"Current Bodyarmour: {currentBodyarmour}\n" +
+                   $"Helmets: {Helmets}\n" +
                    $"Current Helmet: {currentHelmet}\n" +
-                   $"Boots: {string.Join(", ", Boots)}\n" +
+                   $"Boots: {Boots}\n" +
                    $"Current Boot: {currentBoot}\n" +
                    $"Coins: {Coins}";
         }
 
+        public int SumAdditionalArmour(Hero hero)
+        {
+            return (currentBodyarmour.AdditionalArmour + currentHelmet.AdditionalArmour + currentBoot.AdditionalArmour);
+        }
+        //public void AddItem(string ObjectType, string itemIds, int coinsChange)
+        //{
+        //    switch (ObjectType)
+        //    {
+        //        case "weapon":
+                    
+        //            break;
+        //        case "helmet":
+        //            this.Weapons += itemIds; 
+        //            break;
+        //        case "boots":
+        //            this.Boots += itemIds;
+        //            break;
+        //        case "bodyarmour":
+        //            this.Bodyarmours += itemIds;
+        //            break;
+        //        default:
+        //            this.Coins += coinsChange;
+        //            break;
+        //    }
+        //}
+       
     }
 }

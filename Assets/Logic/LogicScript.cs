@@ -7,23 +7,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DBContext;
+
 public class LogicScript : MonoBehaviour
 {
 
     public Hero myHero;
-    public GameObject? Circle;
+    public GameObject Circle;
     private GetAllButtons getAllButtons;
     //private Button[] ButtonsArray;
     void Start()// Get all the data from database and import it to Classes
     {
-        myHero = new Hero();
-        myHero.InitializeStats(); // Initialize Stats separately
-        //this.ButtonsArray = getAllButtons.GetButtonsArray();
-
-        
-        SQLdb sqlDbInstance = new SQLdb();  // Create an instance of the SQLdb class
-        sqlDbInstance.FillDB();
+       
+        //SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
+        //DBManager.NewHero("dor", "mage");
     }
     
     // Update is called once per frame
