@@ -11,7 +11,6 @@ public class TryingDB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Console.WriteLine("hello");
         CreateDB();
     }
 
