@@ -12,52 +12,101 @@ namespace Assets
     {
         public int Id { get; set; }
         public List<Weapon> Weapons { get; set; }
-        public Weapon currentWeapon { get; set; }
+        public Weapon CurrentWeapon { get; set; }
         public List<Bodyarmour> Bodyarmours { get; set; }
-        public Bodyarmour currentBodyarmour { get; set; }
+        public Bodyarmour CurrentBodyarmour { get; set; }
         public List<Helmet> Helmets { get; set; }
-        public Helmet currentHelmet { get; set; }
+        public Helmet CurrentHelmet { get; set; }
         public List<Boots> Boots { get; set; }
-        public Boots currentBoot { get; set; }
+        public Boots CurrentBoot { get; set; }
         public int Coins { get; set; }
 
-        public Inventory(List<Weapon> weapons, List<Bodyarmour> bodyarmours, List<Helmet> helmets, List<Boots> boots, Weapon selectedWeapon, Bodyarmour selectedBodyarmour, Helmet selectedHelmet, Boots selectedBoots, int coins, int id)
+        public Inventory(int id, List<Weapon> weapons, Weapon currentWeapon, List<Bodyarmour> bodyarmours, Bodyarmour currentBodyarmour,
+                List<Helmet> helmets, Helmet currentHelmet, List<Boots> boots, Boots currentBoot, int coins)
         {
             Id = id;
             Weapons = weapons;
+            CurrentWeapon = currentWeapon;
             Bodyarmours = bodyarmours;
+            CurrentBodyarmour = currentBodyarmour;
             Helmets = helmets;
+            CurrentHelmet = currentHelmet;
             Boots = boots;
-            currentWeapon = selectedWeapon;
-            currentBodyarmour = selectedBodyarmour;
-            currentHelmet = selectedHelmet;
-            currentBoot = selectedBoots;
+            CurrentBoot = currentBoot;
             Coins = coins;
+
         }
-        public override string ToString()
+        public int num = 1;
+        public void Print()
         {
-            return $"Inventory:\n" +
-                   $"Weapons: {Weapons}\n" +
-                   $"Current Weapon: {currentWeapon}\n" +
-                   $"Bodyarmours: {Bodyarmours}\n" +
-                   $"Current Bodyarmour: {currentBodyarmour}\n" +
-                   $"Helmets: {Helmets}\n" +
-                   $"Current Helmet: {currentHelmet}\n" +
-                   $"Boots: {Boots}\n" +
-                   $"Current Boot: {currentBoot}\n" +
-                   $"Coins: {Coins}";
+            Debug.Log(num);
+            Debug.Log(Weapons[0].Id);
+            Debug.Log(CurrentBodyarmour);
+            num++;
+        }
+        public string ListWeapons()
+        {
+            List<Weapon> list = Weapons;
+            string str = "";
+            foreach (Weapon weapon in list)
+            {
+                string str2 = weapon.GetID();
+                Debug.Log(str2);
+                str += str2;
+                str += "+";
+            }
+            str.Remove(-1, 1);
+            return str;
+        }
+        public string ListBoots()
+        {
+            List<Boots> list = Boots;
+
+            string str = "";
+            foreach (Boots boot in list)
+            {
+                str += boot.Id;
+                str += "+";
+            }
+            str.Remove(-1, 1);
+            return str;
+        }
+        public string ListBodyArmours()
+        {
+            List<Bodyarmour> list = Bodyarmours;
+            string str = "";
+            foreach (Bodyarmour bodyarmour in list)
+            {
+                str += bodyarmour.Id;
+                str += "+";
+            }
+            str.Remove(-1, 1);
+            return str;
+        }
+        public string ListHelmets()
+        {
+            List<Helmet> list = Helmets;
+            string str = "";
+            foreach (Helmet helmet in list)
+            {
+                str += helmet.Id;
+                str += "+";
+            }
+            str.Remove(-1, 1);
+            return str;
         }
 
         public int SumAdditionalArmour(Hero hero)
         {
-            return (currentBodyarmour.AdditionalArmour + currentHelmet.AdditionalArmour + currentBoot.AdditionalArmour);
+            return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
         }
+
         //public void AddItem(string ObjectType, string itemIds, int coinsChange)
         //{
         //    switch (ObjectType)
         //    {
         //        case "weapon":
-                    
+
         //            break;
         //        case "helmet":
         //            this.Weapons += itemIds; 

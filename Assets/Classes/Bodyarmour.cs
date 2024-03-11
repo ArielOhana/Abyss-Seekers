@@ -9,6 +9,8 @@ namespace Assets
 {
     public class Bodyarmour
     {
+        private static int totalIds = 0;
+
         public int Id { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
@@ -18,11 +20,18 @@ namespace Assets
 
         public Bodyarmour(string name, int value, int additionalArmour, int rarity, string url)
         {
+            totalIds++;
+            Id = totalIds;
             Name = name;
             Value = value;
             AdditionalArmour = additionalArmour;
             Rarity = rarity;
             Url = url;
+        }
+        public string GetID()
+        {
+            int num = this.Id;
+            return num.ToString();
         }
     }
 }

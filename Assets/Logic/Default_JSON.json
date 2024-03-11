@@ -38,7 +38,7 @@
     },
     {
       "damage": 18,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 25,
       "value": 45,
       "name": "black axe",
@@ -47,7 +47,7 @@
     },
     {
       "damage": 40,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 60,
       "value": 55,
       "name": "spikey axe",
@@ -65,7 +65,7 @@
     },
     {
       "damage": 18,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 30,
       "value": 50,
       "name": "simple axe",
@@ -92,7 +92,7 @@
     },
     {
       "damage": 22,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 30,
       "value": 55,
       "name": "katana",
@@ -101,7 +101,7 @@
     },
     {
       "damage": 60,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 100,
       "value": 100,
       "name": "big sword",
@@ -119,7 +119,7 @@
     },
     {
       "damage": 32,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 80,
       "value": 130,
       "name": "drakon sword",
@@ -146,7 +146,7 @@
     },
     {
       "damage": 50,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 70,
       "value": 150,
       "name": "bucher's knife'",
@@ -155,7 +155,7 @@
     },
     {
       "damage": 90,
-      "range": 2,
+      "range": 1,
       "criticalDamage": 160,
       "value": 200,
       "name": "good hammer",
@@ -163,17 +163,8 @@
       "url": "Assets/Items/Icons/MeleeWeapons2H/hammer1.png"
     },
     {
-      "damage": 60,
-      "range": 3,
-      "criticalDamage": 100,
-      "value": 100,
-      "name": "big sword",
-      "rarity": 2,
-      "url": "Assets/Items/Icons/Bow/bow1.png"
-    },
-    {
       "damage": 50,
-      "range": 1,
+      "range": 3,
       "criticalDamage": 120,
       "value": 200,
       "name": "red bow",
@@ -182,7 +173,7 @@
     },
     {
       "damage": 32,
-      "range": 2,
+      "range": 3,
       "criticalDamage": 80,
       "value": 130,
       "name": "elven bow",
@@ -191,7 +182,7 @@
     },
     {
       "damage": 60,
-      "range": 1,
+      "range": 3,
       "criticalDamage": 100,
       "value": 160,
       "name": "river bow",
@@ -200,7 +191,7 @@
     },
     {
       "damage": 40,
-      "range": 1,
+      "range": 4,
       "criticalDamage": 60,
       "value": 100,
       "name": "simple bow",
@@ -209,7 +200,7 @@
     },
     {
       "damage": 50,
-      "range": 2,
+      "range": 4,
       "criticalDamage": 70,
       "value": 150,
       "name": "wood bow",
@@ -218,7 +209,7 @@
     },
     {
       "damage": 90,
-      "range": 2,
+      "range": 4,
       "criticalDamage": 160,
       "value": 200,
       "name": "longshot bow",
@@ -376,7 +367,7 @@
     {
       "name": "elf",
       "maxHealth": 100,
-      "damage": 20,
+      "damage": 25,
       "healthRegeneration": 5,
       "hitRate": 80,
       "evadeRate": 20,
@@ -448,8 +439,8 @@
   "enemies": [
     {
       "name": "evil rat",
-      "maxHealth": 1,
-      "damage": 1,
+      "maxHealth": 50,
+      "damage": 5,
       "healthRegeneration": 0,
       "hitRate": 20,
       "armour": 1,
@@ -461,8 +452,8 @@
     },
     {
       "name": "evil worm",
-      "maxHealth": 2,
-      "damage": 1,
+      "maxHealth": 100,
+      "damage": 8,
       "healthRegeneration": 0,
       "hitRate": 10,
       "armour": 1,
@@ -474,8 +465,8 @@
     },
     {
       "name": "ghost",
-      "maxHealth": 3,
-      "damage": 2,
+      "maxHealth": 150,
+      "damage": 10,
       "healthRegeneration": 1,
       "hitRate": 30,
       "armour": 2,
@@ -487,8 +478,8 @@
     },
     {
       "name": "slim monster",
-      "maxHealth": 4,
-      "damage": 3,
+      "maxHealth": 200,
+      "damage": 15,
       "healthRegeneration": 2,
       "hitRate": 40,
       "armour": 3,
@@ -500,8 +491,8 @@
     },
     {
       "name": "zombie",
-      "maxHealth": 5,
-      "damage": 4,
+      "maxHealth": 250,
+      "damage": 20,
       "healthRegeneration": 3,
       "hitRate": 50,
       "armour": 4,

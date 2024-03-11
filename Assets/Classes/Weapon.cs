@@ -6,6 +6,7 @@ namespace Assets
 {using UnityEngine;
     public class Weapon
     {
+        private static int totalIds = 0;
         public int Id { get; set; }
         public int Damage { get; set; }
         public int Range { get; set; }
@@ -18,6 +19,8 @@ namespace Assets
 
         public Weapon(string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
         {
+            totalIds++;
+            Id = totalIds;
             Damage = damage;
             Range = range;
             CriticalDamage = criticalDamage;
@@ -35,6 +38,11 @@ namespace Assets
                    $"Range: {this.Range}\n" +
                    $"Critical Damage: {this.CriticalDamage}\n" +
                    $"Value: {this.Value}";
+        }
+        public string GetID()
+        {
+            int num = this.Id;
+            return num.ToString();
         }
     }
 }

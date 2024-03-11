@@ -34,11 +34,28 @@ namespace Assets
         {
             return this.Id;
         }
-        public void getLevel()
+        public Dictionary<string, System.Object> WonFight(int levelDifficulty)
         {
-            Debug.Log("fuck yeah");
+            Dictionary<string, System.Object> loot = new();
+            int randomCoins = new System.Random().Next(1, 4) * levelDifficulty;
+            int randomXp = new System.Random().Next(50, 100) * levelDifficulty;
+            int nextXp = this.Xp + randomXp;
+            int raisedLevelAmount = 0;
+            while (nextXp > 1000) 
+            {
+                raisedLevelAmount++;
+                nextXp -= 1000;
+            }
+            this.Level += raisedLevelAmount;
+            this.Xp = nextXp;
+            this.Inventory.Coins = 1200;
+            Debug.Log(randomXp);
+            loot.Add("Coins", randomCoins);
+            loot.Add("TotalXp", randomXp);
+            loot.Add("RaisedLevels", raisedLevelAmount);
+            loot.Add("nextXp", nextXp);
+            return loot;
         }
-
     }
 }
 

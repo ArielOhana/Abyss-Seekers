@@ -17,13 +17,16 @@ public class LogicScript : MonoBehaviour
 
     void Start()
     {
-       
         SQLdb DBManager = new SQLdb();
-        //Hero hero = DBManager.GetHero("dor");
-        //hero.getLevel();
-
-
-
+        //DBManager.ReadJson();
+        //DBManager.CreateHero("sasi", "orc");
+        //DBManager.CreateHero("or", "elf");
+        Hero hero = DBManager.GetHero("ori");
+        DBManager.SaveHero(hero);
+        for (int i = 0; i < hero.Inventory.Boots.Count; i++)
+        {
+            Debug.Log(hero.Inventory.Boots[i].Name);
+        }
     }
 
     // Update is called once per frame
