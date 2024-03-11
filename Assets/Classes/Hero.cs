@@ -40,7 +40,7 @@ namespace Assets
 //CREATE TABLE IF NOT EXISTS helmets(
 //    ID INTEGER PRIMARY KEY,
 //    Name TEXT,
-//    Value INTEGER,
+//    Damage INTEGER,
 //    AdditionalArmour INTEGER,
 //    Rarity INTEGER,
 //Url STRING
@@ -129,6 +129,7 @@ namespace Assets
 // ID INTEGER PRIMARY KEY,
 //Name TEXT,
 //Damage INTEGER,
+//Hands INTEGER,
 //CriticalDamage INTEGER,
 //Range INTEGER,
 //Value INTEGER,
