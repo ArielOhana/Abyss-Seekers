@@ -42,7 +42,7 @@ public class PlayerCreator : MonoBehaviour
     public void CreatePlayer()
     {
         string playerName = playerNameInput.text;
-
+        
         if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrEmpty(Role))
         {
             DBManager.CreateHero(playerName, Role);
