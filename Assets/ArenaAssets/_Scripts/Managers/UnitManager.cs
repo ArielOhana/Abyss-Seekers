@@ -144,10 +144,8 @@ public class UnitManager : MonoBehaviour
                 StartCoroutine(MoveAttack(TheHero));
                 yield return new WaitUntil(() => !isMoving);
             } else {
-                Debug.Log("here");
                 unitToMove = enemy;
                 path = pathFinder.FindPath(unitToMove.OccupiedTile, TheHero.OccupiedTile, true);
-                Debug.Log(path.Count);
                 toAttack = false;
                 calc = 0;
                 isMoving = true;
@@ -193,7 +191,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        var enemyCount = 1;
+        var enemyCount = 3;
 
         for (int i = 0; i < enemyCount; i++)
         {

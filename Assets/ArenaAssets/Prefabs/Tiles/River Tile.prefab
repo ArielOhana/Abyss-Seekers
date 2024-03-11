@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2312599516505159322
+--- !u!1001 &4186955871462961067
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,29 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 923989177129502094, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 655d1825cbe189d4d97a48fbae36bdbe, type: 3}
+      objectReference: {fileID: 21300000, guid: 65f97617738bdcf40b2c6a3cc6fed0e1, type: 3}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.b
-      value: 0.41231033
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.g
-      value: 0.5557989
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.r
-      value: 0.7509433
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6213140937593875644, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,17 +68,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6906403559734510095, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7597493484001807684, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.99609375
+      value: 1.0039062
       objectReference: {fileID: 0}
     - target: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Name
-      value: Mountain Tile
+      value: River Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -90,38 +86,33 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9021098285435591737}
+      addedObject: {fileID: -8112368815525407460}
   m_SourcePrefab: {fileID: 100100000, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
---- !u!1 &131211429073899724 stripped
+--- !u!1 &2004426422267234813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2434803733975819862, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-  m_PrefabInstance: {fileID: 2312599516505159322}
+  m_PrefabInstance: {fileID: 4186955871462961067}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3227579288343261972 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 923989177129502094, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-  m_PrefabInstance: {fileID: 2312599516505159322}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &3472370328402541432 stripped
+--- !u!212 &3040872330063815241 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-  m_PrefabInstance: {fileID: 2312599516505159322}
+  m_PrefabInstance: {fileID: 4186955871462961067}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5811778175725351835 stripped
+--- !u!1 &5378593566806551210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-  m_PrefabInstance: {fileID: 2312599516505159322}
+  m_PrefabInstance: {fileID: 4186955871462961067}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9021098285435591737
+--- !u!114 &-8112368815525407460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5811778175725351835}
+  m_GameObject: {fileID: 5378593566806551210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b2ea9a2de685049ac0ec47edc6f2c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 25cf79d6e5c8dad4182df75b04cbc71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseUnit: {fileID: 0}
@@ -130,10 +121,10 @@ MonoBehaviour:
   previous: {fileID: 0}
   gridLocation: {x: 0, y: 0}
   Arrows: []
-  TileName: RockyMountains
-  _renderer: {fileID: 3472370328402541432}
+  TileName: MightyRiver
+  _renderer: {fileID: 3040872330063815241}
   _inRangeHighight: {fileID: 0}
-  _highlight: {fileID: 131211429073899724}
-  _attackableUnit: {fileID: 3227579288343261972}
+  _highlight: {fileID: 2004426422267234813}
+  _attackableUnit: {fileID: 0}
   _isWalkable: 0
   OccupiedUnit: {fileID: 0}

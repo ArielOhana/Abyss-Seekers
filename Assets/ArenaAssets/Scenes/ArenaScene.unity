@@ -349,9 +349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d0cfe99b4f50b4da40b142148883f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemies: []
+  TheHero: {fileID: 0}
   SelectedHero: {fileID: 0}
   _unityMoveSpeed: 3
+  isMoving: 0
   inRangeTiles: []
+  inAttackRangeTiles: []
 --- !u!4 &457741773
 Transform:
   m_ObjectHideFlags: 0
@@ -639,6 +643,7 @@ MonoBehaviour:
   _height: 9
   _grassTile: {fileID: -120281154213584049, guid: a3f49b0b4c8c793469b5cb07e4077fe6, type: 3}
   _mountainTile: {fileID: 9021098285435591737, guid: 0ea10bd6ae4dac44cb7511c9b6b5170c, type: 3}
+  _riverTile: {fileID: -8112368815525407460, guid: 59d407cc260d395448bcb9e8069971df, type: 3}
   _cam: {fileID: 519420032}
 --- !u!4 &643120880
 Transform:
@@ -889,7 +894,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 726909369
+  m_SortingLayerID: -1348496829
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1322190053

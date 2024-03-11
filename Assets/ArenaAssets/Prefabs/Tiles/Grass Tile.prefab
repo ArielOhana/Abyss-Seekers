@@ -16,9 +16,25 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 986421880653144143, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 986421880653144143, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1348496829
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: da3e6bbb84c179140bc2ea270b6958bd, type: 3}
     - target: {fileID: 2434803733975819862, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566103047680927526, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2566103047680927526, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_SortingLayer
@@ -84,6 +100,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7597493484001807684, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597493484001807684, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597493484001807684, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0039062
+      objectReference: {fileID: 0}
     - target: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Name
       value: Grass Tile
@@ -148,8 +176,8 @@ MonoBehaviour:
   _attackableUnit: {fileID: 6859362884332515739}
   _isWalkable: 1
   OccupiedUnit: {fileID: 0}
-  _baseColor: {r: 0.4392157, g: 0.7411765, b: 0.36862746, a: 1}
-  _offsetColor: {r: 0.4, g: 0.6901961, b: 0.33333334, a: 1}
+  _baseColor: {r: 0.51254666, g: 0.8415094, b: 0.4366322, a: 1}
+  _offsetColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &4885180855123900919 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
