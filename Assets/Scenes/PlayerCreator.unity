@@ -649,6 +649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 8321985150279439135, guid: a362172f6fdc77742aaac80bca395ea3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -866,7 +870,7 @@ GameObject:
   - component: {fileID: 538302050}
   - component: {fileID: 538302049}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: playerNameInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1605,9 +1609,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9770122bebe3bdb4aa1fc267407cd5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNameInput: {fileID: 538302049}
   displayText: {fileID: 0}
   buttonData:
   - button: {fileID: 1945325830}
+    role: warrior
     health: 120
     damage: 30
     armour: 40
@@ -1619,6 +1625,7 @@ MonoBehaviour:
     movementSpeed: 1
     buttonImage: {fileID: 21300000, guid: 0bd20adab068378448133307dcc112af, type: 3}
   - button: {fileID: 812079733}
+    role: rogue
     health: 95
     damage: 22
     armour: 25
@@ -1630,6 +1637,7 @@ MonoBehaviour:
     movementSpeed: 3
     buttonImage: {fileID: 21300000, guid: 2e93c637a24e04d8ea6b2cfd9df53739, type: 3}
   - button: {fileID: 356527490}
+    role: mage
     health: 80
     damage: 30
     armour: 10
@@ -1641,6 +1649,7 @@ MonoBehaviour:
     movementSpeed: 3
     buttonImage: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
   - button: {fileID: 1371685555}
+    role: orc
     health: 130
     damage: 35
     armour: 30
@@ -1652,6 +1661,7 @@ MonoBehaviour:
     movementSpeed: 1
     buttonImage: {fileID: 21300000, guid: 9647dcba19d63446aa5f8289b90d9d0d, type: 3}
   - button: {fileID: 908894179}
+    role: elf
     health: 90
     damage: 25
     armour: 10
@@ -3026,8 +3036,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1762123810}
-        m_TargetAssemblyTypeName: GoToScene, Assembly-CSharp
+      - m_Target: {fileID: 1026669033}
+        m_TargetAssemblyTypeName: PlayerCreator, Assembly-CSharp
         m_MethodName: CreatePlayer
         m_Mode: 1
         m_Arguments:

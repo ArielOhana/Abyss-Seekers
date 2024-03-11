@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using Assets;
+using UnityEngine.SceneManagement;
+using TMPro;
 public class PlayerCreator : MonoBehaviour
 {
-    private InputField playerNameInput;
+    private SQLdb DBManager;
+    private string Role;
+
+    public TMP_InputField playerNameInput;
+
     public Text displayText;
 
     public ButtonData[] buttonData;
 
     private PlayerStats currentPlayerStats;
-
     public Text healthText;
     public Text damageText;
     public Text armourText;
@@ -20,11 +25,11 @@ public class PlayerCreator : MonoBehaviour
     public Text healAmountText;
     public Text movementSpeedText;
 
-    public GameObject emptyObject; // Reference to the empty object with SpriteRenderer
+    public GameObject emptyObject;
 
     void Start()
     {
-        playerNameInput = GetComponentInChildren<InputField>();
+        DBManager = new SQLdb(); 
         currentPlayerStats = new PlayerStats();
 
         for (int i = 0; i < buttonData.Length; i++)
@@ -34,12 +39,19 @@ public class PlayerCreator : MonoBehaviour
         }
     }
 
+    public void CreatePlayer()
+    {
+        string playerName = playerNameInput.text;
+
+        DBManager.CreateHero(playerName,Role );
+        SceneManager.LoadScene("TownHall");
+    }
     void OnButtonClick(int index)
     {
         ClearUIText();
 
-        currentPlayerStats.ApplyStats(buttonData[index].health, buttonData[index].damage, buttonData[index].armour, buttonData[index].hitRate, buttonData[index].armourPenetration, buttonData[index].evadeRate, buttonData[index].criticalChance, buttonData[index].healAmount, buttonData[index].movementSpeed);
-
+        currentPlayerStats.ApplyStats(buttonData[index].role,buttonData[index].health, buttonData[index].damage, buttonData[index].armour, buttonData[index].hitRate, buttonData[index].armourPenetration, buttonData[index].evadeRate, buttonData[index].criticalChance, buttonData[index].healAmount, buttonData[index].movementSpeed);
+        Role = currentPlayerStats.Role;
         healthText.text = $"Health: {currentPlayerStats.Health}";
         damageText.text = $"Damage: {currentPlayerStats.Damage}";
         armourText.text = $"Armour: {currentPlayerStats.Armour}";
@@ -94,6 +106,7 @@ public class PlayerCreator : MonoBehaviour
 public class ButtonData
 {
     public Button button;
+    public string role;
     public int health;
     public int damage;
     public int armour;
@@ -109,6 +122,7 @@ public class ButtonData
 [System.Serializable]
 public class PlayerStats
 {
+    public string Role;
     public int Health;
     public int Damage;
     public int Armour;
@@ -119,8 +133,9 @@ public class PlayerStats
     public int HealAmount;
     public int MovementSpeed;
 
-    public void ApplyStats(int health, int damage, int armour, int hitRate, int armourPenetration, int evadeRate, int criticalChance, int healAmount, int movementSpeed)
+    public void ApplyStats(string role, int health, int damage, int armour, int hitRate, int armourPenetration, int evadeRate, int criticalChance, int healAmount, int movementSpeed)
     {
+        Role = role;
         Health = health;
         Damage = damage;
         Armour = armour;

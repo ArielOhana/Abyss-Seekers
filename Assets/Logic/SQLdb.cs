@@ -157,7 +157,6 @@ namespace Assets
         }
         public void CreateHero(String name, String role)
         {
-            Hero hero;
             try
             {
                 OpenConnection();
