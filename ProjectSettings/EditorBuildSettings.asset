@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 7968c23327ae0f14e8f597b140fb7d21
   - enabled: 1
     path: Assets/Scenes/TownHall.unity
-    guid: 04435d051d20fc74a879720238d0990d
+    guid: f66f3c4cbb2c03543a9fb7091a5fd8c7
   - enabled: 1
     path: Assets/Scenes/battleground.unity
     guid: 2cda990e2423bbf4892e6590ba056729

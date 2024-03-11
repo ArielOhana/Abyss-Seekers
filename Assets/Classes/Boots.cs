@@ -19,6 +19,7 @@ namespace Assets
         public Boots(int id, string name, int value, int additionalArmour, int rarity, string url)
         {
             Id = id;
+
             Name = name;
             Value = value;
             AdditionalArmour = additionalArmour;

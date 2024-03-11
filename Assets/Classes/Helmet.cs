@@ -25,5 +25,12 @@ namespace Assets
             Rarity = rarity;
             Url = url;
         }
+        public void Print()
+        {
+            Debug.Log($"Helmet Details:\n" +
+                      $"Name: {Name}\n" +
+                      $"Value: {Value}\n" +
+                      $"Additional Armour: {AdditionalArmour}");
+        }
     }
 }
