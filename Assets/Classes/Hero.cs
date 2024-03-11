@@ -34,13 +34,35 @@ namespace Assets
         {
             return this.Id;
         }
+        public Dictionary<string, System.Object> WonFight(int levelDifficulty)
+        {
+            Dictionary<string, System.Object> loot = new();
+            int randomCoins = new System.Random().Next(1, 4) * levelDifficulty;
+            int randomXp = new System.Random().Next(50, 100) * levelDifficulty;
+            int nextXp = this.Xp + randomXp;
+            int raisedLevelAmount = 0;
+            while (nextXp > 1000) 
+            {
+                raisedLevelAmount++;
+                nextXp -= 1000;
+            }
+            this.Level += raisedLevelAmount;
+            this.Xp = nextXp;
+            this.Inventory.Coins = 1200;
+            Debug.Log(randomXp);
+            loot.Add("Coins", randomCoins);
+            loot.Add("TotalXp", randomXp);
+            loot.Add("RaisedLevels", raisedLevelAmount);
+            loot.Add("nextXp", nextXp);
+            return loot;
+        }
     }
 }
 
 //CREATE TABLE IF NOT EXISTS helmets(
 //    ID INTEGER PRIMARY KEY,
 //    Name TEXT,
-//    Damage INTEGER,
+//    Value INTEGER,
 //    AdditionalArmour INTEGER,
 //    Rarity INTEGER,
 //Url STRING
@@ -129,7 +151,6 @@ namespace Assets
 // ID INTEGER PRIMARY KEY,
 //Name TEXT,
 //Damage INTEGER,
-//Hands INTEGER,
 //CriticalDamage INTEGER,
 //Range INTEGER,
 //Value INTEGER,

@@ -9,6 +9,7 @@ namespace Assets
 {
     public class Helmet
     {
+        private static int totalIds = 0;
         public int Id { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
@@ -16,9 +17,10 @@ namespace Assets
         public int Rarity { get; set; }
         public string Url { get; set; }
 
-        public Helmet(int id, string name, int additionalArmour, int value, int rarity, string url)
+        public Helmet(string name, int additionalArmour, int value, int rarity, string url)
         {
-            Id = id;
+            totalIds++;
+            Id = totalIds;
             AdditionalArmour = additionalArmour;
             Name = name;
             Value = value;
@@ -31,6 +33,11 @@ namespace Assets
                       $"Name: {Name}\n" +
                       $"Value: {Value}\n" +
                       $"Additional Armour: {AdditionalArmour}");
+        }
+        public string GetID()
+        {
+            int num = this.Id;
+            return num.ToString();
         }
     }
 }
