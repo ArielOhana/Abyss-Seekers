@@ -16,10 +16,8 @@ namespace Assets
         public int Rarity { get; set; }
         public string Url { get; set; }
 
-        public Boots(int id, string name, int value, int additionalArmour, int rarity, string url)
+        public Boots(string name, int value, int additionalArmour, int rarity, string url)
         {
-            Id = id;
-
             Name = name;
             Value = value;
             AdditionalArmour = additionalArmour;
