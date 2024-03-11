@@ -16,9 +16,8 @@ namespace Assets
         public int Rarity { get; set; }
         public string Url { get; set; }
 
-        public Bodyarmour(int id, string name, int value, int additionalArmour, int rarity, string url)
+        public Bodyarmour(string name, int value, int additionalArmour, int rarity, string url)
         {
-            Id = id;
             Name = name;
             Value = value;
             AdditionalArmour = additionalArmour;

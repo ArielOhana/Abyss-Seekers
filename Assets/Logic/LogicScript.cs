@@ -14,15 +14,18 @@ public class LogicScript : MonoBehaviour
     public Hero myHero;
     public GameObject Circle;
     private GetAllButtons getAllButtons;
-    //private Button[] ButtonsArray;
-    void Start()// Get all the data from database and import it to Classes
+
+    void Start()
     {
        
-        //SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
-        //DBManager.NewHero("dor", "mage");
+        SQLdb DBManager = new SQLdb();
+        //Hero hero = DBManager.GetHero("dor");
+        //hero.getLevel();
+
+
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {

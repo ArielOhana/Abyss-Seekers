@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using UnityEditor.PackageManager;
 
 
 
@@ -13,14 +14,10 @@ namespace Assets
 {
     public class SQLdb : MonoBehaviour
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/try2.db";
+        private string connectionString = "URI=file:Assets/Logic/DB/try4.db";
         private SqliteConnection DBConnection;
-        string FilePath = "Assets/Logic/Default_JSON.json";
+        private string FilePath = "Assets/Logic/Default_JSON.json";
 
-        public void Start()
-        {
-
-        }
         private void OpenConnection()
         {
             try
@@ -141,7 +138,7 @@ namespace Assets
             command.Parameters.AddWithValue("@ArmourPenetration", stats.ArmourPenetration);
             command.ExecuteNonQuery();
         }
-        public Hero CreateHero(String name, String role)
+        public void CreateHero(String name, String role)
         {
             Hero hero;
             try
@@ -195,18 +192,13 @@ namespace Assets
                     command.Parameters.AddWithValue("@Role", role);
                     command.ExecuteNonQuery();
 
-                    Stats newStats = GetStats(statsId);
-                    Inventory newInventory = GetInventory(inventoryId);
-                    hero = new Hero(name, 1, 1, newStats, newInventory, role);
                 }
                 Debug.Log("Hero created");
                 DBConnection.Close();
-                return hero;
             }
             catch (Exception ex)
             {
                 Debug.LogError("Error: " + ex.Message);
-                return null;
             }
             finally
             {
@@ -224,23 +216,28 @@ namespace Assets
                 OpenConnection();
                 using (var command = new SqliteCommand())
                 {
+                    Debug.Log("problem1");
                     command.Connection = DBConnection;
                     command.CommandText = "SELECT * FROM hero WHERE name = @Name LIMIT 1";
                     command.Parameters.AddWithValue("@Name", name);
                     using SqliteDataReader data = command.ExecuteReader();
+                    Debug.Log("problem2");
                     if (data.Read())
                     {
-                        int heroId = Convert.ToInt32(data.GetValue(0));
-                        string newName = (string)data.GetValue(1);
-                        int newLevel = (int)data.GetValue(2);
-                        int newXp = (int)data.GetValue(3);
-                        int statsId = (int)data.GetValue(4);
+                        Debug.Log("problem3");
+                        int heroId = data.IsDBNull(0) ? 0 : data.GetInt32(0);
+                        string newName = data.IsDBNull(1) ? string.Empty : (string)data.GetValue(1);
+                        int newLevel = data.IsDBNull(2) ? 0 : data.GetInt32(2);
+                        int newXp = data.IsDBNull(3) ? 0 : data.GetInt32(3);
+                        Debug.Log("problem4");
+                        int statsId = data.IsDBNull(4) ? 0 : data.GetInt32(4);
                         Stats newStats = GetStats(statsId);
-                        int inventoryId = (int)data.GetValue(5);
+                        int inventoryId = data.IsDBNull(5) ? 0 : data.GetInt32(5);
                         Inventory newInventory = GetInventory(inventoryId);
-                        string role = (string)data.GetValue(6);
+                        Debug.Log("problem5");
+                        string role = data.IsDBNull(6) ? string.Empty : (string)data.GetValue(6);
+                        Debug.Log("problem6");
                         hero = new Hero(newName, newLevel, newXp, newStats, newInventory, role);
-                        DBConnection.Close();
                         return hero;
                     }
                     else
@@ -296,14 +293,14 @@ namespace Assets
             Weapon weapon = null;
             try
             {
-                string query = $"SELECT * FROM weapon WHERE Id = {objectId} LIMIT 1";
+                Debug.Log(objectId);
+                string query = $"SELECT * FROM weapons WHERE Id = {objectId} LIMIT 1";
                 OpenConnection();
                 using (var command = new SqliteCommand(query, DBConnection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
 
-                        int Id = reader.GetInt32(reader.GetOrdinal("ID"));
                         string Name = reader.GetString(reader.GetOrdinal("Name"));
                         int Damage = reader.GetInt32(reader.GetOrdinal("Damage"));
                         int CriticalDamage = reader.GetInt32(reader.GetOrdinal("CriticalDamage"));
@@ -311,7 +308,7 @@ namespace Assets
                         int Value = reader.GetInt32(reader.GetOrdinal("Value"));
                         int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                         string Url = reader.GetString(reader.GetOrdinal("Url"));
-                        weapon = new Weapon(Id, Name, Damage, CriticalDamage, Range, Value, Rarity, Url);
+                        weapon = new Weapon(Name, Damage, CriticalDamage, Range, Value, Rarity, Url);
                         DBConnection.Close();
                         return weapon;
                     }
@@ -334,7 +331,8 @@ namespace Assets
         {
             List<int> Ids = ConvertIdsStringToList(weaponIdString);
             List<Weapon> weapons = new();
-            for (int i = 0; i < Ids.Count; i++)
+            int num = Ids.Count;
+            for (int i = 0; i < (num-1); i++)
             {
                 Weapon newWeapon = GetWeapon(Ids[i]);
                 weapons.Add(newWeapon);
@@ -346,20 +344,19 @@ namespace Assets
             Helmet helmet = null;
             try
             {
-                string query = $"SELECT * FROM helmet WHERE Id = {objectId} LIMIT 1";
+                string query = $"SELECT * FROM helmets WHERE Id = {objectId} LIMIT 1";
                 OpenConnection();
                 using (var command = new SqliteCommand(query, DBConnection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
 
-                        int Id = reader.GetInt32(reader.GetOrdinal("ID"));
                         string Name = reader.GetString(reader.GetOrdinal("Name"));
                         int AdditionalArmour = reader.GetInt32(reader.GetOrdinal("AdditionalArmour"));
                         int Value = reader.GetInt32(reader.GetOrdinal("Value"));
                         int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                         string Url = reader.GetString(reader.GetOrdinal("Url"));
-                        helmet = new Helmet(Id, Name, AdditionalArmour, Value, Rarity, Url);
+                        helmet = new Helmet(Name, AdditionalArmour, Value, Rarity, Url);
                         DBConnection.Close();
                         return helmet;
                     }
@@ -382,7 +379,8 @@ namespace Assets
         {
             List<int> Ids = ConvertIdsStringToList(helmetIdString);
             List<Helmet> helmets = new();
-            for (int i = 0; i < Ids.Count; i++)
+            int num = Ids.Count;
+            for (int i = 0; i < (num - 1); i++)
             {
                 Helmet newHelmet = GetHelmet(Ids[i]);
                 helmets.Add(newHelmet);
@@ -401,13 +399,12 @@ namespace Assets
                     using (var reader = command.ExecuteReader())
                     {
 
-                        int Id = reader.GetInt32(reader.GetOrdinal("ID"));
                         string Name = reader.GetString(reader.GetOrdinal("Name"));
                         int AdditionalArmour = reader.GetInt32(reader.GetOrdinal("AdditionalArmour"));
                         int Value = reader.GetInt32(reader.GetOrdinal("Value"));
                         int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                         string Url = reader.GetString(reader.GetOrdinal("Url"));
-                        boots = new Boots(Id, Name, AdditionalArmour, Value, Rarity, Url);
+                        boots = new Boots(Name, AdditionalArmour, Value, Rarity, Url);
                         DBConnection.Close();
                         return boots;
                     }
@@ -430,7 +427,8 @@ namespace Assets
         {
             List<int> Ids = ConvertIdsStringToList(bootsIdString);
             List<Boots> boots = new();
-            for (int i = 0; i < Ids.Count; i++)
+            int num = Ids.Count;
+            for (int i = 0; i < (num - 1); i++)
             {
                 Boots newBoots = GetBoots(Ids[i]);
                 boots.Add(newBoots);
@@ -446,19 +444,15 @@ namespace Assets
                 OpenConnection();
                 using (var command = new SqliteCommand(query, DBConnection))
                 {
-                    using (var reader = command.ExecuteReader())
-                    {
-
-                        int Id = reader.GetInt32(reader.GetOrdinal("ID"));
-                        string Name = reader.GetString(reader.GetOrdinal("Name"));
-                        int AdditionalArmour = reader.GetInt32(reader.GetOrdinal("AdditionalArmour"));
-                        int Value = reader.GetInt32(reader.GetOrdinal("Value"));
-                        int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
-                        string Url = reader.GetString(reader.GetOrdinal("Url"));
-                        bodyarmour = new Bodyarmour(Id, Name, AdditionalArmour, Value, Rarity, Url);
-                        DBConnection.Close();
-                        return bodyarmour;
-                    }
+                    using var reader = command.ExecuteReader();
+                    string Name = reader.GetString(reader.GetOrdinal("Name"));
+                    int AdditionalArmour = reader.GetInt32(reader.GetOrdinal("AdditionalArmour"));
+                    int Value = reader.GetInt32(reader.GetOrdinal("Value"));
+                    int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
+                    string Url = reader.GetString(reader.GetOrdinal("Url"));
+                    bodyarmour = new Bodyarmour(Name, AdditionalArmour, Value, Rarity, Url);
+                    DBConnection.Close();
+                    return bodyarmour;
                 }
             }
             catch (Exception ex)
@@ -478,7 +472,8 @@ namespace Assets
         {
             List<int> Ids = ConvertIdsStringToList(bodyarmoursIdString);
             List<Bodyarmour> bodyarmours = new();
-            for (int i = 0; i < Ids.Count; i++)
+            int num = Ids.Count;
+            for (int i = 0; i < (num - 1); i++)
             {
                 Bodyarmour newBodyarmour = GetBodyarmour(Ids[i]);
                 bodyarmours.Add(newBodyarmour);
@@ -594,7 +589,7 @@ namespace Assets
                 }
             }
         }
-        public AllItems GetAllItems(string v)
+        public AllItems GetAllItems()
         {
             List<Weapon> weapons = GetAllWeapons();
             List<Helmet> helmets = GetAllHelmets();
@@ -608,7 +603,7 @@ namespace Assets
             List<Helmet> helmets = new List<Helmet>();
             try
             {
-                string query = "SELECT * FROM helmet";
+                string query = "SELECT * FROM helmets";
                 OpenConnection();
                 using (var command = new SqliteCommand(query, DBConnection))
                 {
@@ -623,7 +618,7 @@ namespace Assets
                             int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string Url = reader.GetString(reader.GetOrdinal("Url"));
 
-                            Helmet helmet = new Helmet(Id, Name, AdditionalArmour, Value, Rarity, Url);
+                            Helmet helmet = new(Name, AdditionalArmour, Value, Rarity, Url);
                             helmets.Add(helmet);
                         }
                     }
@@ -662,7 +657,7 @@ namespace Assets
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
 
-                            Boots boots = new Boots(id, name, value, additionalArmour, rarity, url);
+                            Boots boots = new(name, value, additionalArmour, rarity, url);
                             bootsList.Add(boots);
                         }
                     }
@@ -686,7 +681,7 @@ namespace Assets
             List<Weapon> weapons = new List<Weapon>();
             try
             {
-                string query = "SELECT * FROM weapon";
+                string query = "SELECT * FROM weapons";
                 OpenConnection();
                 using (var command = new SqliteCommand(query, DBConnection))
                 {
@@ -703,7 +698,7 @@ namespace Assets
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
 
-                            Weapon weapon = new Weapon(id, name, damage, criticalDamage, range, value, rarity, url);
+                            Weapon weapon = new(name, damage, criticalDamage, range, value, rarity, url);
                             weapons.Add(weapon);
                         }
                     }
@@ -742,7 +737,7 @@ namespace Assets
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
 
-                            Bodyarmour bodyArmour = new Bodyarmour(id, name, additionalArmour, value, rarity, url);
+                            Bodyarmour bodyArmour = new Bodyarmour(name, additionalArmour, value, rarity, url);
                             bodyArmours.Add(bodyArmour);
                         }
                     }

@@ -34,13 +34,18 @@ namespace Assets
         {
             return this.Id;
         }
+        public void getLevel()
+        {
+            Debug.Log("fuck yeah");
+        }
+
     }
 }
 
 //CREATE TABLE IF NOT EXISTS helmets(
 //    ID INTEGER PRIMARY KEY,
 //    Name TEXT,
-//    Damage INTEGER,
+//    Value INTEGER,
 //    AdditionalArmour INTEGER,
 //    Rarity INTEGER,
 //Url STRING
@@ -129,7 +134,6 @@ namespace Assets
 // ID INTEGER PRIMARY KEY,
 //Name TEXT,
 //Damage INTEGER,
-//Hands INTEGER,
 //CriticalDamage INTEGER,
 //Range INTEGER,
 //Value INTEGER,
