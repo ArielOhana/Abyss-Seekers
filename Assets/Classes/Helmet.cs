@@ -9,19 +9,21 @@ namespace Assets
 {
     public class Helmet
     {
-        private int totalIds = 0;
         public int Id { get; set; }
-        public string Name;
-        public int Value;
-        public float AdditionalArmour;
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int AdditionalArmour { get; set; }
+        public int Rarity { get; set; }
+        public string Url { get; set; }
 
-        public Helmet(float additionalArmour, string name, int value)
+        public Helmet(int id, string name, int additionalArmour, int value, int rarity, string url)
         {
-            totalIds++;
-            Id = totalIds;
+            Id = id;
             AdditionalArmour = additionalArmour;
             Name = name;
             Value = value;
+            Rarity = rarity;
+            Url = url;
         }
         public void Print()
         {

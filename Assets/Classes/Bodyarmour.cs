@@ -9,28 +9,21 @@ namespace Assets
 {
     public class Bodyarmour
     {
-        private int totalIds = 0;
         public int Id { get; set; }
-        public string Name;
-        public int Value;
-        public float AdditionalArmour;
-        public float Penetration;
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int AdditionalArmour { get; set; }
+        public int Rarity { get; set; }
+        public string Url { get; set; }
 
-        public Bodyarmour(float additionalArmour, string name, int value)
+        public Bodyarmour(int id, string name, int value, int additionalArmour, int rarity, string url)
         {
-            totalIds++;
-            Id = totalIds;
-            AdditionalArmour = additionalArmour;
+            Id = id;
             Name = name;
             Value = value;
-        }
-        public override string ToString()
-        {
-            return $"Bodyarmour Details:\n" +
-                   $"Name: {Name}\n" +
-                   $"Additional Armour: {AdditionalArmour}\n" +
-                   $"Value: {Value}\n" +
-                   $"Penetration: {Penetration}";
+            AdditionalArmour = additionalArmour;
+            Rarity = rarity;
+            Url = url;
         }
     }
 }

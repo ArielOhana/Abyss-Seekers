@@ -10,18 +10,19 @@ namespace Assets
     public class Role
     {
         public string Name { get; set; }
-        public float MaxHealth { get; set; }
-        public float Damage { get; set; }
-        public float HealthRegeneration { get; set; }
-        public float HitRate { get; set; }
-        public float EvadeRate { get; set; }
-        public float Armour { get; set; }
-        public float MovementSpeed { get; set; }
-        public float CriticalChance { get; set; }
-        public float ArmourPenetration { get; set; }
+        public int MaxHealth { get; set; }
+        public int Damage { get; set; }
+        public int HealthRegeneration { get; set; }
+        public int HitRate { get; set; }
+        public int EvadeRate { get; set; }
+        public int Armour { get; set; }
+        public int MovementSpeed { get; set; }
+        public int CriticalChance { get; set; }
+        public int ArmourPenetration { get; set; }
         public string[] SpecialAbility { get; set; }
 
-        public Role(string[] specialAbility, string name, float maxHealth, float damage, float healthRegeneration, float hitRate, float evadeRate, float movementSpeed, float armour, float criticalChance, float armourPenetration)
+        public Role(string[] specialAbility, string name, int maxHealth, int damage, int healthRegeneration, int hitRate,
+                            int evadeRate, int movementSpeed, int armour, int criticalChance, int armourPenetration)
         {
             this.Name = name;
             this.MaxHealth = maxHealth;
