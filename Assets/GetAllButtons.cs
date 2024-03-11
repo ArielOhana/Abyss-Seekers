@@ -7,6 +7,7 @@ using System.IO;
 using static UnityEditor.Progress;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 namespace Assets
 {
     public class GetAllButtons : MonoBehaviour
@@ -105,6 +106,10 @@ namespace Assets
                     }
                 }
 
+        }
+        public void GoToTownHall()
+        {
+            SceneManager.LoadScene("townhall");
         }
         public void ClickedOnItem(int ItemNumber)
         {
