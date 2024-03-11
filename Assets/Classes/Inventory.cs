@@ -21,8 +21,12 @@ namespace Assets
         public Boots CurrentBoot { get; set; }
         public int Coins { get; set; }
 
+<<<<<<< HEAD
         public Inventory(int id, List<Weapon> weapons, Weapon currentWeapon, List<Bodyarmour> bodyarmours, Bodyarmour currentBodyarmour,
                 List<Helmet> helmets, Helmet currentHelmet, List<Boots> boots, Boots currentBoot, int coins)
+=======
+        public Inventory(List<Weapon> weapons, List<Bodyarmour> bodyarmours, List<Helmet> helmets, List<Boots> boots, Weapon selectedWeapon, Bodyarmour selectedBodyarmour, Helmet selectedHelmet, Boots selectedBoots, int coins, int id)
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
         {
             Id = id;
             Weapons = weapons;
@@ -34,10 +38,15 @@ namespace Assets
             Boots = boots;
             CurrentBoot = currentBoot;
             Coins = coins;
+<<<<<<< HEAD
 
         }
         public int num = 1;
         public void Print()
+=======
+        }
+        public override string ToString()
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
         {
             Debug.Log(num);
             Debug.Log(Weapons[0].Id);

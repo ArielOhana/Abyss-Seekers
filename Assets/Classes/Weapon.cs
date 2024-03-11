@@ -17,7 +17,11 @@ namespace Assets
         public string Url { get; set; }
 
 
+<<<<<<< HEAD
         public Weapon(string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
+=======
+        public Weapon(int id, string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
         {
             totalIds++;
             Id = totalIds;

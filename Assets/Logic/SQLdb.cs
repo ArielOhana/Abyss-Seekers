@@ -14,14 +14,25 @@ using System.Text;
 
 
 
+
 namespace Assets
 {
     public class SQLdb 
     {
+<<<<<<< HEAD
         private string connectionString = "URI=file:Assets/Logic/DB/try6.db";
         private SqliteConnection DBConnection;
         private string FilePath = "Assets/Logic/Default_JSON.json";
 
+=======
+        private string connectionString = "URI=file:Assets/Logic/DB/try4.db";
+        private SqliteConnection DBConnection;
+        string FilePath = "Assets/Logic/Default_JSON.json";
+        public void Start()
+        {
+           
+        }
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
         private void OpenConnection()
         {
             try
@@ -105,6 +116,7 @@ namespace Assets
             command.CommandText = "UPDATE inventory SET WeaponIDs = @WeaponIDs, CurrentWeapon = @CurrentWeapon, " +
                                   "HelmetIDs = @HelmetIDs, CurrentHelmet = @CurrentHelmet, " +
                                   "ArmourIDs = @ArmourIDs, CurrentArmour = @CurrentArmour, " +
+<<<<<<< HEAD
                                   "BootIDs = @BootIDs, CurrentBoot = @CurrentBoot, Coins = @Coins WHERE InventoryID = @Id";
             
             string weaponIdsString = inventory.ListWeapons();
@@ -112,6 +124,15 @@ namespace Assets
             string armourIdsString = inventory.ListBoots();
             string bootIdsString = inventory.ListHelmets();
             
+=======
+                                  "BootIDs = @BootIDs, CurrentBoot = @CurrentBoot, Coins = @Coins WHERE Id = @Id";
+
+            string weaponIdsString = string.Join("+", inventory.Weapons.Select(w => w.Id));
+            string helmetIdsString = string.Join("+", inventory.Helmets.Select(h => h.Id));
+            string armourIdsString = string.Join("+", inventory.Bodyarmours.Select(b => b.Id));
+            string bootIdsString = string.Join("+", inventory.Boots.Select(c => c.Id));
+
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
             command.Parameters.AddWithValue("@WeaponIDs", weaponIdsString);
             int currentWeaponId = inventory.CurrentWeapon.Id;
             command.Parameters.AddWithValue("@CurrentWeapon", currentWeaponId);
@@ -188,6 +209,7 @@ namespace Assets
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT last_insert_rowid();";
                     int statsId = Convert.ToInt32(command.ExecuteScalar());
+
 
 
                     command.CommandText = "INSERT INTO inventory (WeaponIDs, CurrentWeapon, HelmetIDs, CurrentHelmet, ArmourIDs, CurrentArmour, BootIDs, CurrentBoot, Coins) " +
@@ -535,9 +557,15 @@ namespace Assets
                             Helmet currentHelmet = GetHelmet(CurrentHelmetId);
                             Boots currentBoot = GetBoots(CurrentBootsId);
                             Bodyarmour currentBodyarmour = GetBodyarmour(CurrentBodyarmourId);
+<<<<<<< HEAD
                             inventory = new Inventory(objectId, weapons, currentWeapon, bodyarmours, currentBodyarmour, helmets,
                                                         currentHelmet, boots, currentBoot, coins);
                             inventory.Print();
+=======
+
+                            inventory = new Inventory(weapons, bodyarmours, helmets, boots, currentWeapon,
+                                                    currentBodyarmour, currentHelmet, currentBoot, coins, objectId);
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
                         }
                     }
                     DBConnection.Close();
@@ -620,7 +648,7 @@ namespace Assets
             List<Helmet> helmets = GetAllHelmets();
             List<Bodyarmour> bodyArmours = GetAllBodyArmours();
             List<Boots> boots = GetAllBoots();
-            AllItems allitems = new AllItems(weapons, helmets, bodyArmours, boots);
+            AllItems allitems = new AllItems(weapons, helmets,bodyArmours, boots);// helmets, 
             return allitems;
         }
         public List<Helmet> GetAllHelmets()
@@ -761,8 +789,12 @@ namespace Assets
                             int value = reader.GetInt32(reader.GetOrdinal("Value"));
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
+<<<<<<< HEAD
 
                             Bodyarmour bodyArmour = new Bodyarmour(name, additionalArmour, value, rarity, url);
+=======
+                            Bodyarmour bodyArmour = new Bodyarmour(id, name, additionalArmour, value, rarity, url);
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
                             bodyArmours.Add(bodyArmour);
                         }
                     }

@@ -17,6 +17,7 @@ public class LogicScript : MonoBehaviour
 
     void Start()
     {
+<<<<<<< HEAD
         SQLdb DBManager = new SQLdb();
         //DBManager.ReadJson();
         //DBManager.CreateHero("sasi", "orc");
@@ -27,6 +28,12 @@ public class LogicScript : MonoBehaviour
         {
             Debug.Log(hero.Inventory.Boots[i].Name);
         }
+=======
+       
+        //SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
+        //DBManager.NewHero("dor", "mage");
+
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
     }
 
     // Update is called once per frame

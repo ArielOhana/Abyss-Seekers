@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Logic/DB/try4.db.meta
 guid: 38c738e151b63f24f94600b410098d03
 ========
 guid: 90dec24f8d19adb4f83a2ee192b075d5
 >>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7:Assets/Scenes/Interduction.unity.meta
-=======
-<<<<<<<< HEAD:Assets/Logic/DB/try4 - Copy (2).db.meta
-guid: b0dbd07d08387474cb64902b7bc76e84
-========
-guid: 15b4a5d24be06db429d9d9df06387355
->>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7:Assets/Logic/DB/try4.db.meta
->>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
 DefaultImporter:
   externalObjects: {}
   userData: 

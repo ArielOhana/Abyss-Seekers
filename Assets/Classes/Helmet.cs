@@ -34,10 +34,13 @@ namespace Assets
                       $"Value: {Value}\n" +
                       $"Additional Armour: {AdditionalArmour}");
         }
+<<<<<<< HEAD
         public string GetID()
         {
             int num = this.Id;
             return num.ToString();
         }
+=======
+>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7
     }
 }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Logic/DB/try4 - Copy (2).db.meta
 guid: b0dbd07d08387474cb64902b7bc76e84
+========
+guid: 15b4a5d24be06db429d9d9df06387355
+>>>>>>>> 347f3af07e1e7a4eff961f3f0d40e176df7a01f7:Assets/Logic/DB/try4.db.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
