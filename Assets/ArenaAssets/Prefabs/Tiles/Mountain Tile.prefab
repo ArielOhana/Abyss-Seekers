@@ -82,7 +82,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9021098285435591737}
+      addedObject: {fileID: 8324192011328019241}
   m_SourcePrefab: {fileID: 100100000, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
 --- !u!1 &131211429073899724 stripped
 GameObject:
@@ -104,7 +104,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
   m_PrefabInstance: {fileID: 2312599516505159322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9021098285435591737
+--- !u!114 &8324192011328019241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,8 +124,13 @@ MonoBehaviour:
   Arrows: []
   TileName: RockyMountains
   _renderer: {fileID: 3472370328402541432}
-  _inRangeHighight: {fileID: 0}
+  _inRangeHighight: {fileID: 9205490077227005077}
   _highlight: {fileID: 131211429073899724}
   _attackableUnit: {fileID: 3227579288343261972}
   _isWalkable: 0
   OccupiedUnit: {fileID: 0}
+--- !u!1 &9205490077227005077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6906403559734510095, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+  m_PrefabInstance: {fileID: 2312599516505159322}
+  m_PrefabAsset: {fileID: 0}
