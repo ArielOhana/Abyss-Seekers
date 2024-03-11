@@ -16,8 +16,11 @@ namespace Assets
     {
         private string connectionString = "URI=file:Assets/Logic/DB/try4.db";
         private SqliteConnection DBConnection;
-        private string FilePath = "Assets/Logic/Default_JSON.json";
-
+        string FilePath = "Assets/Logic/Default_JSON.json";
+        public void Start()
+        {
+           
+        }
         private void OpenConnection()
         {
             try
@@ -106,7 +109,7 @@ namespace Assets
             string weaponIdsString = string.Join("+", inventory.Weapons.Select(w => w.Id));
             string helmetIdsString = string.Join("+", inventory.Helmets.Select(h => h.Id));
             string armourIdsString = string.Join("+", inventory.Bodyarmours.Select(b => b.Id));
-            string bootIdsString = string.Join("+", inventory.Boots.Select(b => b.Id));
+            string bootIdsString = string.Join("+", inventory.Boots.Select(c => c.Id));
 
             command.Parameters.AddWithValue("@WeaponIDs", weaponIdsString);
             command.Parameters.AddWithValue("@CurrentWeapon", inventory.currentWeapon?.Id ?? 0);
@@ -595,7 +598,7 @@ namespace Assets
             List<Helmet> helmets = GetAllHelmets();
             List<Bodyarmour> bodyArmours = GetAllBodyArmours();
             List<Boots> boots = GetAllBoots();
-            AllItems allitems = new AllItems(weapons, helmets, bodyArmours, boots);
+            AllItems allitems = new AllItems(weapons, helmets,bodyArmours, boots);// helmets, 
             return allitems;
         }
         public List<Helmet> GetAllHelmets()
@@ -736,8 +739,7 @@ namespace Assets
                             int value = reader.GetInt32(reader.GetOrdinal("Value"));
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
-
-                            Bodyarmour bodyArmour = new Bodyarmour(name, additionalArmour, value, rarity, url);
+                            Bodyarmour bodyArmour = new Bodyarmour(id, name, additionalArmour, value, rarity, url);
                             bodyArmours.Add(bodyArmour);
                         }
                     }

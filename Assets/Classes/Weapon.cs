@@ -16,7 +16,7 @@ namespace Assets
         public string Url { get; set; }
 
 
-        public Weapon(string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
+        public Weapon(int id, string name, int damage, int criticalDamage, int range, int value,  int rarity, string url)
         {
             Damage = damage;
             Range = range;

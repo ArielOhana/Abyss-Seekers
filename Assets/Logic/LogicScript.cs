@@ -13,6 +13,7 @@ public class LogicScript : MonoBehaviour
 
     public Hero myHero;
     public GameObject Circle;
+   
     private GetAllButtons getAllButtons;
 
     void Start()

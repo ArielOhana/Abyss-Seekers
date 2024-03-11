@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Logic/DB/try4.sqbpro.meta
 guid: df1ce717fbb004f4eba2cc911d392f92
+========
+guid: 15b4a5d24be06db429d9d9df06387355
+>>>>>>>> 9faf398407b07bf406c32a3403d6e52008868a0b:Assets/Logic/DB/try4.db.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
