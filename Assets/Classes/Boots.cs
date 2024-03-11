@@ -26,13 +26,5 @@ namespace Assets
             Rarity = rarity;
             Url = url;
         }
-        public override string ToString()
-        {
-            return $"Boots Details:\n" +
-                   $"Name: {Name}\n" +
-                   $"Additional Armour: {AdditionalArmour}\n" +
-                   $"Value: {Value}\n" +
-                   $"Penetration: {Penetration}";
-        }
     }
 }

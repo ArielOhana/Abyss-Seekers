@@ -520,7 +520,7 @@ namespace Assets
                             Bodyarmour currentBodyarmour = GetBodyarmour(CurrentBodyarmourId);
 
                             inventory = new Inventory(weapons, bodyarmours, helmets, boots, currentWeapon,
-                                                    currentBodyarmour, currentHelmet, currentBoot, coins);
+                                                    currentBodyarmour, currentHelmet, currentBoot, coins, objectId);
                         }
                     }
                     DBConnection.Close();
