@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using Assets;
 using UnityEngine.SceneManagement;
 using TMPro;
-public class PlayerCreator : MonoBehaviour
+using Context;
+public class PlayerCreator : MonoBehaviour 
 {
     private SQLdb DBManager;
     private string Role;
@@ -46,6 +47,7 @@ public class PlayerCreator : MonoBehaviour
         if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrEmpty(Role))
         {
             DBManager.CreateHero(playerName, Role);
+            MainMenu.currentHero = DBManager.GetHero(playerName);
             SceneManager.LoadScene("TownHall");
         }
         else

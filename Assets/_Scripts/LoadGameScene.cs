@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Assets;
 using System.Linq;
 
 public class LoadGameScene : MonoBehaviour
 {
-    public GameObject gameContainerPrefab;
+    public SQLdb DBManager;
+    public GameObject gameContainer; // Assign the game container prefab in the inspector
     public Transform gamesContainer;
-    public Button createNewGameButton;
     public TextMeshProUGUI statusText;
 
     private List<GameData> savedGames = new List<GameData>(4);
@@ -18,6 +19,7 @@ public class LoadGameScene : MonoBehaviour
     [System.Serializable]
     public class GameData
     {
+        public string playerName;
         public string gameName;
         public string role;
     }
@@ -34,9 +36,10 @@ public class LoadGameScene : MonoBehaviour
     private int maxSpawnItr = 0;
 
     private System.Random rndm;
-
+    public Button createNewGameButton;
     void Start()
     {
+        DBManager = new SQLdb();
         rndm = new System.Random();
         maxSpawnItr = spawns.Length;
         ShufflePositions();
@@ -47,107 +50,83 @@ public class LoadGameScene : MonoBehaviour
 
     void LoadSavedGames()
     {
-        savedGames.Add(new GameData { gameName = "Game 1 - Warrior", role = "Warrior" });
-        savedGames.Add(new GameData { gameName = "Game 2 - Rogue", role = "Rogue" });
+        List<Hero> heroes = DBManager.AllHeros();
+
+        foreach (Hero hero in heroes)
+        {
+            GameData gameData = new GameData();
+            gameData.playerName = hero.Name;
+            gameData.gameName = $"{hero.Name}'s Game";
+            gameData.role = hero.Role;
+
+            savedGames.Add(gameData);
+        }
     }
 
     void UpdateUI()
     {
+        // Destroy all previous game containers
+        foreach (Transform child in gamesContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < savedGames.Count; i++)
         {
-            GameObject gameContainer = Instantiate(gameContainerPrefab, gamesContainer);
-            int index = i;
+            // Instantiate the game container prefab
+            GameObject gameContainerInstance = Instantiate(gameContainer, gamesContainer);
 
-            Transform canvasTransform = gameContainer.transform.Find("Canvas");
+            // Get the canvas transform from the game container instance
+            Transform canvasTransform = gameContainerInstance.transform.Find("Canvas");
 
+            // Set position if within bounds
             if (i < spawns.Length)
             {
                 Vector3 position = GetNextPosition();
-                gameContainer.transform.localPosition = position;
+                gameContainerInstance.transform.localPosition = position;
             }
 
+            // Access UI elements from the canvas
             TextMeshProUGUI gameText = canvasTransform.Find("GameText")?.GetComponent<TextMeshProUGUI>();
-            if (gameText != null)
-            {
-                gameText.text = savedGames[i].gameName;
-            }
-            else
-            {
-                Debug.LogError("GameText not found in Game Container prefab.");
-            }
-
             TextMeshProUGUI roleText = canvasTransform.Find("RoleText")?.GetComponent<TextMeshProUGUI>();
-            if (roleText != null)
-            {
-                roleText.text = savedGames[i].role;
-            }
-            else
-            {
-                Debug.LogError("RoleText not found in Game Container prefab.");
-            }
-
             Button startButton = canvasTransform.Find("StartButton")?.GetComponent<Button>();
-            if (startButton != null)
-            {
-                startButton.onClick.AddListener(() => StartGame(index));
-            }
-            else
-            {
-                Debug.LogError("StartButton not found in Game Container prefab.");
-            }
-
             Button deleteButton = canvasTransform.Find("DeleteButton")?.GetComponent<Button>();
-            if (deleteButton != null)
+
+            // Check if UI elements are not null before updating
+            if (gameText != null && roleText != null && startButton != null && deleteButton != null)
             {
-                deleteButton.onClick.AddListener(() => DeleteGame(index));
+                // Update UI elements with data
+                gameText.text = savedGames[i].gameName;
+                roleText.text = savedGames[i].role;
+
+                // Add listeners to buttons
+                startButton.onClick.AddListener(() => StartGame(i));
+                deleteButton.onClick.AddListener(() => DeleteGame(i));
             }
             else
             {
-                Debug.LogError("DeleteButton not found in Game Container prefab.");
-            }
-
-            Button createNewGameButton = canvasTransform.Find("CreateNewGameButton")?.GetComponent<Button>();
-            if (createNewGameButton != null)
-            {
-                createNewGameButton.onClick.AddListener(() => CreateNewGame());
-            }
-            else
-            {
-                Debug.LogError("CreateNewGameButton not found in Game Container prefab.");
-            }
-
-            TextMeshProUGUI statusText = canvasTransform.Find("StatusText")?.GetComponent<TextMeshProUGUI>();
-            if (statusText != null)
-            {
-            }
-            else
-            {
-                Debug.LogError("StatusText not found in Game Container prefab.");
+                Debug.LogError("UI elements not found in Game Container prefab.");
             }
         }
 
-        if (savedGames.Count < 4)
-        {
-            createNewGameButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            createNewGameButton.gameObject.SetActive(false);
-        }
+        // Set the visibility of createNewGameButton
+        createNewGameButton.gameObject.SetActive(savedGames.Count < 5);
     }
 
     public void StartGame(int index)
     {
-        string selectedGame = savedGames[index].gameName;
-        Debug.Log("Starting game: " + selectedGame);
+        string playerName = savedGames[index].playerName;
+        Debug.Log("Starting game for player: " + playerName);
     }
 
     public void DeleteGame(int index)
     {
-        string deletedGame = savedGames[index].gameName;
-        savedGames.RemoveAt(index);
-        Debug.Log("Deleted game: " + deletedGame);
+        string playerName = savedGames[index].playerName;
+        Debug.Log("Deleting game for player: " + playerName);
 
+        DBManager.DeleteHero(playerName);
+
+        savedGames.RemoveAt(index);
         UpdateUI();
     }
 

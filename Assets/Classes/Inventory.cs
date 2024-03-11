@@ -39,10 +39,10 @@ namespace Assets
         public int num = 1;
         public void Print()
         {
-            Debug.Log(num);
-            Debug.Log(Weapons[0].Id);
-            Debug.Log(CurrentBodyarmour);
-            num++;
+            //Debug.Log(num);
+            //Debug.Log(Weapons[0].Id);
+            //Debug.Log(CurrentBodyarmour);
+            //num++;
         }
         public string ListWeapons()
         {

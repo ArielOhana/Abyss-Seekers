@@ -3,41 +3,47 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class MainMenu : MonoBehaviour
+using Assets;
+ 
+namespace Context
 {
-    public Animator transition;
-    public float transitionTime = 1f;
-    [SerializeField] GameObject creditsMenu;
+    public class MainMenu : MonoBehaviour
+    {
+        public static Hero currentHero;
+        public Animator transition;
+        public float transitionTime = 1f;
+        [SerializeField] GameObject creditsMenu;
 
-    void Start()
-    {
-        creditsMenu.SetActive(false);
-    }
+        void Start()
+        {
+            creditsMenu.SetActive(false);
+        }
 
-    IEnumerator LoadLevel(int levelIndex)  
-    {
-        transition.SetTrigger("start"); 
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
-    }
+        IEnumerator LoadLevel(int levelIndex)  
+        {
+            transition.SetTrigger("start"); 
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(levelIndex);
+        }
 
-    public void PlayGame()
-    {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-    }
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene("Menu");
-    }
+        public void PlayGame()
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+        public void GoToMainMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
-    public void GoToLoadGame()
-    {
-        SceneManager.LoadScene("LoadGame");
-    }
+        public void GoToLoadGame()
+        {
+            SceneManager.LoadScene("LoadGame");
+        }
 
-    public void QuitGame()
-    {
-        Application.Quit();
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
+

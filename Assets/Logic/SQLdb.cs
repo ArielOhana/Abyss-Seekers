@@ -782,5 +782,85 @@ namespace Assets
             }
             return bodyArmours;
         }
+        public List<Hero> AllHeros()
+        {
+            List<Hero> heros = new List<Hero>();
+            try
+            {
+                string query = "SELECT * FROM hero";
+                OpenConnection();
+                using (var command = new SqliteCommand(query, DBConnection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int statsId = reader.GetInt32(reader.GetOrdinal("StatsID"));
+                            int inventoryId = reader.GetInt32(reader.GetOrdinal("InventoryID"));
+
+                            Stats stats = GetStats(statsId);
+                            Inventory inventory = GetInventory(inventoryId);
+
+                            Hero newHero = new Hero(
+                                reader.GetString(reader.GetOrdinal("Name")),
+                                reader.GetInt32(reader.GetOrdinal("Level")),
+                                reader.GetInt32(reader.GetOrdinal("XP")),
+                                stats,
+                                inventory,
+                                reader.GetString(reader.GetOrdinal("Role"))
+                            );
+                            heros.Add(newHero);
+                        }
+                    }
+                }
+                DBConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (DBConnection.State == ConnectionState.Open)
+                {
+                    DBConnection.Close();
+                }
+            }
+            return heros;
+        }
+        public void DeleteHero(string name)
+        {
+            try
+            {
+                OpenConnection();
+                using (var command = new SqliteCommand())
+                {
+                    command.Connection = DBConnection;
+                    command.CommandText = "DELETE FROM hero WHERE name = @Name";
+                    command.Parameters.AddWithValue("@Name", name);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Debug.Log($"Hero with name '{name}' deleted successfully.");
+                    }
+                    else
+                    {
+                        Debug.Log($"Hero with name '{name}' not found.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error at DeleteHero: " + e.Message);
+            }
+            finally
+            {
+                if (DBConnection.State == ConnectionState.Open)
+                {
+                    DBConnection.Close();
+                }
+            }
+        }
     }
 }
