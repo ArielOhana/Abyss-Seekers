@@ -1608,58 +1608,58 @@ MonoBehaviour:
   displayText: {fileID: 0}
   buttonData:
   - button: {fileID: 1945325830}
-    health: 120
-    damage: 30
+    health: 150
+    damage: 40
     armour: 40
-    hitRate: 75
-    armourPenetration: 20
+    hitRate: 60
+    armourPenetration: 40
     evadeRate: 20
-    criticalChance: 15
-    healAmount: 15
-    movementSpeed: 1
+    criticalChance: 25
+    healAmount: 20
+    movementSpeed: 2
     buttonImage: {fileID: 21300000, guid: 0bd20adab068378448133307dcc112af, type: 3}
   - button: {fileID: 812079733}
-    health: 95
-    damage: 22
-    armour: 25
-    hitRate: 88
-    armourPenetration: 25
-    evadeRate: 30
+    health: 3242
+    damage: 30
+    armour: 10
+    hitRate: 60
+    armourPenetration: 70
+    evadeRate: 40
     criticalChance: 40
     healAmount: 10
     movementSpeed: 3
     buttonImage: {fileID: 21300000, guid: 2e93c637a24e04d8ea6b2cfd9df53739, type: 3}
   - button: {fileID: 356527490}
+    health: 4234
+    damage: 30
+    armour: 10
+    hitRate: 60
+    armourPenetration: 70
+    evadeRate: 40
+    criticalChance: 40
+    healAmount: 10
+    movementSpeed: 3
+    buttonImage: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
+  - button: {fileID: 1371685555}
+    health: 6
+    damage: 30
+    armour: 10
+    hitRate: 60
+    armourPenetration: 70
+    evadeRate: 40
+    criticalChance: 40
+    healAmount: 10
+    movementSpeed: 3
+    buttonImage: {fileID: 21300000, guid: 9647dcba19d63446aa5f8289b90d9d0d, type: 3}
+  - button: {fileID: 908894179}
     health: 80
     damage: 30
     armour: 10
     hitRate: 60
-    armourPenetration: 30
+    armourPenetration: 70
     evadeRate: 40
     criticalChance: 40
-    healAmount: 15
-    movementSpeed: 3
-    buttonImage: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
-  - button: {fileID: 1371685555}
-    health: 130
-    damage: 35
-    armour: 30
-    hitRate: 60
-    armourPenetration: 35
-    evadeRate: 20
-    criticalChance: 35
     healAmount: 10
-    movementSpeed: 1
-    buttonImage: {fileID: 21300000, guid: 9647dcba19d63446aa5f8289b90d9d0d, type: 3}
-  - button: {fileID: 908894179}
-    health: 90
-    damage: 25
-    armour: 10
-    hitRate: 70
-    armourPenetration: 20
-    evadeRate: 65
-    criticalChance: 40
-    healAmount: 12
     movementSpeed: 3
     buttonImage: {fileID: 21300000, guid: 8fafb0f7ac835417d9ad4d4337d461ba, type: 3}
   healthText: {fileID: 1147231818}
@@ -2488,7 +2488,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 400
+  orthographic size: 32.742355
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -10,117 +10,92 @@ namespace Assets
 {
     public class Inventory
     {
+        private int totalIds = 0;
         public int Id { get; set; }
-        public List<Weapon> Weapons { get; set; }
-        public Weapon CurrentWeapon { get; set; }
-        public List<Bodyarmour> Bodyarmours { get; set; }
-        public Bodyarmour CurrentBodyarmour { get; set; }
-        public List<Helmet> Helmets { get; set; }
-        public Helmet CurrentHelmet { get; set; }
-        public List<Boots> Boots { get; set; }
-        public Boots CurrentBoot { get; set; }
+        public string Weapons { get; set; }
+        public Weapon currentWeapon { get; set; }
+        public string Bodyarmours { get; set; }
+        public Bodyarmour currentBodyarmour { get; set; }
+        public string Helmets { get; set; }
+        public Helmet currentHelmet { get; set; }
+        public string Boots { get; set; }
+        public Boots currentBoot { get; set; }
         public int Coins { get; set; }
 
-        public Inventory(int id, List<Weapon> weapons, Weapon currentWeapon, List<Bodyarmour> bodyarmours, Bodyarmour currentBodyarmour,
-                List<Helmet> helmets, Helmet currentHelmet, List<Boots> boots, Boots currentBoot, int coins)
+        public Inventory(string weapons, string bodyarmours, string helmets, string boots, int selectedWeapon, int selectedBodyarmour, int selectedHelmet, int selectedBoots,int coins)
         {
-            Id = id;
+            totalIds++;
+            Id = totalIds;
             Weapons = weapons;
-            CurrentWeapon = currentWeapon;
             Bodyarmours = bodyarmours;
-            CurrentBodyarmour = currentBodyarmour;
             Helmets = helmets;
-            CurrentHelmet = currentHelmet;
             Boots = boots;
-            CurrentBoot = currentBoot;
+            currentWeapon = GetByIDWeapon(selectedWeapon);
+            currentBodyarmour = GetByIDBodyarmour(selectedBodyarmour);
+            currentHelmet = GetByIDHelmet(selectedHelmet);
+            currentBoot = GetByIDBoot(selectedBoots);
             Coins = coins;
         }
+        private Weapon GetByIDWeapon(int id)
+        {
 
-        public int num = 1;
-        public void Print()
-        {
-            Debug.Log(num);
-            Debug.Log(Weapons[0].Id);
-            Debug.Log(CurrentBodyarmour);
-            num++;
+            return null;
         }
-        public string ListWeapons()
+        private Bodyarmour GetByIDBodyarmour(int id)
         {
-            List<Weapon> list = Weapons;
-            string str = "";
-            foreach (Weapon weapon in list)
+
+            return null;
+        }
+        private Helmet GetByIDHelmet(int id)
+        {
+
+            return null;
+        }
+        private Boots GetByIDBoot(int id)
+        {
+
+            return null;
+        }
+
+        public override string ToString()
+        {
+            return $"Inventory:\n" +
+                   $"Weapons: {Weapons}\n" +
+                   $"Current Weapon: {currentWeapon}\n" +
+                   $"Bodyarmours: {Bodyarmours}\n" +
+                   $"Current Bodyarmour: {currentBodyarmour}\n" +
+                   $"Helmets: {Helmets}\n" +
+                   $"Current Helmet: {currentHelmet}\n" +
+                   $"Boots: {Boots}\n" +
+                   $"Current Boot: {currentBoot}\n" +
+                   $"Coins: {Coins}";
+        }
+
+        public float SumAdditionalArmour(Hero hero)
+        {
+            return (currentBodyarmour.AdditionalArmour + currentHelmet.AdditionalArmour + currentBoot.AdditionalArmour);
+        }
+        public void AddItem(string ObjectType, string itemIds, int coinsChange)
+        {
+            switch (ObjectType)
             {
-                string str2 = weapon.GetID();
-                Debug.Log(str2);
-                str += str2;
-                str += "+";
+                case "weapon":
+                    this.Weapons += itemIds;
+                    break;
+                case "helmet":
+                    this.Weapons += itemIds; 
+                    break;
+                case "boots":
+                    this.Boots += itemIds;
+                    break;
+                case "bodyarmour":
+                    this.Bodyarmours += itemIds;
+                    break;
+                default:
+                    this.Coins += coinsChange;
+                    break;
             }
-            str.Remove(-1, 1);
-            return str;
         }
-        public string ListBoots()
-        {
-            List<Boots> list = Boots;
-
-            string str = "";
-            foreach (Boots boot in list)
-            {
-                str += boot.Id;
-                str += "+";
-            }
-            str.Remove(-1, 1);
-            return str;
-        }
-        public string ListBodyArmours()
-        {
-            List<Bodyarmour> list = Bodyarmours;
-            string str = "";
-            foreach (Bodyarmour bodyarmour in list)
-            {
-                str += bodyarmour.Id;
-                str += "+";
-            }
-            str.Remove(-1, 1);
-            return str;
-        }
-        public string ListHelmets()
-        {
-            List<Helmet> list = Helmets;
-            string str = "";
-            foreach (Helmet helmet in list)
-            {
-                str += helmet.Id;
-                str += "+";
-            }
-            str.Remove(-1, 1);
-            return str;
-        }
-
-        public int SumAdditionalArmour(Hero hero)
-        {
-            return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
-        }
-
-        //public void AddItem(string ObjectType, string itemIds, int coinsChange)
-        //{
-        //    switch (ObjectType)
-        //    {
-        //        case "weapon":
-
-        //            break;
-        //        case "helmet":
-        //            this.Weapons += itemIds; 
-        //            break;
-        //        case "boots":
-        //            this.Boots += itemIds;
-        //            break;
-        //        case "bodyarmour":
-        //            this.Bodyarmours += itemIds;
-        //            break;
-        //        default:
-        //            this.Coins += coinsChange;
-        //            break;
-        //    }
-        //}
+       
     }
 }

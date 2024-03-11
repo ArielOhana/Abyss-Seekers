@@ -17,9 +17,4 @@ public class GoToScene : MonoBehaviour
     {
         SceneManager.LoadScene("TownHall");
     }
-    
-    public void EnterInventroy()
-    {
-        SceneManager.LoadScene("Inventory");
-    }
 }

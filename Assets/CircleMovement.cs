@@ -16,6 +16,7 @@ public class CircleMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
+            logicScript.myHero.Stats.Heal();
             Debug.Log(logicScript.myHero.Stats.ToString());
             GameObject objToMove = GameObject.Find("Circle");
 

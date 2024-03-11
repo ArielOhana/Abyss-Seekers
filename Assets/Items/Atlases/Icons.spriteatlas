@@ -425,10 +425,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 74b95f8fcc76fcc4cb42a25e8d3cdbe0, type: 3}
   - {fileID: 21300000, guid: 62a99ebf2f5cfe04da1d208b9e7817a9, type: 3}
   m_PackedSpriteNamesToIndex:
-  - bow1
   - BattleBow
-  - armour1
-  - bow4
+  - BattleBow
+  - BodyArmor0
+  - RedwoodBow
   - UAH_6x4_14
   - UAH_6x4_15
   - UAH_6x4_16
@@ -455,13 +455,13 @@ SpriteAtlas:
   - UAH_6x4_2
   - VikingShortBow
   - SteelAxe
-  - sword2
-  - armour5
-  - axe1
-  - axe1
-  - staff2
+  - BalancedSword [Paint]
+  - BodyArmor4
+  - BerserkAxe
+  - FreeFolkAxe
+  - SandHealerStaff1
   - Scout [Paint]
-  - staff3
+  - SwampWarriorSpear
   - JPY_6x4_19
   - JPY_6x4_18
   - JPY_6x4_13
@@ -486,13 +486,13 @@ SpriteAtlas:
   - JPY_6x4_5
   - JPY_6x4_6
   - JPY_6x4_7
-  - boot4
-  - armour3
-  - axe2
-  - axe3
+  - ManticoreArmor
+  - BodyArmor2
+  - VikingAxe3
+  - WoodcutterAxe
   - DarkSword
   - DarkMountain
-  - hel1
+  - BattleguardHelm
   - USD_6x4_9
   - USD_6x4_8
   - USD_6x4_3
@@ -517,27 +517,27 @@ SpriteAtlas:
   - USD_6x4_13
   - USD_6x4_10
   - USD_6x4_11
-  - hel5
-  - armour7
-  - knife3
-  - bow2
-  - sword3
-  - bucher
+  - DarkMountain
+  - BodyArmor6
+  - HunterKnife [Paint]
+  - HunterBow
+  - SharpenedInfantrySword
+  - ButcherKnife
   - MarauderBow
   - GreyKnight
   - RedwoodBow
-  - bow5
-  - hel
-  - sword1
-  - hel6
-  - boot1
+  - VikingShortBow
+  - ScoutHelm
+  - Katana1 [Paint]
+  - ManticoreHelmet
+  - BanditLightArmor [Paint]
   - GateCrusher
-  - hel3
-  - staff1
-  - armour6
+  - HighKnightHelm
+  - HardwoodWand
+  - BodyArmor5
   - WyvernHornBow
-  - hel4
-  - bow3
+  - KnightHelm [Paint]
+  - MarauderBow
   - GBP_6x4_19
   - GBP_6x4_18
   - GBP_6x4_11
@@ -562,9 +562,9 @@ SpriteAtlas:
   - GBP_6x4_21
   - GBP_6x4_22
   - GBP_6x4_23
-  - club
+  - WoodenClub
   - HunterBow
-  - armour4
+  - BodyArmor3
   - ManticoreArmor
   - BattleguardArmor
   - BanditLightArmor [Paint]
@@ -592,24 +592,24 @@ SpriteAtlas:
   - EUR_6x4_13
   - EUR_6x4_10
   - EUR_6x4_11
-  - armour2
-  - hammer1
-  - knife1
-  - hel2
-  - boot2
-  - boot6
-  - axe2
-  - boot5
-  - boot3
+  - BodyArmor1
+  - TwoHandedWoodenMace
+  - AssassinDagger [Paint]
+  - HawkHelm
+  - BattleguardArmor
+  - Scout [Paint]
+  - DestroyerAxe
+  - GreyKnight
+  - DarkMountain
   - AriostinGreatsword
-  - bow6
-  - knife2
-  - hammer
+  - WyvernHornBow
+  - BronzeDagger
+  - WarHammer
   - Harpoon
-  - sword4
-  - staff4
+  - ManticoreSword
+  - WaterAdeptWand1
   - OldPoleaxe
-  - hammer2
+  - LongHammer
   - MountainSword [Paint]
   m_RenderDataMap: {}
   m_Tag: Icons
