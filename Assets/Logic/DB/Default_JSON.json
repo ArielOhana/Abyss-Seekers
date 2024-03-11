@@ -1,13 +1,22 @@
 {
   "weapons": [
     {
+      "damage": 12,
+      "range": 1,
+      "criticalDamage": 18,
+      "value": 30,
+      "name": "club",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/club.png"
+    },
+    {
       "damage": 20,
       "range": 1,
       "criticalDamage": 30,
       "value": 50,
       "name": "Common knife",
       "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/knife1.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife1.png"
     },
     {
       "damage": 15,
@@ -16,7 +25,7 @@
       "value": 40,
       "name": "bronze knife",
       "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/knife2.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife2.png"
     },
     {
       "damage": 25,
@@ -25,70 +34,7 @@
       "value": 60,
       "name": "hunting knife",
       "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/knife3.png"
-    },
-    {
-      "damage": 12,
-      "range": 1,
-      "criticalDamage": 18,
-      "value": 30,
-      "name": "club",
-      "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/club.png"
-    },
-    {
-      "damage": 18,
-      "range": 1,
-      "criticalDamage": 25,
-      "value": 45,
-      "name": "black axe",
-      "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/axe1.png"
-    },
-    {
-      "damage": 40,
-      "range": 1,
-      "criticalDamage": 60,
-      "value": 55,
-      "name": "spikey axe",
-      "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/axe2.png"
-    },
-    {
-      "damage": 30,
-      "range": 1,
-      "criticalDamage": 60,
-      "value": 100,
-      "name": "hammer",
-      "rarity": 2,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/hammer.png"
-    },
-    {
-      "damage": 18,
-      "range": 1,
-      "criticalDamage": 30,
-      "value": 50,
-      "name": "simple axe",
-      "rarity": 1,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/knife3.png"
-    },
-    {
-      "damage": 30,
-      "range": 1,
-      "criticalDamage": 40,
-      "value": 70,
-      "name": "simple staff",
-      "rarity": 2,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/staff1.png"
-    },
-    {
-      "damage": 15,
-      "range": 1,
-      "criticalDamage": 25,
-      "value": 40,
-      "name": "magic staff",
-      "rarity": 2,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/staff2.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife3.png"
     },
     {
       "damage": 22,
@@ -97,7 +43,7 @@
       "value": 55,
       "name": "katana",
       "rarity": 2,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/sword1.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword1.png"
     },
     {
       "damage": 60,
@@ -106,7 +52,7 @@
       "value": 100,
       "name": "big sword",
       "rarity": 2,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/sword2.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword2.png"
     },
     {
       "damage": 50,
@@ -115,7 +61,7 @@
       "value": 200,
       "name": "simple sword",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/sword3.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword3.png"
     },
     {
       "damage": 32,
@@ -124,7 +70,61 @@
       "value": 130,
       "name": "drakon sword",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons1H/sword4.png"
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword4.png"
+    },
+    {
+      "damage": 18,
+      "range": 1,
+      "criticalDamage": 25,
+      "value": 45,
+      "name": "black axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/axe1.png"
+    },
+    {
+      "damage": 40,
+      "range": 1,
+      "criticalDamage": 60,
+      "value": 55,
+      "name": "spikey axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/axe2.png"
+    },
+    {
+      "damage": 30,
+      "range": 1,
+      "criticalDamage": 60,
+      "value": 100,
+      "name": "hammer",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/hammer.png"
+    },
+    {
+      "damage": 18,
+      "range": 1,
+      "criticalDamage": 30,
+      "value": 50,
+      "name": "simple axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife3.png"
+    },
+    {
+      "damage": 30,
+      "range": 1,
+      "criticalDamage": 40,
+      "value": 70,
+      "name": "simple staff",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/staff1.png"
+    },
+    {
+      "damage": 15,
+      "range": 1,
+      "criticalDamage": 25,
+      "value": 40,
+      "name": "magic staff",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/staff2.png"
     },
     {
       "damage": 60,
@@ -133,7 +133,7 @@
       "value": 160,
       "name": "viking Axe",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons2H/axe1.png"
+      "url": "Assets/Items/Icons/MeleeWeapon2H/axe1.png"
     },
     {
       "damage": 40,
@@ -142,7 +142,7 @@
       "value": 100,
       "name": "great axer",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons2H/axe2.png"
+      "url": "Assets/Items/Icons/MeleeWeapon2H/axe2.png"
     },
     {
       "damage": 50,
@@ -151,7 +151,7 @@
       "value": 150,
       "name": "bucher's knife'",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons2H/bucher.png"
+      "url": "Assets/Items/Icons/MeleeWeapon2H/bucher.png"
     },
     {
       "damage": 90,
@@ -160,7 +160,7 @@
       "value": 200,
       "name": "good hammer",
       "rarity": 3,
-      "url": "Assets/Items/Icons/MeleeWeapons2H/hammer1.png"
+      "url": "Assets/Items/Icons/MeleeWeapon2H/hammer1.png"
     },
     {
       "damage": 50,

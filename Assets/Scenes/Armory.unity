@@ -262,8 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!1 &51145481
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,8 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!212 &51145484
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -414,7 +410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: DisplayClothes
         m_Mode: 3
@@ -516,8 +512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!212 &106326898
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -614,7 +608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: DisplayClothes
         m_Mode: 3
@@ -698,8 +692,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -752.23, y: 181.06}
-  m_SizeDelta: {x: -1779.6, y: -1054.2}
+  m_AnchoredPosition: {x: -848.4232, y: 181.06}
+  m_SizeDelta: {x: -1859.761, y: -1054.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &166350719
 MonoBehaviour:
@@ -869,7 +863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -608, y: 361.1}
+  m_AnchoredPosition: {x: -647, y: 181.06}
   m_SizeDelta: {x: -1867.301, y: -1054.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398131101
@@ -893,7 +887,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1049,7 +1043,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -1108,7 +1102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523912264}
-  - component: {fileID: 523912263}
+  - component: {fileID: 523912265}
   m_Layer: 0
   m_Name: ArmoryLogic
   m_TagString: Untagged
@@ -1116,27 +1110,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &523912263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523912262}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94740b78d09bf1f48858c5677060746e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonOne: {fileID: 2010369618}
-  ButtonTwo: {fileID: 1808651539}
-  ButtonThree: {fileID: 1205265497}
-  ButtonFour: {fileID: 973010288}
-  ButtonFive: {fileID: 1674145268}
-  ButtonSix: {fileID: 415665701}
-  ButtonSeven: {fileID: 1507127383}
-  ButtonEight: {fileID: 1445042591}
-  ButtonNine: {fileID: 1746042066}
 --- !u!4 &523912264
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,6 +1125,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523912265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523912262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd42bd2c1d4b2f45898a6fb45551c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonOne: {fileID: 2010369618}
+  ButtonTwo: {fileID: 1808651539}
+  ButtonThree: {fileID: 1205265497}
+  ButtonFour: {fileID: 973010288}
+  ButtonFive: {fileID: 1674145268}
+  ButtonSix: {fileID: 415665701}
+  ButtonSeven: {fileID: 1507127383}
+  ButtonEight: {fileID: 1445042591}
+  ButtonNine: {fileID: 1746042066}
+  PreviewImage: {fileID: 1466202363}
+  NameText: {fileID: 1629314170}
+  RarityText: {fileID: 890244732}
+  ArmorText: {fileID: 698909832}
+  OnlySetActiveNameText: {fileID: 742396260}
+  OnlySetActiveRarityText: {fileID: 1728138450}
+  OnlySetActiveArmorText: {fileID: 1029702458}
+  PriceText: {fileID: 398131101}
+  CurrentMoneyText: {fileID: 1013939221}
+  OnlySetActivePriceText: {fileID: 166350719}
+  OnlySetActiveCurrentMoneyText: {fileID: 1998900640}
+  NotificationsAboutBuy: {fileID: 1986860143}
+  BuyText: {fileID: 1492331493}
+  BuyButton: {fileID: 532372237}
 --- !u!1 &532372234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -1452,7 +1460,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1489,8 +1497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -70.38098, y: -303}
-  m_SizeDelta: {x: -1711.503, y: -1050.824}
+  m_AnchoredPosition: {x: -83.43005, y: -226.83997}
+  m_SizeDelta: {x: -1713.746, y: -1059.047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &742396258
 GameObject:
@@ -1526,8 +1534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -347.0737, y: -138.83002}
-  m_SizeDelta: {x: -1789.775, y: -1048.667}
+  m_AnchoredPosition: {x: -444.479, y: -101.10901}
+  m_SizeDelta: {x: -1860.791, y: -1052.405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &742396260
 MonoBehaviour:
@@ -1623,8 +1631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!212 &814448175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1721,7 +1727,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: DisplayClothes
         m_Mode: 3
@@ -1805,8 +1811,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -65.343994, y: -222}
-  m_SizeDelta: {x: -1714.7, y: -1048.667}
+  m_AnchoredPosition: {x: -86, y: -170.23499}
+  m_SizeDelta: {x: -1714.7, y: -1057.637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &890244731
 CanvasRenderer:
@@ -1837,7 +1843,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1985,7 +1991,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -2093,7 +2099,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -2148,8 +2154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -343.319, y: -303}
-  m_SizeDelta: {x: -1782.277, y: -1050.824}
+  m_AnchoredPosition: {x: -428.54614, y: -228.70801}
+  m_SizeDelta: {x: -1848.061, y: -1055.309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1029702458
 MonoBehaviour:
@@ -2396,7 +2402,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -2581,7 +2587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -2668,7 +2674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -181, y: 119.88}
+  m_AnchoredPosition: {x: -181, y: 119.880005}
   m_SizeDelta: {x: -1156.385, y: -931.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466202359
@@ -2683,8 +2689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!212 &1466202360
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2865,8 +2869,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0040283203, y: -0.052761078}
-  m_SizeDelta: {x: -537.38, y: 2.6535}
+  m_AnchoredPosition: {x: 0.000061035156, y: -0.119506836}
+  m_SizeDelta: {x: -512.67, y: 0.239}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1492331493
 MonoBehaviour:
@@ -3045,7 +3049,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -3129,8 +3133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -66, y: -138.83002}
-  m_SizeDelta: {x: -1716.013, y: -1048.667}
+  m_AnchoredPosition: {x: -84.75098, y: -100.359985}
+  m_SizeDelta: {x: -1716.387, y: -1053.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1629314169
 CanvasRenderer:
@@ -3161,7 +3165,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -3309,7 +3313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -3393,8 +3397,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -339.565, y: -222}
-  m_SizeDelta: {x: -1789.775, y: -1048.667}
+  m_AnchoredPosition: {x: -427.70996, y: -173}
+  m_SizeDelta: {x: -1847.709, y: -1056.143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1728138450
 MonoBehaviour:
@@ -3573,7 +3577,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -3758,7 +3762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -4205,7 +4209,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523912263}
+      - m_Target: {fileID: 523912265}
         m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
         m_MethodName: ClickedOnItem
         m_Mode: 3
@@ -4267,8 +4271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da117b4fc0e026b418814d90255bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Circle: {fileID: 0}
-  getAllButtons: {fileID: 0}
 --- !u!1 &2017759661
 GameObject:
   m_ObjectHideFlags: 0

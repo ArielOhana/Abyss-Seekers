@@ -19,7 +19,7 @@ namespace Assets
 {
     public class SQLdb 
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/db2.db";
+        private string connectionString = "URI=file:Assets/Logic/DB/db.db";
         private SqliteConnection DBConnection;
         private string FilePath = "Assets/Logic/DB/Default_JSON.json";
 
@@ -67,7 +67,7 @@ namespace Assets
                         using (var command = new SqliteCommand())
                         {
                             command.Connection = DBConnection;
-                            command.CommandText = $"SELECT COUNT(*) FROM {table.Key}";
+                            command.CommandText = $"SELECT COUNT(*) FROM {table.Key};";
                             int rowCount = Convert.ToInt32(command.ExecuteScalar());
                             if (rowCount < table.Value.Count)
                             {

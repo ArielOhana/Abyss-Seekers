@@ -48,7 +48,14 @@ namespace Assets
             ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
             for (int i = 0; i < ButtonsArray.Length; i++)
             {
-                ButtonsArray[i].gameObject.SetActive(false);
+                if (ButtonsArray[i] != null)
+                {
+                    ButtonsArray[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogError("Button " + (i + 1) + " is not assigned!");
+                }
             }
             PreviewImage.gameObject.SetActive(false);
             OnlySetActiveArmorText.gameObject.SetActive(false);
