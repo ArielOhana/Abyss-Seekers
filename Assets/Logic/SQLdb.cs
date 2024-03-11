@@ -303,7 +303,7 @@ namespace Assets
                 {
                     using (var reader = command.ExecuteReader())
                     {
-
+                        int Id = reader.GetInt32(reader.GetOrdinal("Id"));
                         string Name = reader.GetString(reader.GetOrdinal("Name"));
                         int Damage = reader.GetInt32(reader.GetOrdinal("Damage"));
                         int CriticalDamage = reader.GetInt32(reader.GetOrdinal("CriticalDamage"));
@@ -311,7 +311,7 @@ namespace Assets
                         int Value = reader.GetInt32(reader.GetOrdinal("Value"));
                         int Rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                         string Url = reader.GetString(reader.GetOrdinal("Url"));
-                        weapon = new Weapon(Name, Damage, CriticalDamage, Range, Value, Rarity, Url);
+                        weapon = new Weapon(Id,Name, Damage, CriticalDamage, Range, Value, Rarity, Url);
                         DBConnection.Close();
                         return weapon;
                     }
@@ -701,7 +701,7 @@ namespace Assets
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
 
-                            Weapon weapon = new(name, damage, criticalDamage, range, value, rarity, url);
+                            Weapon weapon = new(id,name, damage, criticalDamage, range, value, rarity, url);
                             weapons.Add(weapon);
                         }
                     }
@@ -739,7 +739,7 @@ namespace Assets
                             int value = reader.GetInt32(reader.GetOrdinal("Value"));
                             int rarity = reader.GetInt32(reader.GetOrdinal("Rarity"));
                             string url = reader.GetString(reader.GetOrdinal("Url"));
-                            Bodyarmour bodyArmour = new Bodyarmour(id, name, additionalArmour, value, rarity, url);
+                            Bodyarmour bodyArmour = new Bodyarmour(name, additionalArmour, value, rarity, url);
                             bodyArmours.Add(bodyArmour);
                         }
                     }
