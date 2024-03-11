@@ -19,8 +19,6 @@ public class LogicScript : MonoBehaviour
     {
         SQLdb DBManager = new SQLdb();
         DBManager.ReadJson();
-        DBManager.CreateHero("sasi", "orc");
-        
     }
 
     // Update is called once per frame

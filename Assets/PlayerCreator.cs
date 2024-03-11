@@ -43,8 +43,15 @@ public class PlayerCreator : MonoBehaviour
     {
         string playerName = playerNameInput.text;
 
-        DBManager.CreateHero(playerName,Role );
-        SceneManager.LoadScene("TownHall");
+        if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrEmpty(Role))
+        {
+            DBManager.CreateHero(playerName, Role);
+            SceneManager.LoadScene("TownHall");
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
     void OnButtonClick(int index)
     {
@@ -62,7 +69,6 @@ public class PlayerCreator : MonoBehaviour
         healAmountText.text = $"Heal Amount: {currentPlayerStats.HealAmount}";
         movementSpeedText.text = $"Movement Speed: {currentPlayerStats.MovementSpeed}";
 
-        // Apply sprite to the empty object's SpriteRenderer
         if (emptyObject != null)
         {
             if (buttonData[index].buttonImage != null)

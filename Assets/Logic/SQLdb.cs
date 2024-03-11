@@ -19,7 +19,7 @@ namespace Assets
 {
     public class SQLdb 
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/db.db";
+        private string connectionString = "URI=file:Assets/Logic/DB/db2.db";
         private SqliteConnection DBConnection;
         private string FilePath = "Assets/Logic/DB/Default_JSON.json";
 
