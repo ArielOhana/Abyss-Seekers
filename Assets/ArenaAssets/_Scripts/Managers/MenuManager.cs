@@ -8,12 +8,17 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject;
+    private int displayHealth = 255;
 
     private void Awake() {
         Instance = this;
     }
 
-    public void ShowTileInfo(Tile tile) {
+    private void Update() {
+        displayHealth = UnitManager.Instance.hits * 85;
+    }
+
+    /*public void ShowTileInfo(Tile tile) {
 
         if (tile == null) {
             _tileObject.SetActive(false);
@@ -28,14 +33,15 @@ public class MenuManager : MonoBehaviour
             _tileUnitObject.GetComponentInChildren<Text>().text = tile.OccupiedUnit.UnitName;
             _tileUnitObject.SetActive(true);
         }
-    }
+    }*/
 
     public void ShowSelectedHero(BaseHero hero) {
-        if(hero == null) {
+        var x = UnitManager.Instance.hits;
+        /*if(hero == null) {
             _selectedHeroObject.SetActive(false);
             return;
-        }
-        _selectedHeroObject.GetComponentInChildren<Text>().text = hero.UnitName;
+        }*/
+        _selectedHeroObject.GetComponentInChildren<Text>().text = displayHealth.ToString();
         _selectedHeroObject.SetActive(true);
 
     }

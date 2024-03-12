@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static ArrowTranslator;
 using static UnityEditor.Progress;
 using static UnityEngine.UI.CanvasScaler;
@@ -31,6 +32,7 @@ public class UnitManager : MonoBehaviour
     public bool isMoving = false;
     public List<Tile> inRangeTiles = new List<Tile>();
     public List<Tile> inAttackRangeTiles = new List<Tile>();
+    public int hits = 3;
 
     private void Awake()
     {
@@ -47,7 +49,6 @@ public class UnitManager : MonoBehaviour
         if (isMoving) {
             MoveUnit();
         }
-
     }
 
     public void GetInRangeTiles() {
@@ -144,10 +145,8 @@ public class UnitManager : MonoBehaviour
                 StartCoroutine(MoveAttack(TheHero));
                 yield return new WaitUntil(() => !isMoving);
             } else {
-                Debug.Log("here");
                 unitToMove = enemy;
                 path = pathFinder.FindPath(unitToMove.OccupiedTile, TheHero.OccupiedTile, true);
-                Debug.Log(path.Count);
                 toAttack = false;
                 calc = 0;
                 isMoving = true;
@@ -160,11 +159,19 @@ public class UnitManager : MonoBehaviour
 
 
     IEnumerator MoveAttack(BaseUnit unitToAttack) {
+        if(unitToAttack.Faction == Faction.Hero) {
+            unitToAttack._currentHealth = ((int)hits * 80);
+        }
+        if (hits == 0) {
             yield return new WaitUntil(() => !isMoving);
             var hero = (BaseHero)unitToAttack; // if clicked on OccupiedUnit and we have selected a hero, attack
 
-            Destroy(hero.gameObject); // enemy.takeDamage
-                                       //UnitManager.Instance.SelectedHero(enemy)
+            SceneManager.LoadScene("AfterLose");
+        }
+        else {
+            hits--;
+        }
+            
     }
 
 
@@ -193,7 +200,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        var enemyCount = 1;
+        var enemyCount = 3;
 
         for (int i = 0; i < enemyCount; i++)
         {

@@ -8,30 +8,33 @@ using Context;
 
 public class LoseFight : MonoBehaviour
 {
-    public Text TextLostCoins;
-    public Text TextCurrentCoins;
+    [SerializeField] public Text TextLostCoins;
+    [SerializeField] public Text TextCurrentCoins;
     public static SQLdb DBManager = new SQLdb();
-    public Hero hero;
 
     public int Coins;
     public int CurrentCoins;
 
     void Start()
     {
-        hero = DBManager.GetHero("moshe");
-        Coins = new System.Random().Next(1, 4) * 10;
-        CurrentCoins = hero.Inventory.Coins;
-        Debug.Log(hero.Inventory.Coins);    
-        CurrentCoins -= Coins;
-        UpdateUI();
+        LoseActive();
     }
-
+    public void LoseActive()
+    {
+        if (MainMenu.currentHero != null) {
+            Coins = new System.Random().Next(1, 4) * 10;
+            CurrentCoins = MainMenu.currentHero.Inventory.Coins;
+            Debug.Log(MainMenu.currentHero.Inventory.Coins);
+            CurrentCoins -= Coins;
+            UpdateUI();
+        }
+    }
     public void UpdateUI()
     {
         TextLostCoins.text = Coins.ToString();
         TextCurrentCoins.text = CurrentCoins.ToString();
-        hero.Inventory.Coins = CurrentCoins;
-        DBManager.SaveHero(hero);
+        MainMenu.currentHero.Inventory.Coins = CurrentCoins;
+        DBManager.SaveHero(MainMenu.currentHero);
 
     }
 }

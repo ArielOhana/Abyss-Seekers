@@ -31,4 +31,7 @@ public class GoToScene : MonoBehaviour
     {
         SceneManager.LoadScene("Inventory");
     }
+    public void ResetArena() {
+        SceneManager.LoadScene("ArenaScene");
+    }
 }

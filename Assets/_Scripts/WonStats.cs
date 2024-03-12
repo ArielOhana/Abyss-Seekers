@@ -36,40 +36,38 @@ public class WonStats : MonoBehaviour
 
     void Start()
     {
-        MainMenu.currentHero = DBManager.GetHero("moshe");
-        Dictionary<string, object> loot = hero.WonFight();
-
-        int randomCoins = (int)loot["Coins"];
-        int randomXp = (int)loot["TotalXp"];
-        bool raisedLevelAmount = (bool)loot["RaisedLevel"];
-        Debug.Log(raisedLevelAmount);
-        if (raisedLevelAmount) 
-        {
-            choiceLeft = 3;
-            clickCount = 0;
-        } 
-        else
-        {
-            choiceLeft = 0;
-            clickCount = 5;
-        }
-        if (hero != null)
-        {
-            XP += randomXp;
-            Coins += randomCoins;
-            damage += hero.Stats.Dmg;
-            evadeRate += hero.Stats.EvadeRate;
-            healthReg += hero.Stats.HealthRegeneration;
-            hitRate += hero.Stats.HitRate;
-            critcalChange += hero.Stats.CriticalChance;
-            armourPent += hero.Stats.ArmourPenetration;
-            maxHealth  += hero.Stats.MaxHealth;
-            UpdateUI();
-        }
-        else
-        {
-            Debug.LogError("Failed to get hero data");
-        }
+        WonActive();
+    }
+    public void WonActive() 
+    {
+        if (MainMenu.currentHero != null) {
+            Debug.Log("hiiiiiiiiiiiiiiiiiiiii");
+            Dictionary<string, object> loot = MainMenu.currentHero.WonFight();
+            int randomCoins = (int)loot["Coins"];
+            int randomXp = (int)loot["TotalXp"];
+            bool raisedLevelAmount = (bool)loot["RaisedLevel"];
+            Debug.Log(raisedLevelAmount);
+            if (raisedLevelAmount) {
+                choiceLeft = 3;
+                clickCount = 0;
+            } else {
+                choiceLeft = 0;
+                clickCount = 5;
+            }
+            if (MainMenu.currentHero != null) {
+                XP += randomXp;
+                Coins += randomCoins;
+                damage += MainMenu.currentHero.Stats.Dmg;
+                evadeRate += MainMenu.currentHero.Stats.EvadeRate;
+                healthReg += MainMenu.currentHero.Stats.HealthRegeneration;
+                hitRate += MainMenu.currentHero.Stats.HitRate;
+                critcalChange += MainMenu.currentHero.Stats.CriticalChance;
+                armourPent += MainMenu.currentHero.Stats.ArmourPenetration;
+                maxHealth += MainMenu.currentHero.Stats.MaxHealth;
+                UpdateUI();
+            } else {
+                Debug.LogError("Failed to get hero data");
+            }
 
             Button damageButton = GameObject.Find("DamageButton").GetComponent<Button>();
             damageButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementDamage); });
@@ -91,13 +89,13 @@ public class WonStats : MonoBehaviour
 
             Button armourPenetButton = GameObject.Find("ArmourPenetButton").GetComponent<Button>();
             armourPenetButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementArmourPenet); });
+        }
     }
-
     public void IncrementDamage()
     {
         if (clickCount < 3)
         {
-            hero.Stats.Dmg += 2;
+            MainMenu.currentHero.Stats.Dmg += 2;
             damage += 2;
             clickCount++;
             UpdateUI();
@@ -108,7 +106,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.MaxHealth += 3;
+            MainMenu.currentHero.Stats.MaxHealth += 3;
             maxHealth += 3;
             clickCount++;
             UpdateUI();
@@ -119,7 +117,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.EvadeRate += 1;
+            MainMenu.currentHero.Stats.EvadeRate += 1;
             evadeRate += 1;
             clickCount++;
             UpdateUI();
@@ -130,7 +128,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.HealthRegeneration += 2;
+            MainMenu.currentHero.Stats.HealthRegeneration += 2;
             healthReg += 2;
             clickCount++;
             UpdateUI();
@@ -141,7 +139,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.HitRate += 1;
+            MainMenu.currentHero.Stats.HitRate += 1;
             hitRate += 1;
             clickCount++;
             UpdateUI();
@@ -152,7 +150,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.CriticalChance += 1;
+            MainMenu.currentHero.Stats.CriticalChance += 1;
             critcalChange += 1;
             clickCount++;
             UpdateUI();
@@ -163,7 +161,7 @@ public class WonStats : MonoBehaviour
     {
         if (clickCount < 3)
         {
-            hero.Stats.ArmourPenetration += 1;
+            MainMenu.currentHero.Stats.ArmourPenetration += 1;
             armourPent += 1;
             clickCount++;
             UpdateUI();
@@ -201,9 +199,9 @@ public class WonStats : MonoBehaviour
         if (clickCount >= 3 | clickCount == 0)
         {
             ContinueButton.SetActive(true);
-            Debug.Log("2" + hero.Inventory.Coins);
-            DBManager.SaveHero(hero);
-            Debug.Log("3" + hero.Inventory.Coins);
+            Debug.Log("2" + MainMenu.currentHero.Inventory.Coins);
+            DBManager.SaveHero(MainMenu.currentHero);
+            Debug.Log("3" + MainMenu.currentHero.Inventory.Coins);
         }
         else { ContinueButton.SetActive(false);}
     }

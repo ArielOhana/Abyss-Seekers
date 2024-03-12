@@ -13,20 +13,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 89d95a0e81aa0c9479403941a2ca9cfc, type: 3}
+    - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.b
-      value: 0.13181199
+      value: 0.41231033
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.g
-      value: 0.24674724
+      value: 0.5557989
       objectReference: {fileID: 0}
     - target: {fileID: 1164276622359891426, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Color.r
-      value: 0.3735848
+      value: 0.7509433
       objectReference: {fileID: 0}
     - target: {fileID: 6213140937593875644, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,6 +76,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7597493484001807684, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.99609375
+      objectReference: {fileID: 0}
     - target: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       propertyPath: m_Name
       value: Mountain Tile
@@ -82,7 +90,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8324192011328019241}
+      addedObject: {fileID: 9021098285435591737}
   m_SourcePrefab: {fileID: 100100000, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
 --- !u!1 &131211429073899724 stripped
 GameObject:
@@ -104,7 +112,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8124375481362253057, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
   m_PrefabInstance: {fileID: 2312599516505159322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8324192011328019241
+--- !u!114 &9021098285435591737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,13 +132,8 @@ MonoBehaviour:
   Arrows: []
   TileName: RockyMountains
   _renderer: {fileID: 3472370328402541432}
-  _inRangeHighight: {fileID: 9205490077227005077}
+  _inRangeHighight: {fileID: 0}
   _highlight: {fileID: 131211429073899724}
   _attackableUnit: {fileID: 3227579288343261972}
   _isWalkable: 0
   OccupiedUnit: {fileID: 0}
---- !u!1 &9205490077227005077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6906403559734510095, guid: 22728d9dfe8fcce449b2d69fb9a3f98c, type: 3}
-  m_PrefabInstance: {fileID: 2312599516505159322}
-  m_PrefabAsset: {fileID: 0}

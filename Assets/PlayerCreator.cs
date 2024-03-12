@@ -46,6 +46,7 @@ public class PlayerCreator : MonoBehaviour
         
         if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrEmpty(Role))
         {
+            DBManager.ReadJson();
             DBManager.CreateHero(playerName, Role);
             MainMenu.currentHero = DBManager.GetHero(playerName);
             SceneManager.LoadScene("TownHall");

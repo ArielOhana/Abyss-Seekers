@@ -14,9 +14,9 @@ using System.Text;
 
 namespace Assets
 {
-    public class SQLdb : MonoBehaviour 
+    public class SQLdb 
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/DataBase.db";
+        private string connectionString = "URI=file:Assets/Logic/DB/realDBCopy.db";
         public SqliteConnection DBConnection;
         private string FilePath = "Assets/Logic/DB/Default_JSON.json";
 
@@ -193,7 +193,7 @@ namespace Assets
 
 
                     command.CommandText = "INSERT INTO inventory (WeaponIDs, CurrentWeapon, HelmetIDs, CurrentHelmet, ArmourIDs, CurrentArmour, BootIDs, CurrentBoot, Coins) " +
-                                          "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 100)";
+                                          "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 1000)";
                     command.Parameters.AddWithValue("@WeaponId", weaponId);
                     command.Parameters.AddWithValue("@CurrentWeapon", weaponId);
                     command.ExecuteNonQuery();

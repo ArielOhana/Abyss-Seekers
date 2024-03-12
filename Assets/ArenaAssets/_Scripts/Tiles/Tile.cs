@@ -1,8 +1,9 @@
- using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static ArrowTranslator;
 
 public abstract class Tile : MonoBehaviour
@@ -40,7 +41,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        MenuManager.Instance.ShowTileInfo(this);
+       //MenuManager.Instance.ShowTileInfo(this);
         
         if (UnitManager.Instance.SelectedHero != null && UnitManager.Instance.inRangeTiles.Contains(this) && !UnitManager.Instance.isMoving) {
             UnitManager.Instance.ShowPath(this);
@@ -50,7 +51,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseExit()
     {
-        MenuManager.Instance.ShowTileInfo(null);
+        //MenuManager.Instance.ShowTileInfo(null);
         if (UnitManager.Instance.SelectedHero != null && !UnitManager.Instance.isMoving) {
             UnitManager.Instance.HidePath();
         }
@@ -96,10 +97,15 @@ public abstract class Tile : MonoBehaviour
     IEnumerator MoveAttack() {
         UnitManager.Instance.MoveAlongPath(UnitManager.Instance.SelectedHero.OccupiedTile, this, UnitManager.Instance.SelectedHero, true);
         yield return new WaitUntil(() => !UnitManager.Instance.isMoving);
+
         var enemy = (BaseEnemy)OccupiedUnit; // if clicked on OccupiedUnit and we have selected a hero, attack
+        UnitManager.Instance._enemies.Remove(enemy);
 
         Destroy(enemy.gameObject); // enemy.takeDamage
                                    //UnitManager.Instance.SelectedHero(enemy)
+        if(UnitManager.Instance._enemies.Count == 0) {
+            SceneManager.LoadScene("AftrerWin");
+        }
         FinishHeroTurn();
     }
     IEnumerator Move(Tile start, Tile end, BaseUnit unit, bool toAttackNow) {
