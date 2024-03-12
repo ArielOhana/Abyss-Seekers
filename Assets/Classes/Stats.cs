@@ -41,7 +41,7 @@ namespace Assets
                    role.HitRate,
                    role.MaxHealth,
                    role.HealthRegeneration,
-                   role.Armour + inventory.SumAdditionalArmour(hero),
+                   role.Armour,
                    role.EvadeRate,
                    role.MovementSpeed)
         {

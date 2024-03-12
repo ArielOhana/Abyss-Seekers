@@ -96,7 +96,7 @@ namespace Assets
             return str;
         }
 
-        public int SumAdditionalArmour(Hero hero)
+        public int SumAdditionalArmour()
         {
             return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
         }

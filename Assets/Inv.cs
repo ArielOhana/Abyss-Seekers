@@ -52,21 +52,7 @@ public class Inv : MonoBehaviour
 
         if (MainMenu.currentHero != null)
         {
-            coinsText.text = $"Coins: {MainMenu.currentHero.Inventory.Coins}";
-            xpText.text = $"XP: {MainMenu.currentHero.Xp}";
-            roleText.text = $"Role: {MainMenu.currentHero.Role}";
-            levelText.text = $"Level: {MainMenu.currentHero.Level}";
-            nameText.text = $"Name: {MainMenu.currentHero.Name}";
-            damageText.text = $"Damage: {MainMenu.currentHero.Stats.Dmg}";
-            armourText.text = $"Armour: {MainMenu.currentHero.Stats.Armour}";
-            maxHealthText.text = $"Max Health: {MainMenu.currentHero.Stats.MaxHealth}";
-            healthRegenText.text = $"Health Regeneration: {MainMenu.currentHero.Stats.HealthRegeneration}";
-            movementSpeedText.text = $"Movement Speed: {MainMenu.currentHero.Stats.MovementSpeed}";
-            evadeRateText.text = $"Evade Rate: {MainMenu.currentHero.Stats.EvadeRate}";
-            hitRateText.text = $"Hit Rate: {MainMenu.currentHero.Stats.HitRate}";
-            criticalChanceText.text = $"Critical Chance: {MainMenu.currentHero.Stats.CriticalChance}";
-            armourPenetrationText.text = $"Armour Penetration: {MainMenu.currentHero.Stats.ArmourPenetration}";
-
+            GenerateTextFields();
             switch (MainMenu.currentHero.Role.ToLower())
             {
                 case "warrior":
@@ -105,6 +91,24 @@ public class Inv : MonoBehaviour
        SetImageInButton(CurrentBodyArmor, MainMenu.currentHero.Inventory.CurrentBodyarmour.Url);
        SetImageInButton(CurrentBoots, MainMenu.currentHero.Inventory.CurrentBoot.Url);
     }
+    private void GenerateTextFields()
+    {
+        coinsText.text = $"Coins: {MainMenu.currentHero.Inventory.Coins}";
+        xpText.text = $"XP: {MainMenu.currentHero.Xp}";
+        roleText.text = $"Role: {MainMenu.currentHero.Role}";
+        levelText.text = $"Level: {MainMenu.currentHero.Level}";
+        nameText.text = $"Name: {MainMenu.currentHero.Name}";
+        damageText.text = $"Damage: {MainMenu.currentHero.Stats.Dmg + MainMenu.currentHero.Inventory.CurrentWeapon.Damage}";
+        armourText.text = $"Armour: {MainMenu.currentHero.Stats.Armour + MainMenu.currentHero.Inventory.SumAdditionalArmour()}";
+        maxHealthText.text = $"Max Health: {MainMenu.currentHero.Stats.MaxHealth}";
+        healthRegenText.text = $"HP Reg: {MainMenu.currentHero.Stats.HealthRegeneration}";
+        movementSpeedText.text = $"Movement Speed: {MainMenu.currentHero.Stats.MovementSpeed}";
+        evadeRateText.text = $"Evade Rate: {MainMenu.currentHero.Stats.EvadeRate}";
+        hitRateText.text = $"Hit Rate: {MainMenu.currentHero.Stats.HitRate}";
+        criticalChanceText.text = $"Critical Chance: {MainMenu.currentHero.Stats.CriticalChance + MainMenu.currentHero.Inventory.CurrentWeapon.CriticalDamage}";
+        armourPenetrationText.text = $"Armour Penetration: {MainMenu.currentHero.Stats.ArmourPenetration}";
+
+    }
     public void ClickedOnItem(int ItemNumber) //Displaynumber 0 = helmets, 1 = bodyarmor, 2 = boots, 3 = weapons
     {
         Inventory currentInv = MainMenu.currentHero.Inventory;
@@ -128,6 +132,7 @@ public class Inv : MonoBehaviour
             MainMenu.currentHero.Inventory.CurrentWeapon = currentInv.Weapons[ItemNumber];
             SetImageInButton(CurrentWeapon, currentInv.Weapons[ItemNumber].Url);
         }
+        GenerateTextFields();
     }
 
         private void SetImageFromImage(Image imageComponent, string imagePath)
