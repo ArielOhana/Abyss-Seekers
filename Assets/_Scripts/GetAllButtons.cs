@@ -8,6 +8,7 @@ using static UnityEditor.Progress;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using Context;
 namespace Assets
 {
     public class GetAllButtons : MonoBehaviour
@@ -65,6 +66,9 @@ namespace Assets
             OnlySetActivePriceText.gameObject.SetActive(false);
             BuyText.gameObject.SetActive(false);
             BuyButton.gameObject.SetActive(false);
+            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
+            CurrentMoneyText.gameObject.SetActive(false);
+          
         }
         public Button[] GetButtonsArray()
         {
@@ -77,7 +81,65 @@ namespace Assets
         }
         public void Buy()
         {
+            switch (displaynumber)
+            {
+                case 0:
+                    {
+                        Helmet AttemptToBuy = new Helmet(allItems.AllHelmets[ItemSelected].Name, allItems.AllHelmets[ItemSelected].AdditionalArmour, allItems.AllHelmets[ItemSelected].Value, allItems.AllHelmets[ItemSelected].Rarity, allItems.AllHelmets[ItemSelected].Url);
 
+                        if (AttemptToBuy.Value <= MainMenu.currentHero.Inventory.Coins)
+                        {
+                            MainMenu.currentHero.Inventory.Coins -= AttemptToBuy.Value;
+                            MainMenu.currentHero.Inventory.Helmets.Add(AttemptToBuy);
+                            NotificationsAboutBuy.text = "Added new Helmet " + AttemptToBuy.Name;
+                            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
+
+                        }
+                        else
+                        {
+                            NotificationsAboutBuy.text = "You are too broke for " + AttemptToBuy.Name;
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        Bodyarmour AttemptToBuy = new Bodyarmour(allItems.AllBodyArmours[ItemSelected].Name, allItems.AllBodyArmours[ItemSelected].Value, allItems.AllBodyArmours[ItemSelected].AdditionalArmour, allItems.AllBodyArmours[ItemSelected].Rarity, allItems.AllBodyArmours[ItemSelected].Url); ;
+
+                        if (AttemptToBuy.Value <= MainMenu.currentHero.Inventory.Coins)
+                        {
+                            MainMenu.currentHero.Inventory.Coins -= AttemptToBuy.Value;
+                            MainMenu.currentHero.Inventory.Bodyarmours.Add(AttemptToBuy);
+                            NotificationsAboutBuy.text = "Added new Bodyarmour " + AttemptToBuy.Name;
+                            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
+
+                        }
+                        else
+                        {
+                            NotificationsAboutBuy.text = "You are too broke for " + AttemptToBuy.Name;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        Boots AttemptToBuy = new Boots(allItems.AllBoots[ItemSelected].Name, allItems.AllBoots[ItemSelected].Value, allItems.AllBoots[ItemSelected].AdditionalArmour, allItems.AllBoots[ItemSelected].Rarity, allItems.AllBoots[ItemSelected].Url);
+
+                        if (AttemptToBuy.Value <= MainMenu.currentHero.Inventory.Coins)
+                        {
+                            MainMenu.currentHero.Inventory.Coins -= AttemptToBuy.Value;
+                            MainMenu.currentHero.Inventory.Boots.Add(AttemptToBuy);
+                            NotificationsAboutBuy.text = "Added new Boots " + AttemptToBuy.Name;
+                            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
+
+                        }
+                        else
+                        {
+                            NotificationsAboutBuy.text = "You are too broke for " + AttemptToBuy.Name;
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
         public void DisplayClothes(int displaynumber) //Displaynumber 0 = helmets, 1 = bodyarmor, 2 = boots
         {
@@ -128,6 +190,8 @@ namespace Assets
             OnlySetActivePriceText.gameObject.SetActive(true);
             BuyText.gameObject.SetActive(true);
             BuyButton.gameObject.SetActive(true);
+            CurrentMoneyText.gameObject.SetActive(true);
+
 
             if (displaynumber == 0)
             {

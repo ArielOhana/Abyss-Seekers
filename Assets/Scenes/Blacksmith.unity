@@ -1629,7 +1629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -756.19604, y: -29.624023}
+  m_AnchoredPosition: {x: -784.77, y: -13.606995}
   m_SizeDelta: {x: -1272.414, y: -1011.786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &532372236
@@ -1728,9 +1728,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Assets.GetAllButtons, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 523912265}
+        m_TargetAssemblyTypeName: Assets.BlackSmithScript, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3420,7 +3420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.6845398}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.70803833}
   m_SizeDelta: {x: -512.67, y: 1.4161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1492331493
@@ -4579,8 +4579,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -750.4619, y: -58.43701}
-  m_SizeDelta: {x: -1773.114, y: -1065.502}
+  m_AnchoredPosition: {x: -762.6729, y: -126.55999}
+  m_SizeDelta: {x: -1791.528, y: -1061.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986860143
 MonoBehaviour:
@@ -4595,7 +4595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.7753415, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

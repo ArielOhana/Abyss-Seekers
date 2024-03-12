@@ -8,6 +8,7 @@ using static UnityEditor.Progress;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using Context;
 namespace Assets
 {
     public class BlackSmithScript : MonoBehaviour
@@ -72,6 +73,8 @@ namespace Assets
             OnlySetActiveDamageText.gameObject.SetActive(false);
             DamageText.gameObject.SetActive(false);
             RangeText.gameObject.SetActive(false);
+            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
+            CurrentMoneyText.gameObject.SetActive(false);
         }
         public Button[] GetButtonsArray()
         {
@@ -84,7 +87,21 @@ namespace Assets
         }
         public void Buy()
         {
+          
+                        Weapon AttemptToBuy = new Weapon(allItems.AllWeapons[ItemSelected + 9*displaynumber].Name, allItems.AllWeapons[ItemSelected + 9 * displaynumber].Damage, allItems.AllWeapons[ItemSelected + 9 * displaynumber].CriticalDamage, allItems.AllWeapons[ItemSelected + 9 * displaynumber].Range, allItems.AllWeapons[ItemSelected + 9 * displaynumber].Value, allItems.AllWeapons[ItemSelected + 9 * displaynumber].Rarity, allItems.AllWeapons[ItemSelected + 9 * displaynumber].Url);
+                        if (AttemptToBuy.Value <= MainMenu.currentHero.Inventory.Coins)
+                        {
+                            MainMenu.currentHero.Inventory.Coins -= AttemptToBuy.Value;
+                            MainMenu.currentHero.Inventory.Weapons.Add(AttemptToBuy);
+                            NotificationsAboutBuy.text = "Added new weapon " + AttemptToBuy.Name;
+                            CurrentMoneyText.text = MainMenu.currentHero.Inventory.Coins.ToString();
 
+                        }
+                        else
+                        {
+                            NotificationsAboutBuy.text = "You are too broke for " + AttemptToBuy.Name;
+                        }
+                     
         }
         public void DisplayWeapon(int displaynumber) //Displaynumber 0 = melee, 1 = heavyweapons, 2 = bows
         {
@@ -118,6 +135,7 @@ namespace Assets
             OnlySetActiveDamageText.gameObject.SetActive(true);
             DamageText.gameObject.SetActive(true);
             RangeText.gameObject.SetActive(true);
+            CurrentMoneyText.gameObject.SetActive(true);
 
 
             Weapon selected = allItems.AllWeapons[ItemNumber + displaynumber * 9];
