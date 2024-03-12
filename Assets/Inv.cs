@@ -5,6 +5,7 @@ using Context;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Inv : MonoBehaviour
 {
@@ -202,6 +203,11 @@ public class Inv : MonoBehaviour
 
                 }
         }
+    }
+    public void SaveGame()
+    {
+        DBManager.SaveHero(MainMenu.currentHero);
+        SceneManager.LoadScene("townhall");
     }
     public void SetImageInButton(Button button, string URL)
     {

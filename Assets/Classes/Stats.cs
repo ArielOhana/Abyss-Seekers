@@ -6,16 +6,16 @@ namespace Assets
     public class Stats 
     {
         // Properties of the Stats class
-        public int Id { get; private set; }
-        public int Dmg { get; private set; }
-        public int ArmourPenetration { get; private set; }
-        public int CriticalChance { get; private set; }
-        public int HitRate { get; private set; }
-        public int MaxHealth { get; private set; }
-        public int HealthRegeneration { get; private set; }
-        public int Armour { get; private set; }
-        public int EvadeRate { get; private set; }
-        public int MovementSpeed { get; private set; }
+        public int Id { get; set; }
+        public int Dmg { get; set; }
+        public int ArmourPenetration { get; set; }
+        public int CriticalChance { get; set; }
+        public int HitRate { get; set; }
+        public int MaxHealth { get; set; }
+        public int HealthRegeneration { get; set; }
+        public int Armour { get; set; }
+        public int EvadeRate { get; set; }
+        public int MovementSpeed { get; set; }
 
         public Stats (int id, int dmg, int armourPenetration, int criticalChance,
                      int hitRate, int maxHealth, int healthRegeneration,
@@ -33,32 +33,12 @@ namespace Assets
             MovementSpeed = movementSpeed;
         }
 
-        public Stats(Hero hero, Role role, Weapon weapon, Inventory inventory)
-            : this(0,
-                   role.Damage + weapon.Damage,
-                   role.ArmourPenetration,
-                   role.CriticalChance,
-                   role.HitRate,
-                   role.MaxHealth,
-                   role.HealthRegeneration,
-                   role.Armour,
-                   role.EvadeRate,
-                   role.MovementSpeed)
+        public void Print()
         {
-        }
-
-        public override string ToString()
-        {
-            return $"Stats:\n" +
-                   $"Damage (Dmg): {Dmg}\n" +
-                   $"Armour Penetration: {ArmourPenetration}\n" +
-                   $"Critical Chance: {CriticalChance}\n" +
-                   $"Hit Rate: {HitRate}\n" +
-                   $"Max Health: {MaxHealth}\n" +
-                   $"Health Regeneration: {HealthRegeneration}\n" +
-                   $"Armour: {Armour}\n" +
-                   $"Evade Rate: {EvadeRate}\n" +
-                   $"Movement Speed: {MovementSpeed}";
+            Debug.Log($"Stats - ID: {Id}, Damage: {Dmg}, Armour Penetration: {ArmourPenetration}, " +
+                      $"Critical Chance: {CriticalChance}, Hit Rate: {HitRate}, Max Health: {MaxHealth}, " +
+                      $"Health Regeneration: {HealthRegeneration}, Armour: {Armour}, " +
+                      $"Evade Rate: {EvadeRate}, Movement Speed: {MovementSpeed}");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace Assets
         public Inventory Inventory { get; set; }
         public string Role { get; set; }
 
+        public static SQLdb DBManager = new SQLdb();
 
         public Hero(string name, int level, int xp, Stats stats, Inventory inventory, string role)
         {
@@ -30,130 +32,52 @@ namespace Assets
             Role = role;
             Stats = stats;
         }
-        public int getId(Hero hero)
+        public Dictionary<string, object> WonFight()
         {
-            return this.Id;
-        }
-        public Dictionary<string, System.Object> WonFight(int levelDifficulty)
-        {
-            Dictionary<string, System.Object> loot = new();
-            int randomCoins = new System.Random().Next(1, 4) * levelDifficulty;
-            int randomXp = new System.Random().Next(50, 100) * levelDifficulty;
+            Dictionary<string, object> loot = new();
+            int randomCoins = new System.Random().Next(1, 4) * 10;
+            int randomXp = new System.Random().Next(50, 100) * 15;
             int nextXp = this.Xp + randomXp;
-            int raisedLevelAmount = 0;
-            while (nextXp > 1000) 
+            Boolean raisedLevelAmount = false;
+            if (nextXp > 1000) 
             {
-                raisedLevelAmount++;
+                raisedLevelAmount = true;
                 nextXp -= 1000;
             }
-            this.Level += raisedLevelAmount;
+            this.Level ++;
             this.Xp = nextXp;
-            this.Inventory.Coins = 1200;
-            Debug.Log(randomXp);
+            Debug.Log("1"+this.Inventory.Coins);
+            this.Inventory.Coins += randomCoins;
             loot.Add("Coins", randomCoins);
             loot.Add("TotalXp", randomXp);
-            loot.Add("RaisedLevels", raisedLevelAmount);
-            loot.Add("nextXp", nextXp);
+            loot.Add("RaisedLevel", raisedLevelAmount);
             return loot;
+        }
+        public List<Enemy> SpawnEnemies()
+        {
+            List<Enemy> enemyList = DBManager.GetAllEnemies();
+            System.Random rand = new System.Random();
+            try
+            {
+                int hardnes = rand.Next(1, 5) * Level;
+                while (hardnes > 0)
+                {
+                    int randomEnemyIndex = rand.Next(1, 6);
+                    Enemy selectedEnemy = enemyList.Find(enemy => enemy.Worth == randomEnemyIndex);
+                    // Check if the budget is enough to add this enemy
+                    if (selectedEnemy != null && selectedEnemy.Worth <= hardnes)
+                    {
+                        enemyList.Add(selectedEnemy);
+                        hardnes -= selectedEnemy.Worth;
+                    }
+                }
+                return enemyList;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Error: " + e.Message);
+                return null;
+            }
         }
     }
 }
-
-//CREATE TABLE IF NOT EXISTS helmets(
-//    ID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    Value INTEGER,
-//    AdditionalArmour INTEGER,
-//    Rarity INTEGER,
-//Url STRING
-//);
-
-//CREATE TABLE IF NOT EXISTS boots(
-//    ID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    Value INTEGER,
-//    AdditionalArmour INTEGER,
-//    Rarity INTEGER,
-//Url STRING
-//);
-
-//CREATE TABLE IF NOT EXISTS bodyarmour(
-//    ID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    Value INTEGER,
-//    AdditionalArmour INTEGER,
-//    Rarity INTEGER,
-//    Url STRING
-//);
-//CREATE TABLE IF NOT EXISTS roles(
-//    ID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    Damage INTEGER,
-//    Armour INTEGER,
-//    MaxHealth INTEGER,
-//    HealthRegeneration INTEGER,
-//    MovementSpeed INTEGER,
-//    EvadeRate INTEGER,
-//    HitRate INTEGER,
-//    CriticalChance INTEGER,
-//    ArmourPenetration INTEGER,
-//    SpecialAbility TEXT, WeaponID INTEGER
-//);
-//CREATE TABLE IF NOT EXISTS stats(
-//    StatsID INTEGER PRIMARY KEY,
-//    Damage INTEGER,
-//    Armour INTEGER,
-//    MaxHealth INTEGER,
-//    HealthRegeneration INTEGER,
-//    MovementSpeed INTEGER,
-//    EvadeRate INTEGER,
-//    HitRate INTEGER,
-//    CriticalChance INTEGER,
-//    ArmourPenetration INTEGER
-//);
-//CREATE TABLE IF NOT EXISTS hero(
-//    HeroID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    Level INTEGER,
-//    XP INTEGER,
-//    StatsID INTEGER,
-//    InventoryID INTEGER,
-//    Role TEXT
-//);
-
-//CREATE TABLE IF NOT EXISTS inventory(
-//    InventoryID INTEGER PRIMARY KEY,
-//    WeaponIDs TEXT,
-//    CurrentWeapon INTEGER,
-//    HelmetIDs TEXT,
-//    CurrentHelmet INTEGER,
-//    ArmourIDs TEXT,
-//    CurrentArmour INTEGER,
-//    BootIDs TEXT,
-//    CurrentBoot INTEGER,
-//    Coins INTEGER
-//);
-//CREATE TABLE IF NOT EXISTS enemies(
-//    ID INTEGER PRIMARY KEY,
-//    Name TEXT,
-//    MaxHealth INTEGER,
-//    Damage INTEGER,
-//    HealthRegeneration INTEGER,
-//    HitRate INTEGER,
-//    Armour INTEGER,
-//    EvadeRate INTEGER,
-//    MovementSpeed INTEGER,
-//    CriticalChance INTEGER,
-//    ArmourPenetration INTEGER,
-//    SpecialAbility TEXT
-//);
-//CREATE TABLE IF NOT EXISTS weapons(
-// ID INTEGER PRIMARY KEY,
-//Name TEXT,
-//Damage INTEGER,
-//CriticalDamage INTEGER,
-//Range INTEGER,
-//Value INTEGER,
-//Rarity INTEGER,
-//Url STRING
-// );

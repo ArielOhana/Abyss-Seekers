@@ -439,6 +439,7 @@
   "enemies": [
     {
       "name": "evil rat",
+      "worth": 1,
       "maxHealth": 50,
       "damage": 5,
       "healthRegeneration": 0,
@@ -452,6 +453,7 @@
     },
     {
       "name": "evil worm",
+      "worth": 2,
       "maxHealth": 100,
       "damage": 8,
       "healthRegeneration": 0,
@@ -465,6 +467,7 @@
     },
     {
       "name": "ghost",
+      "worth": 3,
       "maxHealth": 150,
       "damage": 10,
       "healthRegeneration": 1,
@@ -478,6 +481,7 @@
     },
     {
       "name": "slim monster",
+      "worth":  4,
       "maxHealth": 200,
       "damage": 15,
       "healthRegeneration": 2,
@@ -491,6 +495,7 @@
     },
     {
       "name": "zombie",
+      "worth":  5,
       "maxHealth": 250,
       "damage": 20,
       "healthRegeneration": 3,

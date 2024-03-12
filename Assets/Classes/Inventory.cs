@@ -24,6 +24,7 @@ namespace Assets
         public Inventory(int id, List<Weapon> weapons, Weapon currentWeapon, List<Bodyarmour> bodyarmours, Bodyarmour currentBodyarmour,
                 List<Helmet> helmets, Helmet currentHelmet, List<Boots> boots, Boots currentBoot, int coins)
         {
+
             Id = id;
             Weapons = weapons;
             CurrentWeapon = currentWeapon;
@@ -35,15 +36,40 @@ namespace Assets
             CurrentBoot = currentBoot;
             Coins = coins;
         }
-
-        public int num = 1;
-        public void Print()
+        public void Print(string info)
         {
-            //Debug.Log(num);
-            //Debug.Log(Weapons[0].Id);
-            //Debug.Log(CurrentBodyarmour);
-            //num++;
+            switch (info)
+            {
+                case "amounts":
+                    Debug.Log("Total weapons " + Weapons.Count()+
+                               "bodyarmours: " + Bodyarmours.Count()+
+                               "helmets " + Helmets.Count()+
+                               "boots " + Boots.Count() +
+                               "coins " + Coins);
+                    break;
+                case "currents":
+                    Debug.Log("current weapon: " + CurrentWeapon.Name+
+                               "bodyarmour: " + CurrentBodyarmour.Name +
+                               "helmet: " + CurrentHelmet.Name +
+                               "boot: " + CurrentBoot.Name +
+                               "coins " + Coins);
+                    break;
+                case "all":
+                    Debug.Log("current weapon: " + CurrentWeapon.Name +
+                               "bodyarmours: " + CurrentBodyarmour.Name +
+                               "helmets: " + CurrentHelmet.Name +
+                               "boots: " + CurrentBoot.Name);
+                    Debug.Log("Total weapons: " + Weapons.Count() +
+                               "bodyarmours: " + Bodyarmours.Count() +
+                               "helmets: " + Helmets.Count() +
+                               "boots: " + Boots.Count() +
+                               "coins " + Coins);
+                    break;
+                default:
+                    break;
+            }
         }
+
         public string ListWeapons()
         {
             List<Weapon> list = Weapons;
@@ -51,11 +77,10 @@ namespace Assets
             foreach (Weapon weapon in list)
             {
                 string str2 = weapon.GetID();
-                Debug.Log(str2);
                 str += str2;
                 str += "+";
             }
-            str.Remove(-1, 1);
+            str = str.Remove(str.Length - 1, 1);
             return str;
         }
         public string ListBoots()
@@ -68,7 +93,7 @@ namespace Assets
                 str += boot.Id;
                 str += "+";
             }
-            str.Remove(-1, 1);
+            str = str.Remove(str.Length - 1, 1);
             return str;
         }
         public string ListBodyArmours()
@@ -80,7 +105,7 @@ namespace Assets
                 str += bodyarmour.Id;
                 str += "+";
             }
-            str.Remove(-1, 1);
+            str = str.Remove(str.Length - 1, 1);
             return str;
         }
         public string ListHelmets()
@@ -92,35 +117,53 @@ namespace Assets
                 str += helmet.Id;
                 str += "+";
             }
-            str.Remove(-1, 1);
+            str = str.Remove(str.Length - 1, 1);
             return str;
         }
-
         public int SumAdditionalArmour()
         {
             return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
         }
+        public Boolean AddItem<T>(T item)
+        {
+            switch (item)
+            {
+                case Weapon weapon:
+                    if (Paying(weapon.Value))
+                        Weapons.Add(weapon);
+                    else return false;
+                    break;
+                case Helmet helmet:
+                    if (Paying(helmet.Value))
+                        Helmets.Add(helmet);
+                    else return false;
+                    break;
+                case Bodyarmour bodyarmour:
+                    if (Paying(bodyarmour.Value))
+                        Bodyarmours.Add(bodyarmour);
+                    else return false;
+                    break;
+                case Boots boot:
+                    if (Paying(boot.Value))
+                        Boots.Add(boot);
+                    else return false;
+                    break;
+            }
+            return true;
+        }
 
-        //public void AddItem(string ObjectType, string itemIds, int coinsChange)
-        //{
-        //    switch (ObjectType)
-        //    {
-        //        case "weapon":
-
-        //            break;
-        //        case "helmet":
-        //            this.Weapons += itemIds; 
-        //            break;
-        //        case "boots":
-        //            this.Boots += itemIds;
-        //            break;
-        //        case "bodyarmour":
-        //            this.Bodyarmours += itemIds;
-        //            break;
-        //        default:
-        //            this.Coins += coinsChange;
-        //            break;
-        //    }
-        //}
+        private bool Paying(int value)
+        {
+            if (Coins >= value)
+            {
+                Coins -= value;
+                return true;
+            }
+            else
+            {
+                Debug.Log("Not enough coins to purchase the item.");
+                return false;
+            }
+        }
     }
 }

@@ -12,17 +12,15 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using System.Text;
 
-
-
-
 namespace Assets
 {
-    public class SQLdb 
+    public class SQLdb : MonoBehaviour 
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/db.db";
-        private SqliteConnection DBConnection;
+        private string connectionString = "URI=file:Assets/Logic/DB/DataBase.db";
+        public SqliteConnection DBConnection;
         private string FilePath = "Assets/Logic/DB/Default_JSON.json";
 
+        //connection to SQL tables
         private void OpenConnection()
         {
             try
@@ -35,7 +33,9 @@ namespace Assets
                 Debug.Log("Error: " + e.Message);
             }
         }
-        private static void FillTable(SqliteCommand command, string tableName, List<Dictionary<string, object>> data)
+
+        //methods to read default data
+        private void FillTable(SqliteCommand command, string tableName, List<Dictionary<string, object>> data)
         {
             foreach (var item in data)
             {
@@ -91,6 +91,8 @@ namespace Assets
                 }
             }
         }
+
+        //updating the hero components
         private void UpdateHero(SqliteCommand command, Hero hero)
         {
             command.Parameters.Clear();
@@ -134,9 +136,6 @@ namespace Assets
 
             command.ExecuteNonQuery();
         }
-
-        
-
         private static void UpdateStats(SqliteCommand command, Stats stats)
         {
             command.CommandText = @"UPDATE stats SET Damage = @Damage, Armour = @Armour, MaxHealth = @MaxHealth,HealthRegeneration = @HealthRegeneration, 
@@ -155,6 +154,8 @@ namespace Assets
             command.Parameters.AddWithValue("@StatsID", stats.Id);
             command.ExecuteNonQuery();
         }
+
+        //general hero functions
         public void CreateHero(String name, String role)
         {
             try
@@ -276,15 +277,12 @@ namespace Assets
         {
             try
             {
-                hero.Inventory.Print();
                 OpenConnection();
                 using (var command = new SqliteCommand())
                 {
                     command.Connection = DBConnection;
                     UpdateHero(command, hero);
-                    hero.Inventory.Print();
                     UpdateInventory(command, hero.Inventory);
-                    hero.Inventory.Print();
                     UpdateStats(command, hero.Stats);
                 }
                 DBConnection.Close();
@@ -301,6 +299,8 @@ namespace Assets
                 }
             }
         }
+
+        //item getters
         public Weapon GetWeapon(int objectId)
         {
             Weapon weapon = null;
@@ -342,18 +342,6 @@ namespace Assets
                 }
             }
         }
-        private List<Weapon> MakeWeaponList(string weaponIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(weaponIdString);
-            List<Weapon> weapons = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Weapon newWeapon = GetWeapon(Ids[i]);
-                weapons.Add(newWeapon);
-
-            }
-            return weapons;
-        }
         public Helmet GetHelmet(int objectId)
         {
             Helmet helmet = null;
@@ -391,17 +379,6 @@ namespace Assets
                     DBConnection.Close();
                 }
             }
-        }
-        private List<Helmet> MakeHelmetList(string helmetIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(helmetIdString);
-            List<Helmet> helmets = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Helmet newHelmet = GetHelmet(Ids[i]);
-                helmets.Add(newHelmet);
-            }
-            return helmets;
         }
         public Boots GetBoots(int objectId)
         {
@@ -441,17 +418,6 @@ namespace Assets
                 }
             }
         }
-        private List<Boots> MakeBootsList(string bootsIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(bootsIdString);
-            List<Boots> boots = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Boots newBoots = GetBoots(Ids[i]);
-                boots.Add(newBoots);
-            }
-            return boots;
-        }
         public Bodyarmour GetBodyarmour(int objectId)
         {
             Bodyarmour bodyarmour = null;
@@ -490,139 +456,6 @@ namespace Assets
                     DBConnection.Close();
                 }
             }
-        }
-        private List<Bodyarmour> MakeBodyarmourList(string bodyarmoursIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(bodyarmoursIdString);
-            List<Bodyarmour> bodyarmours = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Bodyarmour newBodyarmour = GetBodyarmour(Ids[i]);
-                bodyarmours.Add(newBodyarmour);
-            }
-            return bodyarmours;
-        }
-        public Inventory GetInventory(int objectId)
-        {
-            Inventory inventory = null;
-            try
-            {
-                string query = $"SELECT * FROM inventory WHERE InventoryID = {objectId}";
-                OpenConnection();
-                using (var command = new SqliteCommand(query, DBConnection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int Id = reader.GetInt32(reader.GetOrdinal("InventoryID"));
-                            string WeaponIdString = reader.GetString(reader.GetOrdinal("WeaponIDs"));
-                            string BootsIdString = reader.GetString(reader.GetOrdinal("BootIDs"));
-                            string HelmetIdString = reader.GetString(reader.GetOrdinal("HelmetIDs"));
-                            string BodyarmourIdString = reader.GetString(reader.GetOrdinal("ArmourIDs"));
-
-                            int CurrentWeaponId = reader.GetInt32(reader.GetOrdinal("CurrentWeapon"));
-                            int CurrentHelmetId = reader.GetInt32(reader.GetOrdinal("currentHelmet"));
-                            int CurrentBootsId = reader.GetInt32(reader.GetOrdinal("CurrentBoot"));
-                            int CurrentBodyarmourId = reader.GetInt32(reader.GetOrdinal("CurrentArmour"));
-                            int coins = reader.GetInt32(reader.GetOrdinal("Coins"));
-
-                            List<Weapon> weapons = MakeWeaponList(WeaponIdString);
-                            List<Boots> boots = MakeBootsList(BootsIdString);
-                            List<Helmet> helmets = MakeHelmetList(HelmetIdString);
-                            List<Bodyarmour> bodyarmours = MakeBodyarmourList(BodyarmourIdString);
-
-                            Weapon currentWeapon = GetWeapon(CurrentWeaponId);
-                            Helmet currentHelmet = GetHelmet(CurrentHelmetId);
-                            Boots currentBoot = GetBoots(CurrentBootsId);
-                            Bodyarmour currentBodyarmour = GetBodyarmour(CurrentBodyarmourId);
-                            inventory = new Inventory(objectId, weapons, currentWeapon, bodyarmours, currentBodyarmour, helmets,
-                                                        currentHelmet, boots, currentBoot, coins);
-                            inventory.Print();
-                        }
-                    }
-                    DBConnection.Close();
-                    return inventory;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError("Error: " + ex.Message);
-                return inventory;
-            }
-            finally
-            {
-                if (DBConnection.State == ConnectionState.Open)
-                {
-                    DBConnection.Close();
-                }
-            }
-        }
-        public List<int> ConvertIdsStringToList(string idsString)
-        {
-            List<string> listString = idsString.Split("+").ToList();
-            List<int> listInt = new List<int>();
-            for (int i = 0; i < listString.Count(); i++)
-            {
-                int parsedInt = int.Parse(listString[i]);
-                listInt.Add(parsedInt);
-
-            }
-            return listInt;
-        }
-        public Stats GetStats(int id)
-        {
-            Stats stats = null;
-            try
-            {
-                string query = $"SELECT * FROM stats WHERE StatsID = {id} LIMIT 1";
-                OpenConnection();
-                using (var command = new SqliteCommand(query, DBConnection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int statId = reader.GetInt32(reader.GetOrdinal("StatsID"));
-                            int Dmg = reader.GetInt32(reader.GetOrdinal("Damage"));
-                            int ArmourPenetration = reader.GetInt32(reader.GetOrdinal("ArmourPenetration"));
-                            int CriticalChance = reader.GetInt32(reader.GetOrdinal("CriticalChance"));
-                            int HitRate = reader.GetInt32(reader.GetOrdinal("HitRate"));
-                            int MaxHealth = reader.GetInt32(reader.GetOrdinal("MaxHealth"));
-                            int HealthRegeneration = reader.GetInt32(reader.GetOrdinal("HealthRegeneration"));
-                            int Armour = reader.GetInt32(reader.GetOrdinal("Armour"));
-                            int EvadeRate = reader.GetInt32(reader.GetOrdinal("EvadeRate"));
-                            int MovementSpeed = reader.GetInt32(reader.GetOrdinal("MovementSpeed"));
-
-                            stats = new Stats(statId, Dmg, ArmourPenetration, CriticalChance, HitRate, MaxHealth, HealthRegeneration, Armour, EvadeRate, MovementSpeed);
-                        }
-                    }
-                }
-                DBConnection.Close();
-                return stats;
-
-            }
-            catch (Exception e)
-            {
-                Debug.Log("Error: " + e.Message);
-                return null;
-            }
-            finally
-            {
-                if (DBConnection.State == ConnectionState.Open)
-                {
-                    DBConnection.Close();
-                }
-            }
-        }
-        public AllItems GetAllItems()
-        {
-            List<Weapon> weapons = GetAllWeapons();
-            List<Helmet> helmets = GetAllHelmets();
-            List<Bodyarmour> bodyArmours = GetAllBodyArmours();
-            List<Boots> boots = GetAllBoots();
-            AllItems allitems = new AllItems(weapons, helmets,bodyArmours, boots);// helmets, 
-            return allitems;
         }
         public List<Helmet> GetAllHelmets()
         {
@@ -743,6 +576,53 @@ namespace Assets
             }
             return weapons;
         }
+        public List<Enemy> GetAllEnemies()
+        {
+            List<Enemy> enemies = new List<Enemy>();
+            try
+            {
+                string query = "SELECT * FROM Enemies";
+                OpenConnection();
+                using (var command = new SqliteCommand(query, DBConnection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            int worth = reader.GetInt32(reader.GetOrdinal("Worth"));
+                            int maxHealth = reader.GetInt32(reader.GetOrdinal("MaxHealth"));
+                            int damage = reader.GetInt32(reader.GetOrdinal("Damage"));
+                            int healthRegeneration = reader.GetInt32(reader.GetOrdinal("HealthRegeneration"));
+                            int hitRate = reader.GetInt32(reader.GetOrdinal("HitRate"));
+                            int evadeRate = reader.GetInt32(reader.GetOrdinal("EvadeRate"));
+                            int armour = reader.GetInt32(reader.GetOrdinal("Armour"));
+                            int movementSpeed = reader.GetInt32(reader.GetOrdinal("MovementSpeed"));
+                            int criticalChance = reader.GetInt32(reader.GetOrdinal("CriticalChance"));
+                            int armourPenetration = reader.GetInt32(reader.GetOrdinal("ArmourPenetration"));
+
+                            // Create a new Enemy object with the retrieved data
+                            Enemy enemy = new(name, worth, maxHealth, damage, healthRegeneration, hitRate, evadeRate,
+                                             armour, movementSpeed, criticalChance, armourPenetration);
+                            enemies.Add(enemy);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (DBConnection.State == ConnectionState.Open)
+                {
+                    DBConnection.Close();
+                }
+            }
+            return enemies;
+        }
         public List<Bodyarmour> GetAllBodyArmours()
         {
             List<Bodyarmour> bodyArmours = new List<Bodyarmour>();
@@ -782,6 +662,176 @@ namespace Assets
             }
             return bodyArmours;
         }
+
+        //convert from string to objects and the other way
+        public List<int> ConvertIdsStringToList(string idsString)
+        {
+            List<string> listString = idsString.Split("+").ToList();
+            List<int> listInt = new List<int>();
+            for (int i = 0; i < listString.Count(); i++)
+            {
+                int parsedInt = int.Parse(listString[i]);
+                listInt.Add(parsedInt);
+
+            }
+            return listInt;
+        }
+        private List<Weapon> MakeWeaponList(string weaponIdString)
+        {
+            List<int> Ids = ConvertIdsStringToList(weaponIdString);
+            List<Weapon> weapons = new();
+            for (int i = 0; i < Ids.Count; i++)
+            {
+                Weapon newWeapon = GetWeapon(Ids[i]);
+                weapons.Add(newWeapon);
+
+            }
+            return weapons;
+        }
+        private List<Helmet> MakeHelmetList(string helmetIdString)
+        {
+            List<int> Ids = ConvertIdsStringToList(helmetIdString);
+            List<Helmet> helmets = new();
+            for (int i = 0; i < Ids.Count; i++)
+            {
+                Helmet newHelmet = GetHelmet(Ids[i]);
+                helmets.Add(newHelmet);
+            }
+            return helmets;
+        }
+        private List<Boots> MakeBootsList(string bootsIdString)
+        {
+            List<int> Ids = ConvertIdsStringToList(bootsIdString);
+            List<Boots> boots = new();
+            for (int i = 0; i < Ids.Count; i++)
+            {
+                Boots newBoots = GetBoots(Ids[i]);
+                boots.Add(newBoots);
+            }
+            return boots;
+        }
+        private List<Bodyarmour> MakeBodyarmourList(string bodyarmoursIdString)
+        {
+            List<int> Ids = ConvertIdsStringToList(bodyarmoursIdString);
+            List<Bodyarmour> bodyarmours = new();
+            for (int i = 0; i < Ids.Count; i++)
+            {
+                Bodyarmour newBodyarmour = GetBodyarmour(Ids[i]);
+                bodyarmours.Add(newBodyarmour);
+            }
+            return bodyarmours;
+        }
+
+        //convert from string to objects and the other way
+        public Inventory GetInventory(int objectId)
+        {
+            Inventory inventory = null;
+            try
+            {
+                string query = $"SELECT * FROM inventory WHERE InventoryID = {objectId}";
+                OpenConnection();
+                using (var command = new SqliteCommand(query, DBConnection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int Id = reader.GetInt32(reader.GetOrdinal("InventoryID"));
+                            string WeaponIdString = reader.GetString(reader.GetOrdinal("WeaponIDs"));
+                            string BootsIdString = reader.GetString(reader.GetOrdinal("BootIDs"));
+                            string HelmetIdString = reader.GetString(reader.GetOrdinal("HelmetIDs"));
+                            string BodyarmourIdString = reader.GetString(reader.GetOrdinal("ArmourIDs"));
+
+                            int CurrentWeaponId = reader.GetInt32(reader.GetOrdinal("CurrentWeapon"));
+                            int CurrentHelmetId = reader.GetInt32(reader.GetOrdinal("currentHelmet"));
+                            int CurrentBootsId = reader.GetInt32(reader.GetOrdinal("CurrentBoot"));
+                            int CurrentBodyarmourId = reader.GetInt32(reader.GetOrdinal("CurrentArmour"));
+                            int coins = reader.GetInt32(reader.GetOrdinal("Coins"));
+
+                            List<Weapon> weapons = MakeWeaponList(WeaponIdString);
+                            List<Boots> boots = MakeBootsList(BootsIdString);
+                            List<Helmet> helmets = MakeHelmetList(HelmetIdString);
+                            List<Bodyarmour> bodyarmours = MakeBodyarmourList(BodyarmourIdString);
+
+                            Weapon currentWeapon = GetWeapon(CurrentWeaponId);
+                            Helmet currentHelmet = GetHelmet(CurrentHelmetId);
+                            Boots currentBoot = GetBoots(CurrentBootsId);
+                            Bodyarmour currentBodyarmour = GetBodyarmour(CurrentBodyarmourId);
+                            inventory = new Inventory(objectId, weapons, currentWeapon, bodyarmours, currentBodyarmour,
+                                                      helmets,currentHelmet, boots, currentBoot, coins);
+                        }
+                    }
+                    DBConnection.Close();
+                    return inventory;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error: " + ex.Message);
+                return inventory;
+            }
+            finally
+            {
+                if (DBConnection.State == ConnectionState.Open)
+                {
+                    DBConnection.Close();
+                }
+            }
+        }
+        public Stats GetStats(int id)
+        {
+            Stats stats = null;
+            try
+            {
+                string query = $"SELECT * FROM stats WHERE StatsID = {id} LIMIT 1";
+                OpenConnection();
+                using (var command = new SqliteCommand(query, DBConnection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int statId = reader.GetInt32(reader.GetOrdinal("StatsID"));
+                            int Dmg = reader.GetInt32(reader.GetOrdinal("Damage"));
+                            int ArmourPenetration = reader.GetInt32(reader.GetOrdinal("ArmourPenetration"));
+                            int CriticalChance = reader.GetInt32(reader.GetOrdinal("CriticalChance"));
+                            int HitRate = reader.GetInt32(reader.GetOrdinal("HitRate"));
+                            int MaxHealth = reader.GetInt32(reader.GetOrdinal("MaxHealth"));
+                            int HealthRegeneration = reader.GetInt32(reader.GetOrdinal("HealthRegeneration"));
+                            int Armour = reader.GetInt32(reader.GetOrdinal("Armour"));
+                            int EvadeRate = reader.GetInt32(reader.GetOrdinal("EvadeRate"));
+                            int MovementSpeed = reader.GetInt32(reader.GetOrdinal("MovementSpeed"));
+
+                            stats = new Stats(statId, Dmg, ArmourPenetration, CriticalChance, HitRate, MaxHealth, HealthRegeneration, Armour, EvadeRate, MovementSpeed);
+                        }
+                    }
+                }
+                DBConnection.Close();
+                return stats;
+
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Error: " + e.Message);
+                return null;
+            }
+            finally
+            {
+                if (DBConnection.State == ConnectionState.Open)
+                {
+                    DBConnection.Close();
+                }
+            }
+        }
+        public AllItems GetAllItems()
+        {
+            List<Weapon> weapons = GetAllWeapons();
+            List<Helmet> helmets = GetAllHelmets();
+            List<Bodyarmour> bodyArmours = GetAllBodyArmours();
+            List<Boots> boots = GetAllBoots();
+            AllItems allitems = new AllItems(weapons, helmets,bodyArmours, boots);// helmets, 
+            return allitems;
+        }
         public List<Hero> AllHeros()
         {
             List<Hero> heros = new List<Hero>();
@@ -793,23 +843,9 @@ namespace Assets
                 {
                     using (var reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        foreach (Hero item in reader)
                         {
-                            int statsId = reader.GetInt32(reader.GetOrdinal("StatsID"));
-                            int inventoryId = reader.GetInt32(reader.GetOrdinal("InventoryID"));
-
-                            Stats stats = GetStats(statsId);
-                            Inventory inventory = GetInventory(inventoryId);
-
-                            Hero newHero = new Hero(
-                                reader.GetString(reader.GetOrdinal("Name")),
-                                reader.GetInt32(reader.GetOrdinal("Level")),
-                                reader.GetInt32(reader.GetOrdinal("XP")),
-                                stats,
-                                inventory,
-                                reader.GetString(reader.GetOrdinal("Role"))
-                            );
-                            heros.Add(newHero);
+                            heros.Add(item);
                         }
                     }
                 }

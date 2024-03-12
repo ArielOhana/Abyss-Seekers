@@ -1038,9 +1038,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 219608497}
-        m_TargetAssemblyTypeName: GoToScene, Assembly-CSharp
-        m_MethodName: LoadMenuScene
+      - m_Target: {fileID: 1916440894}
+        m_TargetAssemblyTypeName: Inv, Assembly-CSharp
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
