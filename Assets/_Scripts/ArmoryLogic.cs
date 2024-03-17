@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.IO;
-using static UnityEditor.Progress;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using Context;
 namespace Assets
 {
-    public class GetAllButtons : MonoBehaviour
+    public class ArmoryLogic : MonoBehaviour
     {
         [SerializeField] Button ButtonOne;
         [SerializeField] Button ButtonTwo;

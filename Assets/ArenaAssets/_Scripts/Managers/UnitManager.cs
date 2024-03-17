@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ArrowTranslator;
-using static UnityEditor.Progress;
 using static UnityEngine.UI.CanvasScaler;
 
 public class UnitManager : MonoBehaviour

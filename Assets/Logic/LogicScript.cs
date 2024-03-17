@@ -14,7 +14,6 @@ public class LogicScript : MonoBehaviour
     private readonly object currentHero;
     public Hero myHero;
     public GameObject Circle;
-    private GetAllButtons getAllButtons;
 
     void Start()
     {

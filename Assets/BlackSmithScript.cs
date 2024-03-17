@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.IO;
-using static UnityEditor.Progress;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
