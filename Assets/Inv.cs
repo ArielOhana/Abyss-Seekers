@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class Inv : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Inv : MonoBehaviour
     public Text roleText;
     public Text levelText;
     public Text nameText;
-    public Image playerSpriteRenderer ;
+    public Image playerSpriteRenderer;
     public Text damageText;
     public Text armourText;
     public Text maxHealthText;
@@ -48,7 +49,7 @@ public class Inv : MonoBehaviour
     private int displaynumber;
     private void Start()
     {
-        ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine,ButtonTen,ButtonEleven,ButtonTwelve };
+        ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine, ButtonTen, ButtonEleven, ButtonTwelve };
         DBManager = new SQLdb();
 
         if (MainMenu.currentHero != null)
@@ -57,7 +58,7 @@ public class Inv : MonoBehaviour
             switch (MainMenu.currentHero.Role.ToLower())
             {
                 case "warrior":
-                    SetImageFromImage(playerSpriteRenderer,"Assets/AssetsImage/Knight.png");
+                    SetImageFromImage(playerSpriteRenderer, "Assets/AssetsImage/Knight.png");
                     break;
                 case "rogue":
                     SetImageFromImage(playerSpriteRenderer, "Assets/ImportedAssets/Backgrounds/Gothicvania Cemetery Artwork/Sprites/hero/hero-idle/hero-idle-4.png");
@@ -87,13 +88,14 @@ public class Inv : MonoBehaviour
                 ButtonsArray[i].gameObject.SetActive(false);
             }
         }
-        SetImageInButton(CurrentWeapon,MainMenu.currentHero.Inventory.CurrentWeapon.Url);
-       SetImageInButton(CurrentHelmet, MainMenu.currentHero.Inventory.CurrentHelmet.Url);
-       SetImageInButton(CurrentBodyArmor, MainMenu.currentHero.Inventory.CurrentBodyarmour.Url);
-       SetImageInButton(CurrentBoots, MainMenu.currentHero.Inventory.CurrentBoot.Url);
+        SetImageInButton(CurrentWeapon, MainMenu.currentHero.Inventory.CurrentWeapon.Url);
+        SetImageInButton(CurrentHelmet, MainMenu.currentHero.Inventory.CurrentHelmet.Url);
+        SetImageInButton(CurrentBodyArmor, MainMenu.currentHero.Inventory.CurrentBodyarmour.Url);
+        SetImageInButton(CurrentBoots, MainMenu.currentHero.Inventory.CurrentBoot.Url);
     }
     private void GenerateTextFields()
     {
+
         coinsText.text = $"Coins: {MainMenu.currentHero.Inventory.Coins}";
         xpText.text = $"XP: {MainMenu.currentHero.Xp}";
         roleText.text = $"Role: {MainMenu.currentHero.Role}";
@@ -136,7 +138,7 @@ public class Inv : MonoBehaviour
         GenerateTextFields();
     }
 
-        private void SetImageFromImage(Image imageComponent, string imagePath)
+    private void SetImageFromImage(Image imageComponent, string imagePath)
     {
         if (File.Exists(imagePath))
         {
@@ -206,7 +208,8 @@ public class Inv : MonoBehaviour
     }
     public void SaveGame()
     {
-        DBManager.SaveHero(MainMenu.currentHero);
+        Hero newHero = MainMenu.currentHero;
+        DBManager.SaveHero(newHero);
         SceneManager.LoadScene("townhall");
     }
     public void SetImageInButton(Button button, string URL)
@@ -258,5 +261,8 @@ public class Inv : MonoBehaviour
             Debug.LogError("Image file not found at path: " + imagePath);
         }
         return ThereIsAnImage;
+    }
+    private void Update()
+    {
     }
 }

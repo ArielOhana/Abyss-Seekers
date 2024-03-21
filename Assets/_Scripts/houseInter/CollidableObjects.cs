@@ -25,7 +25,6 @@ public class CollidableObjects : MonoBehaviour
         foreach (var o in z_CollidedObjects)
         {
             isColliding = true;
-            OnColliding(o.gameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && isColliding)
@@ -36,10 +35,7 @@ public class CollidableObjects : MonoBehaviour
         z_CollidedObjects.RemoveAll(o => !o.IsTouching(z_Collider));
     }
 
-    protected virtual void OnColliding(GameObject collidedObject)
-    {
-        Debug.Log("Collided with " + collidedObject.name);
-    }
+    
 
     protected virtual void HandleInteraction()
     {

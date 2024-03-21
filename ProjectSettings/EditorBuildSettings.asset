@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/townhall.unity
     guid: f66f3c4cbb2c03543a9fb7091a5fd8c7
   - enabled: 1
+    path: Assets/Scenes/load.unity
+    guid: 5e8a2234368a669478adc6c3c6846761
+  - enabled: 0
     path: Assets/Scenes/LoadGame.unity
     guid: d381ed80a4c969c40b0314a7eaa70ebf
   - enabled: 1
@@ -25,10 +28,10 @@ EditorBuildSettings:
     guid: a6c1f35a8f709b44d8077339f55976dd
   - enabled: 1
     path: Assets/Scenes/Armory.unity
-    guid: 5a1a851becf3a924688d398c8fa43956
+    guid: 2ffd17077c9da50438c496bdc5590eb7
   - enabled: 1
     path: Assets/Scenes/Blacksmith.unity
-    guid: a32906f0243046f42969d2b9380ef8b4
+    guid: 5d192ff9a85c6da4d99591d28ce7bcb0
   - enabled: 1
     path: Assets/Scenes/Inventory.unity
     guid: 4856bce5eb895654da5fdbfeea8569ab

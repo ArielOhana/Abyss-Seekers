@@ -121,7 +121,9 @@ namespace Assets
         }
         public int SumAdditionalArmour()
         {
-            return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
+            //Debug.Log((CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour));
+            //return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
+            return 0;
         }
         public Boolean AddItem<T>(T item)
         {

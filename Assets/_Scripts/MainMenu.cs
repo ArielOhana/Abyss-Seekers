@@ -37,7 +37,7 @@ namespace Context
 
         public void GoToLoadGame()
         {
-            SceneManager.LoadScene("LoadGame");
+            SceneManager.LoadScene("Load");
         }
 
         public void QuitGame()
