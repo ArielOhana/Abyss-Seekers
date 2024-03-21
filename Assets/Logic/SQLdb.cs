@@ -6,21 +6,18 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Unity.VisualScripting;
-using UnityEngine.UI;
-using System.Text;
+
 
 namespace Assets
 {
     public class SQLdb 
     {
-        private string connectionString = "URI=file:Assets/Logic/DB/realDBCopy.db";
-        public SqliteConnection DBConnection;
-        private string FilePath = "Assets/Logic/DB/Default_JSON.json";
+        private static string connectionString = "URI=file:Assets/Logic/DB/anotherDB.db";
+        public static SqliteConnection DBConnection;
+        private static string FilePath = "Assets/Logic/DB/Default_JSON.json";
 
         //connection to SQL tables
-        private void OpenConnection()
+        private static void OpenConnection()
         {
             try
             {
@@ -33,25 +30,7 @@ namespace Assets
             }
         }
 
-        //methods to read default data
-        private void FillTable(SqliteCommand command, string tableName, List<Dictionary<string, object>> data)
-        {
-            foreach (var item in data)
-            {
-                string columns = string.Join(", ", item.Keys);
-                string values = string.Join(", ", item.Keys.Select(key => "@" + key));
-                string query = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
-                command.CommandText = query;
-                command.Parameters.Clear();
-
-                // Add parameters and their values
-                foreach (var key in item.Keys)
-                {
-                    command.Parameters.AddWithValue("@" + key, item[key]);
-                }
-                command.ExecuteNonQuery();
-            }
-        }
+        // check if the object lists ar full        
         public void ReadJson()
         {
             try
@@ -70,7 +49,7 @@ namespace Assets
                             int rowCount = Convert.ToInt32(command.ExecuteScalar());
                             if (rowCount < table.Value.Count)
                             {
-                                FillTable(command, table.Key, table.Value);
+                                BackendFunctions.FillTable(command, table.Key, table.Value);
                             }
                         }
                     }
@@ -89,69 +68,6 @@ namespace Assets
                     DBConnection.Close();
                 }
             }
-        }
-
-        //updating the hero components
-        private void UpdateHero(SqliteCommand command, Hero hero)
-        {
-            command.Parameters.Clear();
-            command.CommandText = "UPDATE hero SET XP = @XP, Level = @Level  WHERE HeroID = @Id";
-            command.Parameters.AddWithValue("@XP", hero.Xp);
-            command.Parameters.AddWithValue("@Level", hero.Level);
-            command.Parameters.AddWithValue("@Id", hero.Id);
-            command.ExecuteNonQuery();
-        }
-        private void UpdateInventory(SqliteCommand command, Inventory inventory)
-        {
-            command.Parameters.Clear();
-            command.CommandText = "UPDATE inventory SET WeaponIDs = @WeaponIDs, CurrentWeapon = @CurrentWeapon, " +
-                                  "HelmetIDs = @HelmetIDs, CurrentHelmet = @CurrentHelmet, " +
-                                  "ArmourIDs = @ArmourIDs, CurrentArmour = @CurrentArmour, " +
-                                  "BootIDs = @BootIDs, CurrentBoot = @CurrentBoot, Coins = @Coins WHERE InventoryID = @Id";
-            
-            string weaponIdsString = inventory.ListWeapons();
-            string helmetIdsString = inventory.ListBodyArmours();
-            string armourIdsString = inventory.ListBoots();
-            string bootIdsString = inventory.ListHelmets();
-            
-            command.Parameters.AddWithValue("@WeaponIDs", weaponIdsString);
-            int currentWeaponId = inventory.CurrentWeapon.Id;
-            command.Parameters.AddWithValue("@CurrentWeapon", currentWeaponId);
-
-            command.Parameters.AddWithValue("@HelmetIDs", helmetIdsString);
-            int currentHelmetId = inventory.CurrentHelmet.Id;
-            command.Parameters.AddWithValue("@CurrentHelmet", currentHelmetId);
-
-            command.Parameters.AddWithValue("@ArmourIDs", armourIdsString);
-            int currentArmourId = inventory.CurrentBodyarmour.Id;
-            command.Parameters.AddWithValue("@CurrentArmour", currentArmourId);
-
-            command.Parameters.AddWithValue("@BootIDs", bootIdsString);
-            int currentBootId = inventory.CurrentBoot.Id;
-            command.Parameters.AddWithValue("@CurrentBoot", currentBootId);
-            command.Parameters.AddWithValue("@Coins", inventory.Coins);
-            command.Parameters.AddWithValue("@Id", inventory.Id);
-
-
-            command.ExecuteNonQuery();
-        }
-        private static void UpdateStats(SqliteCommand command, Stats stats)
-        {
-            command.CommandText = @"UPDATE stats SET Damage = @Damage, Armour = @Armour, MaxHealth = @MaxHealth,HealthRegeneration = @HealthRegeneration, 
-                                        MovementSpeed = @MovementSpeed, EvadeRate = @EvadeRate, HitRate = @HitRate, CriticalChance = @CriticalChance, 
-                                        ArmourPenetration = @ArmourPenetration WHERE StatsID = @StatsID";
-
-            command.Parameters.AddWithValue("@Damage", stats.Dmg);
-            command.Parameters.AddWithValue("@Armour", stats.Armour);
-            command.Parameters.AddWithValue("@MaxHealth", stats.MaxHealth);
-            command.Parameters.AddWithValue("@HealthRegeneration", stats.HealthRegeneration);
-            command.Parameters.AddWithValue("@MovementSpeed", stats.MovementSpeed);
-            command.Parameters.AddWithValue("@EvadeRate", stats.EvadeRate);
-            command.Parameters.AddWithValue("@HitRate", stats.HitRate);
-            command.Parameters.AddWithValue("@CriticalChance", stats.CriticalChance);
-            command.Parameters.AddWithValue("@ArmourPenetration", stats.ArmourPenetration);
-            command.Parameters.AddWithValue("@StatsID", stats.Id);
-            command.ExecuteNonQuery();
         }
 
         //general hero functions
@@ -184,7 +100,7 @@ namespace Assets
                             Debug.Log($"No role found with name '{role}'.");
                         }
                     }
-                    command.CommandText = $"INSERT INTO stats ({string.Join(", ", roleKeys)}) VALUES ({string.Join(", ", roleValues)})";
+                    command.CommandText = $"INSERT INTO stats ({string.Join(", ", roleKeys)}) VALUES ({string.Join(", ", roleValues)});";
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT last_insert_rowid();";
                     int statsId = Convert.ToInt32(command.ExecuteScalar());
@@ -192,7 +108,7 @@ namespace Assets
 
 
                     command.CommandText = "INSERT INTO inventory (WeaponIDs, CurrentWeapon, HelmetIDs, CurrentHelmet, ArmourIDs, CurrentArmour, BootIDs, CurrentBoot, Coins) " +
-                                          "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 1000)";
+                                          "VALUES (@WeaponId, @CurrentWeapon, '1', '1', '1', '1', '1', '1', 1000);";
                     command.Parameters.AddWithValue("@WeaponId", weaponId);
                     command.Parameters.AddWithValue("@CurrentWeapon", weaponId);
                     command.ExecuteNonQuery();
@@ -232,7 +148,7 @@ namespace Assets
                 using (var command = new SqliteCommand())
                 {
                     command.Connection = DBConnection;
-                    command.CommandText = "SELECT * FROM hero WHERE name = @Name LIMIT 1";
+                    command.CommandText = "SELECT * FROM hero WHERE name = @Name LIMIT 1;";
                     command.Parameters.AddWithValue("@Name", name);
                     using SqliteDataReader data = command.ExecuteReader();
                     if (data.Read())
@@ -280,9 +196,9 @@ namespace Assets
                 using (var command = new SqliteCommand())
                 {
                     command.Connection = DBConnection;
-                    UpdateHero(command, hero);
-                    UpdateInventory(command, hero.Inventory);
-                    UpdateStats(command, hero.Stats);
+                    BackendFunctions.UpdateHero(command, hero);
+                    BackendFunctions.UpdateInventory(command, hero.Inventory);
+                    BackendFunctions.UpdateStats(command, hero.Stats);
                 }
                 DBConnection.Close();
             }
@@ -299,8 +215,8 @@ namespace Assets
             }
         }
 
-        //item getters
-        public Weapon GetWeapon(int objectId)
+        //item getters (specific or whole list)
+        public static Weapon GetWeapon(int objectId)
         {
             Weapon weapon = null;
             try
@@ -341,7 +257,7 @@ namespace Assets
                 }
             }
         }
-        public Helmet GetHelmet(int objectId)
+        public static Helmet GetHelmet(int objectId)
         {
             Helmet helmet = null;
             try
@@ -379,7 +295,7 @@ namespace Assets
                 }
             }
         }
-        public Boots GetBoots(int objectId)
+        public static Boots GetBoots(int objectId)
         {
             Boots boots = null;
             try
@@ -417,7 +333,7 @@ namespace Assets
                 }
             }
         }
-        public Bodyarmour GetBodyarmour(int objectId)
+        public static Bodyarmour GetBodyarmour(int objectId)
         {
             Bodyarmour bodyarmour = null;
             try
@@ -456,7 +372,7 @@ namespace Assets
                 }
             }
         }
-        public List<Helmet> GetAllHelmets()
+        public static List<Helmet> GetAllHelmets()
         {
             List<Helmet> helmets = new List<Helmet>();
             try
@@ -495,7 +411,7 @@ namespace Assets
             }
             return helmets;
         }
-        public List<Boots> GetAllBoots()
+        public static List<Boots> GetAllBoots()
         {
             List<Boots> bootsList = new List<Boots>();
             try
@@ -534,7 +450,7 @@ namespace Assets
             }
             return bootsList;
         }
-        public List<Weapon> GetAllWeapons()
+        public static List<Weapon> GetAllWeapons()
         {
             List<Weapon> weapons = new List<Weapon>();
             try
@@ -577,7 +493,7 @@ namespace Assets
         }
         public List<Enemy> GetAllEnemies()
         {
-            List<Enemy> enemies = new List<Enemy>();
+            List<Enemy> enemies = new();
             try
             {
                 string query = "SELECT * FROM Enemies";
@@ -622,7 +538,7 @@ namespace Assets
             }
             return enemies;
         }
-        public List<Bodyarmour> GetAllBodyArmours()
+        public static List<Bodyarmour> GetAllBodyArmours()
         {
             List<Bodyarmour> bodyArmours = new List<Bodyarmour>();
             try
@@ -662,66 +578,7 @@ namespace Assets
             return bodyArmours;
         }
 
-        //convert from string to objects and the other way
-        public List<int> ConvertIdsStringToList(string idsString)
-        {
-            List<string> listString = idsString.Split("+").ToList();
-            List<int> listInt = new List<int>();
-            for (int i = 0; i < listString.Count(); i++)
-            {
-                int parsedInt = int.Parse(listString[i]);
-                listInt.Add(parsedInt);
-
-            }
-            return listInt;
-        }
-        private List<Weapon> MakeWeaponList(string weaponIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(weaponIdString);
-            List<Weapon> weapons = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Weapon newWeapon = GetWeapon(Ids[i]);
-                weapons.Add(newWeapon);
-
-            }
-            return weapons;
-        }
-        private List<Helmet> MakeHelmetList(string helmetIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(helmetIdString);
-            List<Helmet> helmets = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Helmet newHelmet = GetHelmet(Ids[i]);
-                helmets.Add(newHelmet);
-            }
-            return helmets;
-        }
-        private List<Boots> MakeBootsList(string bootsIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(bootsIdString);
-            List<Boots> boots = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Boots newBoots = GetBoots(Ids[i]);
-                boots.Add(newBoots);
-            }
-            return boots;
-        }
-        private List<Bodyarmour> MakeBodyarmourList(string bodyarmoursIdString)
-        {
-            List<int> Ids = ConvertIdsStringToList(bodyarmoursIdString);
-            List<Bodyarmour> bodyarmours = new();
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                Bodyarmour newBodyarmour = GetBodyarmour(Ids[i]);
-                bodyarmours.Add(newBodyarmour);
-            }
-            return bodyarmours;
-        }
-
-        //convert from string to objects and the other way
+        //create a inventory object from Id
         public Inventory GetInventory(int objectId)
         {
             Inventory inventory = null;
@@ -742,15 +599,15 @@ namespace Assets
                             string BodyarmourIdString = reader.GetString(reader.GetOrdinal("ArmourIDs"));
 
                             int CurrentWeaponId = reader.GetInt32(reader.GetOrdinal("CurrentWeapon"));
-                            int CurrentHelmetId = reader.GetInt32(reader.GetOrdinal("currentHelmet"));
+                            int CurrentHelmetId = reader.GetInt32(reader.GetOrdinal("CurrentHelmet"));
                             int CurrentBootsId = reader.GetInt32(reader.GetOrdinal("CurrentBoot"));
                             int CurrentBodyarmourId = reader.GetInt32(reader.GetOrdinal("CurrentArmour"));
                             int coins = reader.GetInt32(reader.GetOrdinal("Coins"));
 
-                            List<Weapon> weapons = MakeWeaponList(WeaponIdString);
-                            List<Boots> boots = MakeBootsList(BootsIdString);
-                            List<Helmet> helmets = MakeHelmetList(HelmetIdString);
-                            List<Bodyarmour> bodyarmours = MakeBodyarmourList(BodyarmourIdString);
+                            List<Weapon> weapons = BackendFunctions.MakeWeaponList(WeaponIdString);
+                            List<Boots> boots = BackendFunctions.MakeBootsList(BootsIdString);
+                            List<Helmet> helmets = BackendFunctions.MakeHelmetList(HelmetIdString);
+                            List<Bodyarmour> bodyarmours = BackendFunctions.MakeBodyarmourList(BodyarmourIdString);
 
                             Weapon currentWeapon = GetWeapon(CurrentWeaponId);
                             Helmet currentHelmet = GetHelmet(CurrentHelmetId);
@@ -777,6 +634,8 @@ namespace Assets
                 }
             }
         }
+
+        //create a stats object from Id
         public Stats GetStats(int id)
         {
             Stats stats = null;
@@ -822,15 +681,8 @@ namespace Assets
                 }
             }
         }
-        public AllItems GetAllItems()
-        {
-            List<Weapon> weapons = GetAllWeapons();
-            List<Helmet> helmets = GetAllHelmets();
-            List<Bodyarmour> bodyArmours = GetAllBodyArmours();
-            List<Boots> boots = GetAllBoots();
-            AllItems allitems = new AllItems(weapons, helmets,bodyArmours, boots);// helmets, 
-            return allitems;
-        }
+
+        //retrun a list of all heros
         public List<Hero> AllHeros()
         {
             List<Hero> heros = new List<Hero>();
@@ -863,6 +715,8 @@ namespace Assets
             }
             return heros;
         }
+
+        //deliting a hero
         public void DeleteHero(string name)
         {
             try

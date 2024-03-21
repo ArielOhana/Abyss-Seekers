@@ -123,46 +123,6 @@ namespace Assets
         {
             return (CurrentBodyarmour.AdditionalArmour + CurrentHelmet.AdditionalArmour + CurrentBoot.AdditionalArmour);
         }
-        public Boolean AddItem<T>(T item)
-        {
-            switch (item)
-            {
-                case Weapon weapon:
-                    if (Paying(weapon.Value))
-                        Weapons.Add(weapon);
-                    else return false;
-                    break;
-                case Helmet helmet:
-                    if (Paying(helmet.Value))
-                        Helmets.Add(helmet);
-                    else return false;
-                    break;
-                case Bodyarmour bodyarmour:
-                    if (Paying(bodyarmour.Value))
-                        Bodyarmours.Add(bodyarmour);
-                    else return false;
-                    break;
-                case Boots boot:
-                    if (Paying(boot.Value))
-                        Boots.Add(boot);
-                    else return false;
-                    break;
-            }
-            return true;
-        }
-
-        private bool Paying(int value)
-        {
-            if (Coins >= value)
-            {
-                Coins -= value;
-                return true;
-            }
-            else
-            {
-                Debug.Log("Not enough coins to purchase the item.");
-                return false;
-            }
-        }
+        
     }
 }

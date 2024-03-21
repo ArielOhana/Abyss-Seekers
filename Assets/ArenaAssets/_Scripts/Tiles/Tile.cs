@@ -41,8 +41,6 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-       //MenuManager.Instance.ShowTileInfo(this);
-        
         if (UnitManager.Instance.SelectedHero != null && UnitManager.Instance.inRangeTiles.Contains(this) && !UnitManager.Instance.isMoving) {
             UnitManager.Instance.ShowPath(this);
         }
@@ -51,7 +49,6 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseExit()
     {
-        //MenuManager.Instance.ShowTileInfo(null);
         if (UnitManager.Instance.SelectedHero != null && !UnitManager.Instance.isMoving) {
             UnitManager.Instance.HidePath();
         }
@@ -78,10 +75,6 @@ public abstract class Tile : MonoBehaviour
                 if (UnitManager.Instance.inRangeTiles.Contains(this)) {
                     UnitManager.Instance.HidePath();
                     StartCoroutine(Move(UnitManager.Instance.SelectedHero.OccupiedTile, this, UnitManager.Instance.SelectedHero, false));
-                    //UnitManager.Instance.MoveAlongPath(UnitManager.Instance.SelectedHero.OccupiedTile, this, UnitManager.Instance.SelectedHero, false);
-
-
-                    
                 }
 
             }
@@ -89,6 +82,7 @@ public abstract class Tile : MonoBehaviour
     }
 
     private void FinishHeroTurn() {
+        Debug.Log("Context max health " + Context.MainMenu.currentHero.Stats.MaxHealth);
         UnitManager.Instance.SetSelectedHero(null); // deselect unit
         UnitManager.Instance.GetInRangeTiles();
         HideAttackableUnit();
@@ -102,7 +96,6 @@ public abstract class Tile : MonoBehaviour
         UnitManager.Instance._enemies.Remove(enemy);
 
         Destroy(enemy.gameObject); // enemy.takeDamage
-                                   //UnitManager.Instance.SelectedHero(enemy)
         if(UnitManager.Instance._enemies.Count == 0) {
             SceneManager.LoadScene("AftrerWin");
         }

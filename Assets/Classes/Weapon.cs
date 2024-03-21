@@ -30,15 +30,7 @@ namespace Assets
             Range = range;
             Url = url;
         }
-        public override string ToString()
-        {
-            return $"Weapon Details:\n" +
-                   $"Name: {this.Name}\n" +
-                   $"Damage: {this.Damage}\n" +
-                   $"Range: {this.Range}\n" +
-                   $"Critical Damage: {this.CriticalDamage}\n" +
-                   $"Value: {this.Value}";
-        }
+
         public string GetID()
         {
             int num = this.Id;

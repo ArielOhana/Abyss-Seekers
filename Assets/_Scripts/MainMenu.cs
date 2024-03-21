@@ -10,6 +10,7 @@ namespace Context
     public class MainMenu : MonoBehaviour
     {
         public static Hero currentHero;
+        public static SQLdb DBManager = new SQLdb();
         public Animator transition;
         public float transitionTime = 1f;
         [SerializeField] GameObject creditsMenu;
@@ -17,6 +18,7 @@ namespace Context
         void Start()
         {
             creditsMenu.SetActive(false);
+            DBManager.ReadJson();
         }
 
         IEnumerator LoadLevel(int levelIndex)  

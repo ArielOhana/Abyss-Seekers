@@ -36,20 +36,5 @@ namespace Assets
             this.ArmourPenetration = armourPenetration;
             this.SpecialAbility = specialAbility;
         }
-        public void Print()
-        {
-            Debug.Log($"Role Details:\n" +
-                      $"Name: {Name}\n" +
-                      $"Max Health: {MaxHealth}\n" +
-                      $"Damage: {Damage}\n" +
-                      $"Health Regeneration: {HealthRegeneration}\n" +
-                      $"Hit Rate: {HitRate}\n" +
-                      $"Evade Rate: {EvadeRate}\n" +
-                      $"Armour: {Armour}\n" +
-                      $"Movement Speed: {MovementSpeed}\n" +
-                      $"Critical Chance: {CriticalChance}\n" +
-                      $"Armour Penetration: {ArmourPenetration}\n" +
-                      $"Special Ability: {string.Join(", ", SpecialAbility)}");
-        }
     }
 }

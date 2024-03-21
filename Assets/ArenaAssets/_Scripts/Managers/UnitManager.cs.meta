@@ -3,7 +3,10 @@ guid: d8d0cfe99b4f50b4da40b142148883f4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TheHero: {instanceID: 0}
+  - SelectedHero: {instanceID: 0}
+  - floatingPoints: {fileID: 3900875080101463026, guid: ab88fbfc73dc20243afa581ff007755d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -44,7 +44,7 @@ namespace Assets
         {
             SQLdb DBManager = new SQLdb();  // Create an instance of the SQLdb class
             DBManager.ReadJson();
-            allItems = DBManager.GetAllItems();
+            allItems = BackendFunctions.GetAllItems();
             ButtonsArray = new Button[] { ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine };
             for (int i = 0; i < ButtonsArray.Length; i++)
             {

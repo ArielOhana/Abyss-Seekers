@@ -41,7 +41,6 @@ public class WonStats : MonoBehaviour
     public void WonActive() 
     {
         if (MainMenu.currentHero != null) {
-            Debug.Log("hiiiiiiiiiiiiiiiiiiiii");
             Dictionary<string, object> loot = MainMenu.currentHero.WonFight();
             int randomCoins = (int)loot["Coins"];
             int randomXp = (int)loot["TotalXp"];
@@ -69,31 +68,32 @@ public class WonStats : MonoBehaviour
                 Debug.LogError("Failed to get hero data");
             }
 
-            Button damageButton = GameObject.Find("DamageButton").GetComponent<Button>();
-            damageButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementDamage); });
+                Button damageButton = GameObject.Find("DamageButton").GetComponent<Button>();
+                damageButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementDamage); });
 
-            Button maxHealthButton = GameObject.Find("MaxHealthButton").GetComponent<Button>();
-            maxHealthButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementMaxHealth); });
+                Button maxHealthButton = GameObject.Find("MaxHealthButton").GetComponent<Button>();
+                maxHealthButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementMaxHealth); });
 
-            Button evadeRateButton = GameObject.Find("EvadeRateButton").GetComponent<Button>();
-            evadeRateButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementEvadeRate); });
+                Button evadeRateButton = GameObject.Find("EvadeRateButton").GetComponent<Button>();
+                evadeRateButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementEvadeRate); });
 
-            Button healthRegButton = GameObject.Find("HealthRegButton").GetComponent<Button>();
-            healthRegButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementHealthReg); });
+                Button healthRegButton = GameObject.Find("HealthRegButton").GetComponent<Button>();
+                healthRegButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementHealthReg); });
 
-            Button hitRateButton = GameObject.Find("HitRateButton").GetComponent<Button>();
-            hitRateButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementHitRate); });
+                Button hitRateButton = GameObject.Find("HitRateButton").GetComponent<Button>();
+                hitRateButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementHitRate); });
 
-            Button criticalChanButton = GameObject.Find("CriticalChanButton").GetComponent<Button>();
-            criticalChanButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementCriticalChan); });
+                Button criticalChanButton = GameObject.Find("CriticalChanButton").GetComponent<Button>();
+                criticalChanButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementCriticalChan); });
 
-            Button armourPenetButton = GameObject.Find("ArmourPenetButton").GetComponent<Button>();
-            armourPenetButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementArmourPenet); });
+                Button armourPenetButton = GameObject.Find("ArmourPenetButton").GetComponent<Button>();
+                armourPenetButton.onClick.AddListener(() => { IncrementAndDecrement(IncrementArmourPenet); });
+            
         }
     }
     public void IncrementDamage()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.Dmg += 2;
             damage += 2;
@@ -104,7 +104,7 @@ public class WonStats : MonoBehaviour
 
     public void IncrementMaxHealth()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.MaxHealth += 3;
             maxHealth += 3;
@@ -115,7 +115,7 @@ public class WonStats : MonoBehaviour
 
     public void IncrementEvadeRate()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.EvadeRate += 1;
             evadeRate += 1;
@@ -126,7 +126,7 @@ public class WonStats : MonoBehaviour
 
     public void IncrementHealthReg()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.HealthRegeneration += 2;
             healthReg += 2;
@@ -137,7 +137,7 @@ public class WonStats : MonoBehaviour
 
     public void IncrementHitRate()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.HitRate += 1;
             hitRate += 1;
@@ -148,10 +148,10 @@ public class WonStats : MonoBehaviour
 
     public void IncrementCriticalChan()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.CriticalChance += 1;
-            critcalChange += 1;
+            critcalChange -= 1;
             clickCount++;
             UpdateUI();
         }
@@ -159,7 +159,7 @@ public class WonStats : MonoBehaviour
 
     public void IncrementArmourPenet()
     {
-        if (clickCount < 3)
+        if (clickCount < 3 && choiceLeft > 0)
         {
             MainMenu.currentHero.Stats.ArmourPenetration += 1;
             armourPent += 1;
@@ -196,12 +196,10 @@ public class WonStats : MonoBehaviour
         ArmourPenetText.text = "Armour Penetration: " + armourPent.ToString();
         maxHealthTextText.text = "Max Health: " + maxHealth.ToString();
         choiceLeftText.text = "Points Remaining " + choiceLeft.ToString() ;
-        if (clickCount >= 3 | clickCount == 0)
+        if (clickCount >= 3 )
         {
             ContinueButton.SetActive(true);
-            Debug.Log("2" + MainMenu.currentHero.Inventory.Coins);
             DBManager.SaveHero(MainMenu.currentHero);
-            Debug.Log("3" + MainMenu.currentHero.Inventory.Coins);
         }
         else { ContinueButton.SetActive(false);}
     }

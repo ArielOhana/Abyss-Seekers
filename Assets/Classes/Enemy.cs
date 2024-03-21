@@ -37,23 +37,5 @@ namespace Assets
                 CriticalChance = criticalChance;
                 ArmourPenetration = armourPenetration;
             }
-
-
-        public void Print()
-        {
-            Debug.Log($"Enemy Details:\n" +
-                      $"Name: {Name}\n" +
-                      $"Worth: {Worth}\n" +
-                      $"Max Health: {MaxHealth}\n" +
-                      $"Damage: {Damage}\n" +
-                      $"Health Regeneration: {HealthRegeneration}\n" +
-                      $"Hit Rate: {HitRate}\n" +
-                      $"Evade Rate: {EvadeRate}\n" +
-                      $"Armour: {Armour}\n" +
-                      $"Movement Speed: {MovementSpeed}\n" +
-                      $"Critical Chance: {CriticalChance}\n" +
-                      $"Armour Penetration: {ArmourPenetration}\n" +
-                      $"Special Ability: {string.Join(", ", SpecialAbility)}");
-        }
     }
 }

@@ -17,15 +17,7 @@ public class LogicScript : MonoBehaviour
 
     void Start()
     {
-        SQLdb DBManager = new SQLdb();
-        DBManager.ReadJson();
-        DBManager.CreateHero("dor", "warrior");
-        MainMenu.currentHero = DBManager.GetHero("dor");
-        List<Enemy> enemies = MainMenu.currentHero.SpawnEnemies();
-        Debug.Log(enemies.Count);
-        enemies = MainMenu.currentHero.SpawnEnemies();
-        Debug.Log(enemies.Count);
-        // Update is called once per frame
+
     }
        void Update()
         {

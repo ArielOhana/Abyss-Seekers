@@ -59,10 +59,10 @@ namespace Assets
             System.Random rand = new System.Random();
             try
             {
-                int hardnes = rand.Next(1, 5) * Level;
+                int hardnes = rand.Next(1, 3) * Level;
                 while (hardnes > 0)
                 {
-                    int randomEnemyIndex = rand.Next(1, 6);
+                    int randomEnemyIndex = rand.Next(1, 5);
                     Enemy selectedEnemy = enemyList.Find(enemy => enemy.Worth == randomEnemyIndex);
                     // Check if the budget is enough to add this enemy
                     if (selectedEnemy != null && selectedEnemy.Worth <= hardnes)
@@ -78,6 +78,10 @@ namespace Assets
                 Debug.Log("Error: " + e.Message);
                 return null;
             }
+        }
+        public int TotalArmour()
+        {
+           return Stats.Armour + Inventory.SumAdditionalArmour();
         }
     }
 }

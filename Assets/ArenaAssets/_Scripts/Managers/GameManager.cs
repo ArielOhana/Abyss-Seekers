@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
             case GameState.EnemiesTurn:
                 UnitManager.Instance.EnemiesTurn();
                 break;
-            //default:
-                //put here
         }
     }
 }

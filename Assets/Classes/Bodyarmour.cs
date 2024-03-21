@@ -28,10 +28,5 @@ namespace Assets
             Rarity = rarity;
             Url = url;
         }
-        public string GetID()
-        {
-            int num = this.Id;
-            return num.ToString();
-        }
     }
 }

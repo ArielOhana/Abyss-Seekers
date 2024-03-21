@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseHero : BaseUnit
 {
+
+
     // Start is called before the first frame update
     void Start()
     {

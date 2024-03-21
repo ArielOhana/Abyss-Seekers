@@ -86,21 +86,6 @@ public class ArrowTranslator
             return ArrowDirection.LeftFinished;
         }
 
-
-
-        /*if (direction == new Vector2(0, 1) && isStart) {
-            return ArrowDirection.UpFirst;
-        }
-        if (direction == new Vector2(0, -1) && isStart) {
-            return ArrowDirection.DownFirst;
-        }
-        if (direction == new Vector2(1, 0) && isStart) {
-            return ArrowDirection.RightFirst;
-        }
-        if (direction == new Vector2(-1, 0) && isStart) {
-            return ArrowDirection.LeftFirst;
-        }*/
-
         return ArrowDirection.None;
     }
 }

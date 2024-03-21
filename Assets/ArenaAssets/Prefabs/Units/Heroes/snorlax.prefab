@@ -97,8 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eee3e2730cdf5a4fb8f90ad9eff4665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingPoints: {fileID: 86829652398856333, guid: e47a654d019093945bcbe056f2d973ec, type: 3}
   UnitName: Snorlax
   OccupiedTile: {fileID: 0}
-  Faction: 0
-  _movementSpeed: 3
   _attackRange: 1
+  _movementSpeed: 3
+  _currentHealth: 0
+  _maxHealth: 0
+  Faction: 0

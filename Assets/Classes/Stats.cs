@@ -33,12 +33,9 @@ namespace Assets
             MovementSpeed = movementSpeed;
         }
 
-        public void Print()
+        public static implicit operator Stats(Enemy v)
         {
-            Debug.Log($"Stats - ID: {Id}, Damage: {Dmg}, Armour Penetration: {ArmourPenetration}, " +
-                      $"Critical Chance: {CriticalChance}, Hit Rate: {HitRate}, Max Health: {MaxHealth}, " +
-                      $"Health Regeneration: {HealthRegeneration}, Armour: {Armour}, " +
-                      $"Evade Rate: {EvadeRate}, Movement Speed: {MovementSpeed}");
+            throw new NotImplementedException();
         }
     }
 }
