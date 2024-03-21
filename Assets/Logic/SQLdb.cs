@@ -12,7 +12,7 @@ namespace Assets
 {
     public class SQLdb 
     {
-        private static string connectionString = "URI=file:Assets/Logic/DB/anotherDB.db";
+        private static string connectionString = "URI=file:Assets/Logic/DB/realDBCopy.db";
         public static SqliteConnection DBConnection;
         private static string FilePath = "Assets/Logic/DB/Default_JSON.json";
 

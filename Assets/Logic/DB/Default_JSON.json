@@ -1,0 +1,511 @@
+{
+  "weapons": [
+    {
+      "damage": 12,
+      "range": 1,
+      "criticalDamage": 18,
+      "value": 30,
+      "name": "club",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/club.png"
+    },
+    {
+      "damage": 20,
+      "range": 1,
+      "criticalDamage": 30,
+      "value": 50,
+      "name": "Common knife",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife1.png"
+    },
+    {
+      "damage": 15,
+      "range": 2,
+      "criticalDamage": 25,
+      "value": 40,
+      "name": "bronze knife",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife2.png"
+    },
+    {
+      "damage": 25,
+      "range": 1,
+      "criticalDamage": 35,
+      "value": 60,
+      "name": "hunting knife",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife3.png"
+    },
+    {
+      "damage": 22,
+      "range": 1,
+      "criticalDamage": 30,
+      "value": 55,
+      "name": "katana",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword1.png"
+    },
+    {
+      "damage": 60,
+      "range": 1,
+      "criticalDamage": 100,
+      "value": 100,
+      "name": "big sword",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword2.png"
+    },
+    {
+      "damage": 50,
+      "range": 1,
+      "criticalDamage": 120,
+      "value": 200,
+      "name": "simple sword",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword3.png"
+    },
+    {
+      "damage": 32,
+      "range": 1,
+      "criticalDamage": 80,
+      "value": 130,
+      "name": "drakon sword",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/sword4.png"
+    },
+    {
+      "damage": 18,
+      "range": 1,
+      "criticalDamage": 25,
+      "value": 45,
+      "name": "black axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/axe1.png"
+    },
+    {
+      "damage": 40,
+      "range": 1,
+      "criticalDamage": 60,
+      "value": 55,
+      "name": "spikey axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/axe2.png"
+    },
+    {
+      "damage": 30,
+      "range": 1,
+      "criticalDamage": 60,
+      "value": 100,
+      "name": "hammer",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/hammer.png"
+    },
+    {
+      "damage": 18,
+      "range": 1,
+      "criticalDamage": 30,
+      "value": 50,
+      "name": "simple axe",
+      "rarity": 1,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/knife3.png"
+    },
+    {
+      "damage": 30,
+      "range": 1,
+      "criticalDamage": 40,
+      "value": 70,
+      "name": "simple staff",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/staff1.png"
+    },
+    {
+      "damage": 15,
+      "range": 1,
+      "criticalDamage": 25,
+      "value": 40,
+      "name": "magic staff",
+      "rarity": 2,
+      "url": "Assets/Items/Icons/MeleeWeapon1H/staff2.png"
+    },
+    {
+      "damage": 60,
+      "range": 1,
+      "criticalDamage": 100,
+      "value": 160,
+      "name": "viking Axe",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon2H/axe1.png"
+    },
+    {
+      "damage": 40,
+      "range": 1,
+      "criticalDamage": 60,
+      "value": 100,
+      "name": "great axer",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon2H/axe2.png"
+    },
+    {
+      "damage": 50,
+      "range": 1,
+      "criticalDamage": 70,
+      "value": 150,
+      "name": "bucher's knife'",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon2H/bucher.png"
+    },
+    {
+      "damage": 90,
+      "range": 1,
+      "criticalDamage": 160,
+      "value": 200,
+      "name": "good hammer",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/MeleeWeapon2H/hammer1.png"
+    },
+    {
+      "damage": 50,
+      "range": 3,
+      "criticalDamage": 120,
+      "value": 200,
+      "name": "red bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow1.png"
+    },
+    {
+      "damage": 32,
+      "range": 3,
+      "criticalDamage": 80,
+      "value": 130,
+      "name": "elven bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow2.png"
+    },
+    {
+      "damage": 60,
+      "range": 3,
+      "criticalDamage": 100,
+      "value": 160,
+      "name": "river bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow3.png"
+    },
+    {
+      "damage": 40,
+      "range": 4,
+      "criticalDamage": 60,
+      "value": 100,
+      "name": "simple bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow4.png"
+    },
+    {
+      "damage": 50,
+      "range": 4,
+      "criticalDamage": 70,
+      "value": 150,
+      "name": "wood bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow5.png"
+    },
+    {
+      "damage": 90,
+      "range": 4,
+      "criticalDamage": 160,
+      "value": 200,
+      "name": "longshot bow",
+      "rarity": 3,
+      "url": "Assets/Items/Icons/Bow/bow6.png"
+    }
+  ],
+  "helmets": [
+    {
+      "name": "Hood",
+      "value": 15,
+      "additionalArmour": 5,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel.png"
+    },
+    {
+      "name": "simple helmet",
+      "value": 15,
+      "additionalArmour": 5,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel1.png"
+    },
+    {
+      "name": "elf helmet",
+      "value": 12,
+      "additionalArmour": 4,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel2.png"
+    },
+    {
+      "name": "bronze helmet",
+      "value": 18,
+      "additionalArmour": 6,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel3.png"
+    },
+    {
+      "name": "knight helmet",
+      "value": 14,
+      "additionalArmour": 5,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel4.png"
+    },
+    {
+      "name": "horror helmet",
+      "value": 16,
+      "additionalArmour": 5,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Helmet/hel5.png"
+    },
+    {
+      "name": "king's helmet'",
+      "value": 25,
+      "additionalArmour": 8,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Helmet/hel6.png"
+    }
+  ],
+  "boots": [
+    {
+      "name": "simple boots",
+      "value": 10,
+      "additionalArmour": 3,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Boots/boot1.png"
+    },
+    {
+      "name": "worm boots",
+      "value": 8,
+      "additionalArmour": 2,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Boots/boot2.png"
+    },
+    {
+      "name": "black boots",
+      "value": 12,
+      "additionalArmour": 4,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Boots/boot3.png"
+    },
+    {
+      "name": "harden boots",
+      "value": 15,
+      "additionalArmour": 5,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Boots/boot4.png"
+    },
+    {
+      "name": "platinum boots",
+      "value": 20,
+      "additionalArmour": 7,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Boots/boot5.png"
+    },
+    {
+      "name": "hunter's boots'",
+      "value": 18,
+      "additionalArmour": 6,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Boots/boot6.png"
+    }
+  ],
+  "bodyarmour": [
+    {
+      "name": "Common Body Armour ",
+      "value": 20,
+      "additionalArmour": 8,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Armor/armour1.png"
+    },
+    {
+      "name": "Guardian Body Armour",
+      "value": 18,
+      "additionalArmour": 7,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Armor/armour2.png"
+    },
+    {
+      "name": "woods Body Armour",
+      "value": 22,
+      "additionalArmour": 9,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Armor/armour3.png"
+    },
+    {
+      "name": "leather Body Armour",
+      "value": 25,
+      "additionalArmour": 10,
+      "rarity": 1,
+      "url": "Assets/Items/Icons/Armor/armour4.png"
+    },
+    {
+      "name": "officer's' Body Armour",
+      "value": 30,
+      "additionalArmour": 12,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Armor/armour5.png"
+    },
+    {
+      "name": "royalty Body Armour",
+      "value": 28,
+      "additionalArmour": 11,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Armor/armour6.png"
+    },
+    {
+      "name": "platinum Body Armour",
+      "value": 35,
+      "additionalArmour": 13,
+      "rarity": 2,
+      "url": "Assets/Items/Icons/Armor/armour7.png"
+    }
+  ],
+  "roles": [
+    {
+      "name": "elf",
+      "maxHealth": 100,
+      "damage": 25,
+      "healthRegeneration": 5,
+      "hitRate": 80,
+      "evadeRate": 20,
+      "armour": 30,
+      "movementSpeed": 10,
+      "criticalChance": 10,
+      "armourPenetration": 5,
+      "WeaponID": 2,
+      "specialAbility": [ "elf Ability 1", "elf Ability 2" ]
+
+    },
+    {
+      "name": "mage",
+      "maxHealth": 90,
+      "damage": 25,
+      "healthRegeneration": 4,
+      "hitRate": 85,
+      "evadeRate": 15,
+      "armour": 20,
+      "movementSpeed": 12,
+      "criticalChance": 15,
+      "armourPenetration": 8,
+      "WeaponID": 5,
+      "specialAbility": [ "mage Ability 1", "mage Ability 2" ]
+    },
+    {
+      "name": "warrior",
+      "maxHealth": 120,
+      "damage": 30,
+      "healthRegeneration": 7,
+      "hitRate": 75,
+      "evadeRate": 25,
+      "armour": 40,
+      "movementSpeed": 8,
+      "criticalChance": 5,
+      "armourPenetration": 3,
+      "WeaponID": 1,
+      "specialAbility": [ "warrior Ability 1", "warrior Ability 2" ]
+    },
+    {
+      "name": "orc",
+      "maxHealth": 110,
+      "damage": 28,
+      "healthRegeneration": 6,
+      "hitRate": 70,
+      "evadeRate": 22,
+      "armour": 35,
+      "movementSpeed": 9,
+      "criticalChance": 8,
+      "armourPenetration": 6,
+      "WeaponID": 6,
+      "specialAbility": [ "orc Ability 1", "orc Ability 2" ]
+    },
+    {
+      "name": "rogue",
+      "maxHealth": 95,
+      "damage": 22,
+      "healthRegeneration": 3,
+      "hitRate": 88,
+      "evadeRate": 18,
+      "armour": 25,
+      "movementSpeed": 14,
+      "criticalChance": 20,
+      "armourPenetration": 10,
+      "WeaponID": 4,
+      "specialAbility": [ "rogue Ability 1", "rogue Ability 2" ]
+    }
+  ],
+  "enemies": [
+    {
+      "name": "evil rat",
+      "worth": 1,
+      "maxHealth": 50,
+      "damage": 5,
+      "healthRegeneration": 0,
+      "hitRate": 20,
+      "armour": 1,
+      "evadeRate": 10,
+      "movementSpeed": 5,
+      "criticalChance": 1,
+      "armourPenetration": 0,
+      "specialAbility": [ "evil rat Ability 1", "evil rat Ability 2" ]
+    },
+    {
+      "name": "evil worm",
+      "worth": 2,
+      "maxHealth": 100,
+      "damage": 8,
+      "healthRegeneration": 0,
+      "hitRate": 10,
+      "armour": 1,
+      "evadeRate": 5,
+      "movementSpeed": 3,
+      "criticalChance": 1,
+      "armourPenetration": 0,
+      "specialAbility": [ "evil worm Ability 1", "evil worm Ability 2" ]
+    },
+    {
+      "name": "ghost",
+      "worth": 3,
+      "maxHealth": 150,
+      "damage": 10,
+      "healthRegeneration": 1,
+      "hitRate": 30,
+      "armour": 2,
+      "evadeRate": 15,
+      "movementSpeed": 8,
+      "criticalChance": 2,
+      "armourPenetration": 1,
+      "specialAbility": [ "ghost Ability 1", "ghost Ability 2" ]
+    },
+    {
+      "name": "slim monster",
+      "worth":  4,
+      "maxHealth": 200,
+      "damage": 15,
+      "healthRegeneration": 2,
+      "hitRate": 40,
+      "armour": 3,
+      "evadeRate": 20,
+      "movementSpeed": 10,
+      "criticalChance": 3,
+      "armourPenetration": 2,
+      "specialAbility": [ "slim monster Ability 1", "slim monster Ability 2" ]
+    },
+    {
+      "name": "zombie",
+      "worth":  5,
+      "maxHealth": 250,
+      "damage": 20,
+      "healthRegeneration": 3,
+      "hitRate": 50,
+      "armour": 4,
+      "evadeRate": 25,
+      "movementSpeed": 12,
+      "criticalChance": 4,
+      "armourPenetration": 3,
+      "specialAbility": [ "zombie Ability 1", "zombie Ability 2" ]
+    }
+  ]
+}
