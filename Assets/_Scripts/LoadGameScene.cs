@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
 using Assets;
+using Context;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadGameScene : MonoBehaviour
 {
     public SQLdb DBManager;
-    public GameObject gameContainer; // Assign the game container prefab in the inspector
+    public GameObject gameContainer;
     public Transform gamesContainer;
-    public TextMeshProUGUI statusText;
-
-    private List<GameData> savedGames = new List<GameData>(4);
+    public Text statusText;
+    
+    private List<GameData> savedGames = new List<GameData>();
 
     [System.Serializable]
     public class GameData
@@ -26,10 +26,10 @@ public class LoadGameScene : MonoBehaviour
 
     Vector3[] spawns = new[]
     {
-        new Vector3(-2.16f, 7, 0),
-        new Vector3(-0.67f, 7, 0),
-        new Vector3(0.75f, 7, 0),
-        new Vector3(2.22f, 7, 0)
+        new Vector3(-2.16f, 320.7619f, 0),
+        new Vector3(-0.67f, 150, 0),
+        new Vector3(0.75f, -20, 0),
+        new Vector3(2.22f, -190, 0)
     };
 
     private int currentSpawnItr = 0;
@@ -37,71 +37,84 @@ public class LoadGameScene : MonoBehaviour
 
     private System.Random rndm;
     public Button createNewGameButton;
+
     void Start()
     {
         DBManager = new SQLdb();
         rndm = new System.Random();
         maxSpawnItr = spawns.Length;
         ShufflePositions();
-
         LoadSavedGames();
         UpdateUI();
+}
+
+    public class Hero
+    {
+        public string Name;
+        public string Role;
     }
 
     void LoadSavedGames()
     {
-        List<Hero> heroes = DBManager.AllHeros();
-
-        foreach (Hero hero in heroes)
+        List<Assets.Hero> heroes = new();
+        var AllHeroes = DBManager.AllHeros();
+        if(AllHeroes.Count < 4)
         {
-            GameData gameData = new GameData();
-            gameData.playerName = hero.Name;
-            gameData.gameName = $"{hero.Name}'s Game";
-            gameData.role = hero.Role;
 
+        }
+        foreach (var hero in AllHeroes)
+        {
+            heroes.Add(hero);
+        }
+
+
+        savedGames.Clear();
+        foreach (var hero in heroes)
+        {
+            GameData gameData = new GameData
+            {
+                playerName = hero.Name,
+                gameName = hero.Name, 
+                role = hero.Role
+            };
             savedGames.Add(gameData);
         }
     }
 
     void UpdateUI()
     {
-        // Destroy all previous game containers
-        foreach (Transform child in gamesContainer)
-        {
-            Destroy(child.gameObject);
-        }
-
         for (int i = 0; i < savedGames.Count; i++)
         {
-            // Instantiate the game container prefab
             GameObject gameContainerInstance = Instantiate(gameContainer, gamesContainer);
 
-            // Get the canvas transform from the game container instance
-            Transform canvasTransform = gameContainerInstance.transform.Find("Canvas");
+            Transform canvasTransform = gameContainerInstance.transform.Find("PreFabCanvas");
 
-            // Set position if within bounds
             if (i < spawns.Length)
             {
                 Vector3 position = GetNextPosition();
                 gameContainerInstance.transform.localPosition = position;
             }
 
-            // Access UI elements from the canvas
-            TextMeshProUGUI gameText = canvasTransform.Find("GameText")?.GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI roleText = canvasTransform.Find("RoleText")?.GetComponent<TextMeshProUGUI>();
+            GameObject canvasObject = gameContainerInstance.transform.Find("PreFabCanvas").gameObject;
+            canvasObject.SetActive(true);
+
+            Text gameText = canvasTransform.Find("GameText")?.GetComponent<Text>();
+            Text roleText = canvasTransform.Find("RoleText")?.GetComponent<Text>();
             Button startButton = canvasTransform.Find("StartButton")?.GetComponent<Button>();
             Button deleteButton = canvasTransform.Find("DeleteButton")?.GetComponent<Button>();
 
-            // Check if UI elements are not null before updating
             if (gameText != null && roleText != null && startButton != null && deleteButton != null)
             {
-                // Update UI elements with data
                 gameText.text = savedGames[i].gameName;
                 roleText.text = savedGames[i].role;
 
-                // Add listeners to buttons
-                startButton.onClick.AddListener(() => StartGame(i));
-                deleteButton.onClick.AddListener(() => DeleteGame(i));
+                int index = i; 
+                startButton.onClick.AddListener(() =>
+                {
+                    StartGame(savedGames[index].gameName);
+                });
+
+                deleteButton.onClick.AddListener(() => DeleteGame(index));
             }
             else
             {
@@ -109,26 +122,47 @@ public class LoadGameScene : MonoBehaviour
             }
         }
 
-        // Set the visibility of createNewGameButton
         createNewGameButton.gameObject.SetActive(savedGames.Count < 5);
     }
 
-    public void StartGame(int index)
+    public void StartGame(string heroName)
     {
-        string playerName = savedGames[index].playerName;
-        Debug.Log("Starting game for player: " + playerName);
+        try
+        {
+            Debug.Log("Starting game for player: " + heroName);
+            MainMenu.currentHero = DBManager.GetHero(heroName);
+            //Inv.RenderValues();
+            print(MainMenu.currentHero.Role);
+            SceneManager.LoadScene("TownHall");
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error: " + ex.Message);
+        }
     }
+
 
     public void DeleteGame(int index)
     {
-        string playerName = savedGames[index].playerName;
-        Debug.Log("Deleting game for player: " + playerName);
+        Debug.Log("Attempting to delete game at index: " + index);
+        Debug.Log("Number of saved games before deletion: " + savedGames.Count);
 
-        DBManager.DeleteHero(playerName);
+        if (index >= 0 && index < savedGames.Count)
+        {
+            Debug.Log("Deleting game for player: " + savedGames[index].playerName);
 
-        savedGames.RemoveAt(index);
-        UpdateUI();
+            string playerName = savedGames[index].playerName;
+            DBManager.DeleteHero(playerName);
+
+            savedGames.RemoveAt(index);
+            UpdateUI();
+        }
+        else
+        {
+            Debug.LogError("Invalid index: " + index);
+        }
     }
+
 
     public void CreateNewGame()
     {

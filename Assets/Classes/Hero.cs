@@ -19,7 +19,7 @@ namespace Assets
         public Inventory Inventory { get; set; }
         public string Role { get; set; }
 
-        public static SQLdb DBManager = new SQLdb();
+        public static SQLdb DBManager;
 
         public Hero(string name, int level, int xp, Stats stats, Inventory inventory, string role)
         {

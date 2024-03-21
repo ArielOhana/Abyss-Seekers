@@ -1,3 +1,5 @@
+using Assets;
+using Context;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +9,8 @@ public class InteractableObject : CollidableObjects
     private string interactableSceneName = "Menu";
     [SerializeField]
     private string interactMessage = "Press E to enter";
-
+    public SQLdb DBManager;
+    
     protected override void HandleInteraction()
     {
         Debug.Log("Teleporting to the scene: " + interactableSceneName);
